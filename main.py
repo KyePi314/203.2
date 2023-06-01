@@ -6,11 +6,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("landingpage.html")
+    return render_template("auth/landingpage.html")
 
 @app.route("/home/")
 def home():
-    return render_template("home.html")
+    return render_template('home.html')
 
 @app.route("/contact/")
 def contact():
@@ -31,3 +31,8 @@ def subscription():
 @app.route("/Timeline/")
 def timeline():
     return render_template("Timeline.html")
+    
+from . import auth
+app.register_blueprint(auth.auth)
+
+
