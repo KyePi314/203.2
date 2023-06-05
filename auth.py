@@ -2,12 +2,11 @@
 
 ## Importing important packages ###
 from flask import (render_template, request, Blueprint, redirect, session, url_for, flash)
+from flask_login import login_user, logout_user, login_required, current_user
 import functools
 from werkzeug.security import check_password_hash, generate_password_hash
 
-auth = Blueprint('auth', __name__, url_prefix='/auth')
+auth = Blueprint('auth', __name__)
+# Temp database info to get login stuff to run and load the home page
 
-@auth.route('/login', methods=['GET', 'POST']) # Defining the login page path
-def login(): # Log in page function
-    return render_template('home.html')
-        ### I'll finish this when doing python stuff next meeting - Kye  ###
+       

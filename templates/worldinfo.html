@@ -13,6 +13,7 @@
             <a href="{{ url_for('issues')}}">Issues</a>
             <a href="{{url_for('contact')}}">Contact</a>
             <a href="{{ url_for('subscription')}}">Subscription</a>
+            <a href="{{ url_for('logout')}}">Log Out</a>
         </div>
         <h1 class="title">{{World Name}}</h1>
         <div class="btn-group">
@@ -31,32 +32,32 @@
                 <div>
                     <h2>Culture</h2>
                     <p>Culture details summary here</p>
-                    <button class="btn">Edit</button>
+                    <a href="{{ url_for('culture')}}"><button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>History</h2>
                     <p></p>
-                    <button class="btn">Edit</button>
+                    <a href="{{ url_for('history')}}"><button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>Species</h2>
                     <p></p>
-                    <button class="btn">Edit</button>
+                    <a href="{{ url_for('species')}}"><button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>Religions</h2>
                     <p></p>
-                    <button class="btn">Edit</button>
+                    <a href="{{ url_for('religion')}}"><button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>Timeline</h2>
                     <p></p>
-                    <button class="btn">Edit</button>
+                    <a href="{{ url_for('Timeline')}}"> <button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>Maps</h2>
                     <p></p>
-                    <button class="btn">Edit</button>
+                    <a href="{{ url_for('Maps')}}"><button class="btn">Edit</button></a>
                 </div>
             </div>
         </div>

@@ -8,10 +8,18 @@
     <body>
         <h2>Welcome to</h2>
         <h1>World Forge</h1>
-        <form method="POST"action="/login">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notifcation">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        
+        <form method="POST" action="/login">
             <div class="field">
                 <div class="control">
-                    <input class="input" type="email" name="email" placeholder="Your Email" autofocus="">
+                    <input class="input" type="username" name="username" placeholder="Your Username" autofocus="">
                 </div>
             </div>
             <div class="field">
