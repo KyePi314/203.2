@@ -6,13 +6,29 @@
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
     </head>
     <body>
-        <div class="navbar">
-            <a href="{{ url_for('home')}}">Home</a>
-            <a href="{{ url_for('worlds')}}">World Info</a>
-            <a href="{{ url_for('userprofile')}}">User Profile</a>
-            <a href="{{ url_for('issues')}}">Issues</a>
-            <a href="{{url_for('contact')}}">Contact</a>
-            <a href="{{ url_for('subscription')}}">Subscription</a>
+        <nav>
+            <a href="{{ url_for('main.home')}}">Home</a>
+            <a href="{{ url_for('main.worlds')}}">World Info</a>
+            <a href="{{ url_for('main.userprofile')}}">User Profile</a>
+            <a href="{{ url_for('main.issues')}}">Issues</a>
+            <a href="{{url_for('main.contact')}}">Contact</a>
+            <a href="{{ url_for('main.subscription')}}">Subscription</a>
+            <a href="{{ url_for('main.logout')}}">Log Out</a>
+        </nav>
+        <div class="content">
+            <h1>World Forge</h1>
+            <p>World Forge is a world building site</p>
+            <br><br>
+            <h2>Design a world of your own creations with our worldbuilding tools</h2>
+            <p></p>
+            <br><br>
+            <h2>Share your creations with fellow world builders</h2>
+            <p></p>
+            <br><br>
+            <h2>Work collaboratively or alone</h2>
+            <p></p>
+            <br><br>
+            <button class="btn">Create an Account Today</button>
         </div>
     </body>
 </html>
