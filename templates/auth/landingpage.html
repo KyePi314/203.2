@@ -4,33 +4,30 @@
         <meta charset="utf-8"/>
         <title>Log In</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='login.css')}}"/>
     </head>
     <body>
         <h2>Welcome to</h2>
         <h1>World Forge</h1>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="notifcation">
-                {{ messages[0] }}
-            </div>
-        {% endif %}
-        {% endwith %}
+        <h3>{{info}}</h3>
         
         <form method="POST" action="/login">
             <div class="field">
                 <div class="control">
+                    <h2></h2><strong>Username</strong> <br>
                     <input class="input" type="username" name="username" placeholder="Your Username" autofocus="">
                 </div>
             </div>
             <div class="field">
                 <div class="control">
+                    <h2></h2><strong>Password</strong> <br>
                     <input class="input" type="password" name="password" placeholder="Your Password">
                 </div>
             </div>
             <div class="field">
-                <label class="checkbox">
+                <label class="toggle">
                     <input type="checkbox">
-                    Remember Me
+                    <span class="slider-round"></span>
                 </label>
             </div><button class="btn">Sign In</button>
         </form>
