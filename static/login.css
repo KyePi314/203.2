@@ -1,4 +1,4 @@
-.field
+.toggle-field
 {
     padding: 0.50em;
 }
@@ -33,38 +33,38 @@
     transition: .4s;
 }
 
-.slider-round:before {
+.slider-round:before 
+{
     position: absolute;
     content: "";
-    height: 1.62em;
-    width: 1.62em;
+    height: 1.55em;
+    width: 1.55em;
     left: 0.25em;
     bottom: 0.25em;
     background-color: #ffffff;
     -webkit-transition: .4s;
     transition: .4s;
-  }
+}
   
-  input:checked + .slider-round {
-    background-color: #9dfddd;
-  }
-  
-  input:focus + .slider-round {
-    box-shadow: 0 0 1px #9dfddd;
-  }
-  
-  input:checked + .slider-round:before {
-    -webkit-transform: translateX(1.62em);
-    -ms-transform: translateX(1.62em);
-    transform: translateX(1.62em);
-  }
-  
-  /* Rounded sliders */
-  .slider-round {
-    padding: 0;
-    border-radius: 2.12em;
-  }
-  
-  .slider-round:before {
-    border-radius: 50%;
-  }
+input:checked + .slider-round {
+  background-color: #9dfddd;
+}
+
+input:focus + .slider-round {
+  box-shadow: 0 0 1px #9dfddd;
+}
+
+input:checked + .slider-round:before {
+  -webkit-transform: translateX(1.62em);
+  -ms-transform: translateX(1.62em);
+  transform: translateX(1.62em);
+}
+
+.slider-round {
+  padding: 0;
+  border-radius: 2.12em;
+}
+
+.slider-round:before {
+  border-radius: 50%;
+}
