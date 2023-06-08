@@ -54,7 +54,6 @@ session.add(User3)
 
 session.commit()
 
-
 # temp database until proper one hooked up
 database = {'Jane':'123',
             'Dean':'666',
@@ -76,6 +75,7 @@ database2 = {"Jane": "World1",
 #Database for Timeline entries.
 database3 = {"TimelineTitle": "Type here to add timeline name...",
              "TimelineBox1: " : "..."}
+# Put database stuff in here
 
 def create_app():
     app = Flask(__name__)

@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
     </head>
     <body>
+<<<<<<< HEAD
         <div class="navbar">
             <a href="{{ url_for('home')}}">Home</a>
             <a href="{{ url_for('worlds')}}">World Info</a>
@@ -20,5 +21,16 @@
             <input>...</input>
             <button>Submit</button>
         </div>
+=======
+        <nav>
+            <a href="{{ url_for('main.home')}}">Home</a>
+            <a href="{{ url_for('main.worlds')}}">World Info</a>
+            <a href="{{ url_for('main.userprofile')}}">User Profile</a>
+            <a href="{{ url_for('main.issues')}}">Issues</a>
+            <a href="{{url_for('main.contact')}}">Contact</a>
+            <a href="{{ url_for('main.subscription')}}">Subscription</a>
+            <a href="{{ url_for('main.logout')}}">Log Out</a>
+        </nav>
+>>>>>>> 6c5d4b9da0a3768a08692d1998b4432dfaaf9e87
     </body>
 </html>
