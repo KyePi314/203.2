@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, Blueprint
 from flask_login import login_required, current_user
 from __init__ import create_app
 import os
+from auth import auth
 
 main = Blueprint('main', __name__)
 
@@ -53,6 +54,7 @@ def userprofile():
 
 
 app = create_app()
+
 
 if __name__ == '__203.main__':
     app.run(debug=True)

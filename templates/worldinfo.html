@@ -18,9 +18,9 @@
         <h1 class="title">{{World Name}}</h1>
         <div class="btn-group">
             <button class="btn">Privacy:{{public}}</button>
-            <a href="{{ url_for('editworldinfo')}}"><button class="btn">Edit World Information</button></a>
+            <a href="{{ url_for('main.editworldinfo')}}"><button class="btn">Edit World Information</button></a>
         </div>
-        <div class="content">
+        <main>
             <div id="description">
                 <h2>Description</h2>
                 <p>
@@ -32,34 +32,34 @@
                 <div>
                     <h2>Culture</h2>
                     <p>Culture details summary here</p>
-                    <a href="{{ url_for('culture')}}"><button class="btn">Edit</button></a>
+                    <a href="{{ url_for('main.culture')}}"><button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>History</h2>
                     <p></p>
-                    <a href="{{ url_for('history')}}"><button class="btn">Edit</button></a>
+                    <a href="{{ url_for('main.history')}}"><button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>Species</h2>
                     <p></p>
-                    <a href="{{ url_for('species')}}"><button class="btn">Edit</button></a>
+                    <a href="{{ url_for('main.species')}}"><button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>Religions</h2>
                     <p></p>
-                    <a href="{{ url_for('religion')}}"><button class="btn">Edit</button></a>
+                    <a href="{{ url_for('main.religion')}}"><button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>Timeline</h2>
                     <p></p>
-                    <a href="{{ url_for('Timeline')}}"> <button class="btn">Edit</button></a>
+                    <a href="{{ url_for('main.Timeline')}}"> <button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>Maps</h2>
                     <p></p>
-                    <a href="{{ url_for('Maps')}}"><button class="btn">Edit</button></a>
+                    <a href="{{ url_for('main.Maps')}}"><button class="btn">Edit</button></a>
                 </div>
             </div>
-        </div>
+        </main>
     </body>
 </html>
