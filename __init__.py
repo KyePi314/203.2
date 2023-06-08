@@ -3,9 +3,7 @@ from flask import Flask
 from flask_login import LoginManager
 
 
-# temp database until proper one hooked up
-database = {'Jane':'123',
-            'Dean':'666', 'Ollie':'999'}
+# Put database stuff in here
 
 def create_app():
     app = Flask(__name__)

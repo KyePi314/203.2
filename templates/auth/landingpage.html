@@ -10,7 +10,9 @@
         <h2>Welcome to</h2>
         <h1>World Forge</h1>
         <h3>{{info}}</h3>
-        
+        <div class="msg">
+            {{msg}}
+        </div>
         <form method="POST" action="/login">
             <div class="field">
                 <div class="control">
@@ -28,9 +30,10 @@
                 <label class="toggle">
                     <input type="checkbox">
                     <span class="slider-round"></span>
+                    Remember Me
                 </label>
             </div><button class="btn">Sign In</button>
         </form>
-        <button class="btn">Sign Up</button>
+        <a href="{{ url_for('auth.signup')}}"><button class="btn">Sign Up</button></a>
     </body>
 </html>
