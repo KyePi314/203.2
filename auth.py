@@ -7,14 +7,15 @@ import functools
 import re
 from werkzeug.security import check_password_hash, generate_password_hash
 
-
 # temp database until proper one hooked up
-database = {1 : []}
+database = {'User' : {
+    1 : {'username' : 'Dean', 'Password' : 666, 'Email' : 'impala@gmail.com'},
+}}
 
-
+currentKey = 1
 
 auth = Blueprint('auth', __name__)
-# Temp database info to get login stuff to run and load the home page
+# Temp database info to get login stuff tpio run and load the home page
 
 @auth.route('/login', methods=['GET', 'POST']) # Defining the login page path
 def login(): # Log in page function
@@ -35,6 +36,7 @@ def login(): # Log in page function
 @auth.route('/signup', methods = ['GET', 'POST'])
 def signup():
     msg = ''
+    d = 0
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
         user = request.form.get('username')
         pwd = request.form.get('password')
@@ -48,8 +50,10 @@ def signup():
         else:
             msg = 'Account Successfully Created! You can now log in'
             for x in database.keys():
-                if x == database.keys()
-            database.update({'User' : [user, pwd, email]})
+                if x == currentKey:
+                    currentKey += 1
+                    database['user'] = {'Username' : user, 'password' : pwd, 'Email' : email}
+            currentKey += 1
             print(database)
     elif request.method == 'POST':
         msg = 'Please fill out the form'
