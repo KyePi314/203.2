@@ -1,29 +1,41 @@
+<!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Register</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+    </head>
+    <body>
+        <nav>
+            <a href="{{ url_for('main.home')}}">Home</a>
+            <a href="{{ url_for('main.worlds')}}">World Info</a>
+            <a href="{{ url_for('main.userprofile')}}">User Profile</a>
+            <a href="{{ url_for('main.issues')}}">Issues</a>
+            <a href="{{url_for('main.contact')}}">Contact</a>
+            <a href="{{ url_for('main.subscription')}}">Subscription</a>
+            <a href="{{ url_for('main.logout')}}">Log Out</a>
+        </nav>
 
-<header>
-
-    <nav>
-        <button>Home</button>
-        <button>Subscriptions</button>
-        <button>Worlds</button>
-        <button>Profile</button>
-        <button>Sign Out</button>
-    </nav>
-
-</header>
-
-<body>
-
-    <div>
-        Placeholder Text
-    </div>
-
-    <div>
-        Placeholder Comment
-    </div>
-
-    <button>Contact</button>
-
-</body>
-
+        <div>
+            <div>
+                <p>
+                    Placeholder Text
+                </p>
+                
+                <p>
+                    Placeholder Comment
+                </p>
+            </div>
+            <div>
+                <p> 
+                    Your Feed
+                </p>
+                <p>
+                    Comment1
+                </p>
+            </div>
+        </div>
+    
+        <button>Issues</button>
+    </body>
 </html>
