@@ -1,5 +1,6 @@
 ### IMPORTING PACKAGES ###
 from flask import Flask, render_template, request, Blueprint
+
 from flask_login import login_required, current_user
 from __init__ import create_app
 import os
