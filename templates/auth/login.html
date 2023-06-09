@@ -10,9 +10,13 @@
         <h2>Welcome to</h2>
         <h1>World Forge</h1>
         <h3>{{info}}</h3>
-        <div class="msg">
-            {{msg}}
-        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
         <form method="POST" action="/login">
             <div class="field">
                 <div class="control">
