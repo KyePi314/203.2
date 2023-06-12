@@ -1,16 +1,18 @@
 ## For log in/sign up actions ##
-
 ## Importing important packages ###
 from flask import (render_template, request, Blueprint, redirect, session, url_for, flash)
 from flask_login import login_user, logout_user, login_required, current_user
-from models import db, User, session
-
+from models import engine, User, session
+from __init__ import login_manager
 from werkzeug.security import check_password_hash, generate_password_hash
+
+
 
 auth = Blueprint('auth', __name__)
 # Temp database info to get login stuff tpio run and load the home page
 
-session = session
+
+
 
 @auth.route('/login', methods=['GET', 'POST']) # Defining the login page path
 def login(): # Log in page function
@@ -20,7 +22,7 @@ def login(): # Log in page function
         name = request.form.get('username')
         pwd = request.form.get('password')
         remember = True if request.form.get('remember') else False
-        user = User.query.filter_by(Username=name)
+        user = session.query(User).filter_by(Username=name).first()
         if not user:
             flash('Account does not exist! Please sign up to continue')
             return redirect(url_for('auth.signup'))
@@ -38,17 +40,27 @@ def signup():
         name = request.form.get('username')
         pwd = request.form.get('password')
         email = request.form.get('email')
-        user = User.query.filter_by(Email=email).first()
+        user = session.query(User).filter_by(Email=email).first()
         if user:
             flash('Email is already in use with an existing account!')
             return redirect(url_for('auth.signup'))
         new_user = User(Email=email, Username=name, Password=pwd)
         print(new_user)
-        db.session.add(new_user)
-        db.session.commit()
+        session.add(new_user)
+        session.commit()
         return redirect(url_for('auth.login'))
 
 @auth.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('auth.login'))
+
+from models import User
+
+@login_manager.user_loader
+def load_user(user_id):
+    user = session.query(User).filter_by(Username=user_id).first()
+    if user is not None:
+        return user
+    else:
+        return None
