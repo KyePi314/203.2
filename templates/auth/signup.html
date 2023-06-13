@@ -4,12 +4,13 @@
         <meta charset="utf-8"/>
         <title>Register</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='forms.css')}}"/>
     </head>
     <body>
         <h1>Sign Up</h1>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <div class="notification is-danger">
+                <div class="flash-msg">
                     {{ messages[0] }}
                 </div>
             {% endif %}

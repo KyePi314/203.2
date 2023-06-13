@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from models import engine, User, session
 from __init__ import login_manager
 from werkzeug.security import check_password_hash, generate_password_hash
-
+from sqlalchemy import delete
 
 
 auth = Blueprint('auth', __name__)
@@ -44,6 +44,9 @@ def signup():
         if user:
             flash('Email is already in use with an existing account!')
             return redirect(url_for('auth.signup'))
+        if name is None or pwd is None or email is None:
+            flash('Please fill out form!')
+            d = delete(user).where(user.c.id == 5)
         new_user = User(Email=email, Username=name, Password=pwd)
         print(new_user)
         session.add(new_user)
@@ -64,3 +67,5 @@ def load_user(user_id):
         return user
     else:
         return None
+    
+

@@ -62,7 +62,6 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    
     # Registering the blueprint for the auth routes in the site
     from authentication import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)

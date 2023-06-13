@@ -2,7 +2,7 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, ForeignKey, Column, String, Integer, CHAR
+from sqlalchemy import create_engine, ForeignKey, Column, String, Integer, CHAR, delete
 from sqlalchemy.ext.declarative import declarative_base
 from flask_login import UserMixin
 from sqlalchemy.ext.declarative import declarative_base
@@ -50,8 +50,4 @@ class User(Base, UserMixin):
     
 # #Uses the engine to create the tables for data.
 Base.metadata.create_all(engine)
-
 # ({self.Mana}) ({self.Posts}) ({self.Comments}) ({self.Awards}) ({self.AccountType})
-
-# Checking to make sure table exists
-sqlalchemy.inspect(engine).has_table("users")
