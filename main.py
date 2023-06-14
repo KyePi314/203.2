@@ -15,8 +15,9 @@ def index():
     return render_template("landingpage.html")
 
 @main.route("/home/")
+@login_required
 def home():
-    return render_template('home.html')
+    return render_template('home.html', username=current_user.Username)
 
 @main.route("/contact/")
 def contact():
@@ -43,8 +44,8 @@ def worlds():
     return render_template("worldsPage.html")
 
 @main.route("/worldinfo/")
-def worldInfo():
-    return render_template("worldinfo.html")
+def worldinfo():
+    return render_template("worldinfo.html", WorldName = "Placeholder")
 
 @main.route("/userprofile/")
 def userprofile():
@@ -54,9 +55,31 @@ def userprofile():
 def images():
     return render_template("images.html")
 
+@main.route("/editworldinfo/")
+def editworld():
+    return render_template("editworldinfo.html")
+
+@main.route("/culture/")
+def culture():
+    return render_template("culture.html")
+
+@main.route("/history/")
+def history():
+    return render_template("history.html")
+
+@main.route("/species/")
+def species():
+    return render_template("species.html")
+
+@main.route("/religion/")
+def religion():
+    return render_template("religion.html")
+
+@main.route("/about/")
+def about():
+    return render_template("about.html")
+
 app = create_app()
-
-
 
 
 if __name__ == '__203.main__':

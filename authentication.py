@@ -47,7 +47,6 @@ def signup():
             flash('Email is already in use with an existing account!')
             return redirect(url_for('auth.signup'))
         new_user = User(Email=email, Username=name, Password=pwd, Mana=0, Awards=0, Posts=0, AccountType="User", Comments=0)
-        print(new_user)
         session.add(new_user)
         session.commit()
         return redirect(url_for('auth.login'))
