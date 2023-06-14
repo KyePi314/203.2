@@ -49,7 +49,7 @@ def worldinfo():
 
 @main.route("/userprofile/")
 def userprofile():
-    return render_template("userProfile.html")
+    return render_template("userProfile.html", mana=current_user.Mana, awards=current_user.Awards, comments=current_user.Comments, posts=current_user.Posts, accountType=current_user.AccountType)
 
 @main.route("/images/")
 def images():
