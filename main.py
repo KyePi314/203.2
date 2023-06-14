@@ -50,6 +50,10 @@ def worldInfo():
 def userprofile():
     return render_template("userProfile.html")
 
+@main.route("/images/")
+def images():
+    return render_template("images.html")
+
 app = create_app()
 
 
