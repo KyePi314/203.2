@@ -4,12 +4,17 @@
         <meta charset="utf-8"/>
         <title>Register</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='forms.css')}}"/>
     </head>
     <body>
         <h1>Sign Up</h1>
-        <div class="msg">
-            {{msg}}
-        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-msg">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
         <div class="content">
             <form method="POST" action="/signup">
                 <div class="field">
@@ -25,11 +30,6 @@
                 <div class="field">
                     <div class="control">
                         <input class="input" type="password" name="password"placeholder="Password" autofocus=""> 
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="control">
-                        <input class="input" type="password" name="password-again"placeholder="Password" autofocus=""> 
                     </div>
                 </div>
                 <button class="btn">Go Back</button>

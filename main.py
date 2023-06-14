@@ -1,21 +1,18 @@
 ### IMPORTING PACKAGES ###
 from flask import Flask, render_template, request, Blueprint
-
-from flask_login import login_required, current_user
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import login_required, current_user, LoginManager
+from flask_login import UserMixin
 from __init__ import create_app
-import os
-from auth import auth
+
+
 
 main = Blueprint('main', __name__)
 
 
 @main.route("/")
 def index():
-    return render_template("auth/landingpage.html")
-
-@main.route("/landingpage/")
-def logout():
-    return render_template("auth/landingpage.html")
+    return render_template("landingpage.html")
 
 @main.route("/home/")
 def home():
@@ -53,8 +50,9 @@ def worldInfo():
 def userprofile():
     return render_template("userProfile.html")
 
-
 app = create_app()
+
+
 
 
 if __name__ == '__203.main__':
