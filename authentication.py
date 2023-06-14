@@ -28,11 +28,7 @@ def login(): # Log in page function
             return redirect(url_for('auth.signup'))
         if name == "" or pwd == "":
             flash('Please fill out form!')
-        # elif not user and check_password_hash(user.Password, pwd):
-        #     flash('Incorrect Password, please check your login details and try again')
-        #     return redirect('auth.login')
-        
-        login_user(user)
+        login_user(user, remember=remember)
         return redirect(url_for('main.home', username=user.Username))
 
 @auth.route('/signup', methods = ['GET', 'POST'])
@@ -50,8 +46,7 @@ def signup():
         elif user:
             flash('Email is already in use with an existing account!')
             return redirect(url_for('auth.signup'))
-        new_user = User(Email=email, Username=name, Password=pwd, Mana=0, Awards=0)
-        print(new_user)
+        new_user = User(Email=email, Username=name, Password=pwd, Mana=0, Awards=0, Posts=0, AccountType="Basic", Comments=0)
         session.add(new_user)
         session.commit()
         return redirect(url_for('auth.login'))

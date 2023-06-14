@@ -26,27 +26,30 @@ class User(Base, UserMixin):
     Password = Column("Password", String(30), nullable=False)
     Email = Column("Email", String, unique=True, nullable=False)
     Mana = Column("Mana", Integer)
-    # Posts = Column("Posts", Integer)
-    # Comments = db.Column("Comments", db.Integer)
+    Posts = Column("Posts", Integer)
+    Comments = Column("Comments", Integer)
     Awards = Column("Awards", Integer)
-    # AccountType = db.Column("AccountType", db.String)
+    AccountType = Column("AccountType", String)
     
-    def __init__(self, Username, Password, Email, Mana, Awards):
+    def __init__(self, Username, Password, Email, Mana, Awards, Posts, Comments, AccountType):
         self.Username = Username
         self.Password = Password
         self.Email = Email
         self.Mana = Mana
-        # self.Posts = Posts
-        # self.Comments = Comments
+        self.Posts = Posts
+        self.Comments = Comments
         self.Awards = Awards
-        # self.AccountType = AccountType
+        self.AccountType = AccountType
 
     def __repr__(self):
-        return f"({self.Username}) ({self.Password}) ({self.Email}) ({self.Mana}) ({self.Awards})"
+        return f"({self.Username}) ({self.Password}) ({self.Email}) ({self.Mana}) ({self.Awards}) ({self.Comments}) ({self.AccountType}) ({self.Posts})"
     
     def get_id(self):
         return str(self.Username)
     
+
+# Uses the engine to create the tables for data.
+
     # children: Mapped[List["Child"]] = relationship(back_populates="parent")
 
 
@@ -150,5 +153,5 @@ class Timeline(World):
 
 
 # #Uses the engine to create the tables for data.
+
 Base.metadata.create_all(engine)
-# ({self.Mana}) ({self.Posts}) ({self.Comments}) ({self.Awards}) ({self.AccountType})

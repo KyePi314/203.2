@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8"/>
-        <title>Register</title>
-        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <meta charset="utf-8" />
+        <title>Worlds</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
     </head>
     <body>
         <nav>
@@ -13,16 +13,11 @@
             <a href="{{ url_for('main.issues')}}">Issues</a>
             <a href="{{url_for('main.contact')}}">Contact</a>
             <a href="{{ url_for('main.subscription')}}">Subscription</a>
+            <a href="{{ url_for('main.about')}}">About</a>
             <a href="{{ url_for('auth.logout')}}">Log Out</a>
         </nav>
-
-        <div>
-            <img>Placeholder for Divinity</img> <p>Divinity Tier</p>
-        </div>
-        <div>
-            <img>Placeholder for Deity</img> <p>Deity Tier</p>
-        </div>
-        <div>
-            <img>Placeholder for Celestial</img> <p>Celestial Tier</p>
+        <div class="content">
+            
         </div>
     </body>
+</html>
