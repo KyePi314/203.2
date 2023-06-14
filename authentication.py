@@ -26,11 +26,10 @@ def login(): # Log in page function
         if not user:
             flash('Account does not exist! Please sign up to continue')
             return redirect(url_for('auth.signup'))
-        # elif not user and check_password_hash(user.Password, pwd):
-        #     flash('Incorrect Password, please check your login details and try again')
-        #     return redirect('auth.login')
-        login_user(user)
-        return redirect(url_for('main.home'))
+        if name == "" or pwd == "":
+            flash('Please fill out form!')
+        login_user(user, remember=remember)
+        return redirect(url_for('main.home', username=user.Username))
 
 @auth.route('/signup', methods = ['GET', 'POST'])
 def signup():
@@ -41,13 +40,13 @@ def signup():
         pwd = request.form.get('password')
         email = request.form.get('email')
         user = session.query(User).filter_by(Email=email).first()
-        if user:
+        if name == "" or pwd == "" or email == "":
+            flash('Please fill out form!')
+            return redirect(url_for('auth.signup'))
+        elif user:
             flash('Email is already in use with an existing account!')
             return redirect(url_for('auth.signup'))
-        if name is None or pwd is None or email is None:
-            flash('Please fill out form!')
-            d = delete(user).where(user.c.id == 5)
-        new_user = User(Email=email, Username=name, Password=pwd)
+        new_user = User(Email=email, Username=name, Password=pwd, Mana=0, Awards=0, Posts=0, AccountType="User", Comments=0)
         print(new_user)
         session.add(new_user)
         session.commit()
