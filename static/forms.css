@@ -122,6 +122,7 @@ label input
 {
   font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
+  color: black;
 }
 
 h2
@@ -132,4 +133,20 @@ h2
 h1
 {
   font-size: 3.5em;
+}
+
+
+body {
+  background-image: linear-gradient(to bottom right, #380036, #0CBABA);
+}
+
+.btn {
+  border-radius: 6px;
+  border-color: grey;
+  color: black;
+}
+
+.btn:hover {
+  background-color: grey;
+  color: rgba(255, 255, 255, 0.322);
 }
