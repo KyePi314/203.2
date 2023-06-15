@@ -14,6 +14,7 @@ nav ul
     
     list-style-type: none;
     padding: 0;
+    background-color: antiquewhite;
     overflow: hidden;
 
 }
@@ -38,10 +39,3 @@ nav li a
     nav ul li {float: none;}
   }
 
-/*MAIN CONTENT STYLING*/
-main
-{
-    margin-top: 5em;
-    outline: 1px dashed red;
-    width: 90%;
-}

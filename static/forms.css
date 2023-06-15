@@ -1,3 +1,6 @@
+body {
+  background-image: linear-gradient(to bottom right, #380036, #0CBABA);
+}
 
 /*Styling the checkbox to look like a toggle button instead*/
 .toggle-field
@@ -172,7 +175,6 @@ input
 
 h2
 {
-  
   font-size: 2em;
 }
 h1
@@ -180,18 +182,44 @@ h1
   font-size: 3.5em;
 }
 
-
-body {
-  background-image: linear-gradient(to bottom right, #380036, #0CBABA);
+main
+{
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.btn {
-  border-radius: 6px;
-  border-color: grey;
-  color: black;
+.form-btns
+{
+  width: 80%;
+  margin: auto;
+  display: inline-block;
+}
+.form-btns .btn
+{
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  padding: 0.2em;
 }
 
-.btn:hover {
-  background-color: grey;
-  color: rgba(255, 255, 255, 0.322);
+.btn
+{
+  border-radius: 12px;
+  text-decoration: none;
+  color: rgb(221, 218, 218);
+  background-color: rgb(0, 0, 0);
+  font-size: 20px;
+  width: 5em;
+  border: 2px solid black;
+  transition-duration: 0.4s;
+}
+
+.btn:hover
+{
+  background-color: #4A746A;
+}
+
+.signup-btn
+{
+  margin: 1em;
 }
