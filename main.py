@@ -12,7 +12,7 @@ main = Blueprint('main', __name__)
 
 @main.route("/")
 def index():
-    return render_template("landingpage.html")
+    return render_template("auth/login.html")
 
 @main.route("/home/")
 @login_required
