@@ -13,16 +13,17 @@
             <a href="{{ url_for('main.issues')}}">Issues</a>
             <a href="{{url_for('main.contact')}}">Contact</a>
             <a href="{{ url_for('main.subscription')}}">Subscription</a>
-            <a href="{{ url_for('main.logout')}}">Log Out</a>
+            <a href="{{ url_for('main.about')}}">About</a>
+            <a href="{{ url_for('auth.logout')}}">Log Out</a>
         </nav>
-        <div class="content">
+        <main>
             <h1 class="title">Culture</h1>
-            <div class="specificDetailSummary">
+            <div class="summary">
                 <h2>Culture Summary</h2>
                 <p>{% block content %} {% endblock%}</p>
                 <button class="btn">Edit</button>
             </div>
-            <div class="specificDetails-content">
+            <article>
                 <div>
                     <h3>Basic Details</h3>
                 </div>
@@ -32,7 +33,7 @@
                 <div>
                     <h3>Expanded Details</h3>
                 </div>
-            </div>
-        </div>
+            </article>
+        </main>
     </body>
 </html>
