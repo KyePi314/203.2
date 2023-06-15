@@ -13,12 +13,13 @@
             <a href="{{ url_for('main.issues')}}">Issues</a>
             <a href="{{url_for('main.contact')}}">Contact</a>
             <a href="{{ url_for('main.subscription')}}">Subscription</a>
+            <a href="{{ url_for('main.about')}}">About</a>
             <a href="{{ url_for('auth.logout')}}">Log Out</a>
         </nav>
-        <h1 class="title">{{ World Name }}</h1>
+        <h1 class="title">{{ WorldName }}</h1>
         <div class="btn-group">
             <button class="btn">Privacy:{{public}}</button>
-            <a href="{{ url_for('main.editworldinfo')}}"><button class="btn">Edit World Information</button></a>
+            <a href="{{ url_for('main.editworld')}}"><button class="btn">Edit World Information</button></a>
         </div>
         <main>
             <div id="description">
@@ -52,12 +53,17 @@
                 <div>
                     <h2>Timeline</h2>
                     <p></p>
-                    <a href="{{ url_for('main.Timeline')}}"> <button class="btn">Edit</button></a>
+                    <a href="{{ url_for('main.timeline')}}"> <button class="btn">Edit</button></a>
                 </div>
                 <div>
                     <h2>Maps</h2>
                     <p></p>
-                    <a href="{{ url_for('main.Maps')}}"><button class="btn">Edit</button></a>
+                    <a href="{{ url_for('main.maps')}}"><button class="btn">Edit</button></a>
+                </div>
+                <div>
+                    <h2>Images</h2>
+                    <p></p>
+                    <a href="{{ url_for('main.images')}}"><button class="btn">Edit</button></a>
                 </div>
             </div>
         </main>

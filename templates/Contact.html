@@ -13,6 +13,7 @@
             <a href="{{ url_for('main.issues')}}">Issues</a>
             <a href="{{url_for('main.contact')}}">Contact</a>
             <a href="{{ url_for('main.subscription')}}">Subscription</a>
+            <a href="{{ url_for('main.about')}}">About</a>
             <a href="{{ url_for('auth.logout')}}">Log Out</a>
         </nav>
 
@@ -24,7 +25,7 @@
             <p>Discord: WorldForgeMain</p>
 
             <p>For more information on our website, please check out our About section:</p>
-            <a href="{{url_for('about')}}">About</a>
+            <a href="{{url_for('main.about')}}">About</a>
         </div>
     </body>
 </html>
