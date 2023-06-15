@@ -1,0 +1,30 @@
+
+/*Styles the main content on the page*/
+.main-content
+{
+    float: left;
+    width: 75%;
+
+}
+/*Styles the actual individual posts on the newsfeed*/
+.post-box
+{
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.column-right
+{
+    padding-left: 1.5em;
+    float: right;
+    width: 25%;
+}
+
+/* Clear floats after the columns */
+main:after 
+{
+    content: "";
+    display: table;
+    clear: both;
+}

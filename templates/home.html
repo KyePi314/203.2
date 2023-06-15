@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8"/>
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='homefeed.css')}}"/>
     </head>
     <body>
         <nav>
@@ -16,5 +17,25 @@
             <a href="{{ url_for('main.about')}}">About</a>
             <a href="{{ url_for('auth.logout')}}">Log Out</a>
         </nav>
+        <main>
+            <div class="main-content">
+                <h2>Welcome, {{ username }}</h2>
+                <div class="post-box">
+                    <h3>postTitle </h3>
+                    <div class="post-meta">
+                        <h4> username  </h4>
+                        <h5> time</h5>
+                    </div>
+                    <p>content </p>
+                </div>
+            </div>
+            <div class="column-right">
+                <h2>Notifications</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
+                </p>
+            </div>
+        </main>
+        
     </body>
 </html>

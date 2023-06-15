@@ -1,0 +1,30 @@
+* 
+{
+    box-sizing: border-box;
+}
+
+/*NAVBAR STYLING*/
+nav
+{
+    overflow: hidden;
+    padding: 1.2em;
+    width: 90%;
+    margin-left: 10%;
+}
+
+nav a
+{
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    font-size: 1.1em;
+    padding: 14px 16px;
+}
+
+/*MAIN CONTENT STYLING*/
+main
+{
+    outline: 1px dashed red;
+    width: 90%;
+    margin: auto;
+}
