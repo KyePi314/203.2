@@ -1,13 +1,9 @@
-.content
-{
-  margin: auto;
-  width: 50%;
-}
 
 /*Styling the checkbox to look like a toggle button instead*/
 .toggle-field
 {
   padding: 0.50em;
+  width: 90%;
 }
 
 .toggle
@@ -17,7 +13,6 @@
   width: 3.25em;
   height: 1.5em;
   padding: 0;
-    
 }
 
 .toggle input
@@ -76,14 +71,52 @@ input:checked + .slider-round:before {
   border-radius: 50%;
 }
 
-/*Styling the form*/
+/*Styling the forms*/
+.flash-msg 
+{
+  padding: 8px;
+  background-color: red;
+  color: white;
+  width: 30%;
+  margin: auto;
+}
+
+/*SIGNUP FORM STYLING*/
+.signup-form 
+{
+  width: 50%;
+  margin: auto;
+}
+
+.signup-form form
+{
+  margin-top: 1em;
+  min-height: 21.87em;
+  width: 28.2em;
+  background-color: #e3e3e3;
+  border-radius: 8px;
+  padding: 0.4em;
+}
+
+.signup-form label 
+{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  width: 30%;
+  margin: 2em;
+  display: inline;
+}
+
+/*LOGIN FORM STYLING*/
 .form-container
 {
   width: 35%;
   margin: auto;
 }
-form
+
+.form-container form
 {
+  margin-top: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,22 +126,38 @@ form
   gap: 2.18em;
   border-radius: 15px;
   background-color: #e3e3e3;
-  box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe;
   border-radius: 8px;
+  padding: 0.4em
+}
+
+p
+{
+  width: 30%;
+  margin: auto;
+  padding: 1em;
 }
 
 .control
 {
-  float: left;
   font-size: 1em;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  width: 30%;
+  width: 80%;
 }
-label input
+label
+{
+  float: left;
+}
+span
+{
+  float: left;
+
+  padding: 0.5em;
+}
+input
 {
   border: 1px solid black;
   border-radius: 15px;
-  width: 50%;
+  width: 100%;
   padding: 10px;
   margin: 0.7em 0;
 }
@@ -117,19 +166,59 @@ label input
 .heading
 {
   margin: 5em 0 0 0;
-}
-.title 
-{
-  font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
 }
 
 h2
 {
+  
   font-size: 2em;
 }
-
 h1
 {
   font-size: 3.5em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+main
+{
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+.form-btns
+{
+  width: 80%;
+  margin: auto;
+  display: inline-block;
+}
+.form-btns .btn
+{
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  padding: 0.2em;
+}
+
+.btn
+{
+  border-radius: 12px;
+  text-decoration: none;
+  color: rgb(221, 218, 218);
+  background-color: rgb(0, 0, 0);
+  font-size: 20px;
+  width: 5em;
+  border: 2px solid black;
+  transition-duration: 0.4s;
+}
+
+.btn:hover
+{
+  background-color: #4A746A;
+}
+
+.signup-btn
+{
+  margin: 1em;
 }
