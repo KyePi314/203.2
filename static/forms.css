@@ -167,6 +167,7 @@ input
 {
   margin: 5em 0 0 0;
   text-align: center;
+  color: black;
 }
 
 h2
@@ -177,48 +178,20 @@ h2
 h1
 {
   font-size: 3.5em;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-main
-{
-  width: 50%;
-  margin: 0 auto;
-  text-align: center;
 }
 
 
-.form-btns
-{
-  width: 80%;
-  margin: auto;
-  display: inline-block;
-}
-.form-btns .btn
-{
-  margin-left: 1.5em;
-  margin-right: 1.5em;
-  padding: 0.2em;
+body {
+  background-image: linear-gradient(to bottom right, #380036, #0CBABA);
 }
 
-.btn
-{
-  border-radius: 12px;
-  text-decoration: none;
-  color: rgb(221, 218, 218);
-  background-color: rgb(0, 0, 0);
-  font-size: 20px;
-  width: 5em;
-  border: 2px solid black;
-  transition-duration: 0.4s;
+.btn {
+  border-radius: 6px;
+  border-color: grey;
+  color: black;
 }
 
-.btn:hover
-{
-  background-color: #4A746A;
-}
-
-.signup-btn
-{
-  margin: 1em;
+.btn:hover {
+  background-color: grey;
+  color: rgba(255, 255, 255, 0.322);
 }
