@@ -6,6 +6,21 @@
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
     </head>
     <body>
+        <div class="navbar">
+            <a href="{{ url_for('home')}}">Home</a>
+            <a href="{{ url_for('worlds')}}">World Info</a>
+            <a href="{{ url_for('userprofile')}}">User Profile</a>
+            <a href="{{ url_for('issues')}}">Issues</a>
+            <a href="{{url_for('contact')}}">Contact</a>
+            <a href="{{ url_for('subscription')}}">Subscription</a>
+        </div>
+
+        <div>
+            <h1>Contact</h1>
+            <p>Email: admin@worldforge.com</p>
+            <p>International Phone: +64 555 5555</p>
+            <p>Discord: WorldForgeMain</p>
+        </div>
         <nav>
             <a href="{{ url_for('main.home')}}">Home</a>
             <a href="{{ url_for('main.worlds')}}">World Info</a>
@@ -13,19 +28,16 @@
             <a href="{{ url_for('main.issues')}}">Issues</a>
             <a href="{{url_for('main.contact')}}">Contact</a>
             <a href="{{ url_for('main.subscription')}}">Subscription</a>
-            <a href="{{ url_for('main.about')}}">About</a>
-            <a href="{{ url_for('auth.logout')}}">Log Out</a>
+            <a href="{{ url_for('main.logout')}}">Log Out</a>
         </nav>
-
-        <div>
-            <h1>Contact</h1>
-            <p>Contacting us is easy. Try one of the following options so that we can help you quickly:</p>
-            <p>Email: admin@worldforge.com</p>
-            <p>International Phone: +64 555 5555</p>
-            <p>Discord: WorldForgeMain</p>
-
-            <p>For more information on our website, please check out our About section:</p>
-            <a href="{{url_for('main.about')}}">About</a>
-        </div>
     </body>
 </html>
+
+<body>
+
+    <div>Contact</div>
+    <div>Email: </div>
+    <div>International Phone: </div>
+    <div>Discord: </div>
+
+</body>
