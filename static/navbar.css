@@ -1,0 +1,47 @@
+* 
+{
+    box-sizing: border-box;
+}
+
+/*NAVBAR STYLING*/
+header
+{
+    width: 50%;
+    margin: auto;
+}
+nav ul
+{
+    
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+
+}
+nav li
+{
+    float: left;
+}
+
+nav li a
+{
+    font-size: 1.2em;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/*Makes the navbar responsive*/
+@media screen and (max-width: 600px) {
+    nav ul li.right, 
+    nav ul li {float: none;}
+  }
+
+/*MAIN CONTENT STYLING*/
+main
+{
+    margin-top: 5em;
+    outline: 1px dashed red;
+    width: 90%;
+}
