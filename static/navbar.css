@@ -1,10 +1,17 @@
 * 
 {
     box-sizing: border-box;
+    margin: 0;
 }
-
 /*NAVBAR STYLING*/
-
+header
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5em;
+}
 .dropdown 
 {
     float: left;
@@ -51,11 +58,7 @@
   }
 nav
 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5em;
+    
     width: 100%;
 }
 
