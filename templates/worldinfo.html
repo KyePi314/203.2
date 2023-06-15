@@ -4,6 +4,7 @@
         <meta charset="utf-8"/>
         <title>World Info</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
     </head>
     <body>
         <header>
@@ -27,56 +28,55 @@
                 </ul>
             </nav>
         </header>
-        <h1 class="title">{{ WorldName }}</h1>
-        <div class="btn-group">
-            <button class="btn">Privacy:{{public}}</button>
-            <a href="{{ url_for('main.editworld')}}"><button class="btn">Edit World Information</button></a>
-        </div>
         <main>
-            <div id="description">
-                <h2>Description</h2>
-                <p>
-                    {% block content %}
-                    {% endblock %}
-                </p>
+            <h1 class="title">{{ WorldName }}</h1>
+            <div class="btn-group">
+                <button class="btn" id="left">Privacy:{{public}}</button>
+                <a href="{{ url_for('main.editworld')}}"><button class="btn">Edit World Information</button></a>
             </div>
-            <div class="flex-container">
-                <div>
-                    <h2>Culture</h2>
-                    <p>Culture details summary here</p>
-                    <a href="{{ url_for('main.culture')}}"><button class="btn">Edit</button></a>
+                <div id="description">
+                    <h2>Description</h2>
+                    <p>
+                        {{ description }}
+                    </p>
                 </div>
-                <div>
-                    <h2>History</h2>
-                    <p></p>
-                    <a href="{{ url_for('main.history')}}"><button class="btn">Edit</button></a>
+                <div class="flex-container">
+                    <div class="details">
+                        <h3>Culture</h3>
+                        <p>Culture details summary here</p>
+                        <a href="{{ url_for('main.culture')}}"><button class="btn">Edit</button></a>
+                    </div>
+                    <div class="details">
+                        <h3>History</h3>
+                        <p>details summary here</p>
+                        <a href="{{ url_for('main.history')}}"><button class="btn">Edit</button></a>
+                    </div>
+                    <div class="details">
+                        <h3>Species</h3>
+                        <p>details summary here</p>
+                        <a href="{{ url_for('main.species')}}"><button class="btn">Edit</button></a>
+                    </div>
+                    <div class="details">
+                        <h3>Religions</h3>
+                        <p>details summary here</p>
+                        <a href="{{ url_for('main.religion')}}"><button class="btn">Edit</button></a>
+                    </div>
+                    <div class="details">
+                        <h3>Timeline</h3>
+                        <p>details summary here</p>
+                        <a href="{{ url_for('main.timeline')}}"> <button class="btn">Edit</button></a>
+                    </div>
+                    <div class="details">
+                        <h3>Maps</h3>
+                        <p>details summary here</p>
+                        <a href="{{ url_for('main.maps')}}"><button class="btn">Edit</button></a>
+                    </div>
+                    <div class="details">
+                        <h3>Images</h3>
+                        <p>Images can be found here</p>
+                        <a href="{{ url_for('main.images')}}"><button class="btn">Edit</button></a>
+                    </div>
                 </div>
-                <div>
-                    <h2>Species</h2>
-                    <p></p>
-                    <a href="{{ url_for('main.species')}}"><button class="btn">Edit</button></a>
-                </div>
-                <div>
-                    <h2>Religions</h2>
-                    <p></p>
-                    <a href="{{ url_for('main.religion')}}"><button class="btn">Edit</button></a>
-                </div>
-                <div>
-                    <h2>Timeline</h2>
-                    <p></p>
-                    <a href="{{ url_for('main.timeline')}}"> <button class="btn">Edit</button></a>
-                </div>
-                <div>
-                    <h2>Maps</h2>
-                    <p></p>
-                    <a href="{{ url_for('main.maps')}}"><button class="btn">Edit</button></a>
-                </div>
-                <div>
-                    <h2>Images</h2>
-                    <p></p>
-                    <a href="{{ url_for('main.images')}}"><button class="btn">Edit</button></a>
-                </div>
-            </div>
         </main>
     </body>
 </html>

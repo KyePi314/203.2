@@ -1,6 +1,6 @@
-main
+#title
 {
- margin-top: 5em;
+    margin-top: 0;
 }
 /*Styles the main content on the page*/
 .main-content
@@ -56,8 +56,13 @@ main
     padding-left: 1.5em;
     float: right;
     width: 25%;
+    
 }
-
+.column-right h2
+{
+    float: left;
+    font-size: 2em;
+}
 /* Clear floats after the columns */
 main:after 
 {
