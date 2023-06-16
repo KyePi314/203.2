@@ -2,10 +2,6 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, ForeignKey, Column, String, Integer, CHAR, delete, LargeBinary
-from datetime import datetime
-from base64 import b64encode
-import base64
-from io import BytesIO #Converts data from Database into bytes
 from sqlalchemy.ext.declarative import declarative_base
 from flask_login import UserMixin
 from sqlalchemy.ext.declarative import declarative_base
@@ -171,6 +167,9 @@ class Image(Base):
     id = Column(Integer, primary_key=True)
     data = Column(LargeBinary, nullable=False)
 
+    def __repr__(self):
+        return f"({self.id}) ({self.data})"
+
 # #Uses the engine to create the tables for data.
 
 # engine = create_engine("sqlite:///database.db", echo=True)
@@ -179,9 +178,7 @@ class Image(Base):
 
 # Session = sessionmaker(bind=engine)
 # session = Session()
-
 # World Database initialise.
-
 # w1 = World("KingdomCome", "Vardattia", "In the realm of Eldoria, a vast and enchanting world, magic flows through every corner, shaping the very essence of existence. Eldoria is composed of diverse landscapes, from towering mountain ranges to sprawling forests and serene coastal regions. The land is adorned with ancient ruins, mystical portals, and hidden realms waiting to be discovered. The celestial bodies hold great significance in Eldorian culture, and the skies are often adorned with breathtaking displays of celestial magic.")
 
 

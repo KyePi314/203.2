@@ -3,7 +3,6 @@
     box-sizing: border-box;
 }
 
-
 /*MAIN CONTENT STYLING*/
 body
 {
@@ -134,7 +133,7 @@ h3
     margin-top: 1em;
 }
 
-.flex-right
+.flex-right form
 {
     display: flex;
     flex-direction: column;
