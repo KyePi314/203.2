@@ -1,19 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>User Profile</title>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
-</head>
-<body>
-    <nav>
-        <a href="{{ url_for('main.home')}}">Home</a>
-        <a href="{{ url_for('main.worlds')}}">World Info</a>
-        <a href="{{ url_for('main.userprofile')}}">User Profile</a>
-        <a href="{{ url_for('main.issues')}}">Issues</a>
-        <a href="{{url_for('main.contact')}}">Contact</a>
-        <a href="{{ url_for('main.subscription')}}">Subscription</a>
-        <a href="{{ url_for('main.logout')}}">Log Out</a>
-    </nav>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <title>User Profile</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('main.home')}}">Home</a></li>
+                    <li><a href="{{ url_for('main.subscription')}}">Subscription</a></li>
+                    <li><a href="{{ url_for('main.worlds')}}">Worlds</a></li>
+                    <li><a href="{{ url_for('main.userprofile')}}">User Profile</a></li>
+                    <div class="dropdown">
+                        <button class="dropdown-btn">More
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="{{ url_for('main.issues')}}">Issues</a>
+                            <a href="{{url_for('main.contact')}}">Contact</a>
+                            <a href="{{ url_for('main.about')}}">About</a>
+                        </div>
+                    </div>
+                    <li><a href="{{ url_for('auth.logout')}}">Log Out</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="userprofile">
+            <h1>User Profile</h1>
+            <p>Here you can update your user details</p>
+            <br><br>
+            <h2>Change your email</h2>
+            <p></p>
+            <textarea id="updateEmail" name="updateEmail" rows="1" cols="1">
+                Enter your updated Email Here
+            </textarea>
+            <button class="btn">Change Email</button>
+            <br><br>
+            <h2>Update Password</h2>
+            <p></p>
+            <textarea id="updatePassword" name="updatePassword" rows="1" cols="1">
+                Enter your updated Password Here
+            </textarea>
+            <button class="btn">Change Password</button>
+            <br><br>
+        </div>
+        <div class="userStatistics">
+            <p>Mana Points: {{ mana }}</p>
+            <br>
+            <p>Posts: {{ posts }}</p>
+            <br>
+            <p>Comments: {{ comments }}</p>
+            <br>
+            <p>Awards: {{ awards }}</p>
+        </div>
+        <div class="currentSubscription">
+            <h1>Current Subscription: </h1>
+            <p>{{ accountType }}</p>
+            <button class="btn">Upgrade</button>
+        </div>
+    </body>
 </html>
