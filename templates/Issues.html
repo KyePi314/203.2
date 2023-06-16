@@ -4,6 +4,8 @@
         <meta charset="utf-8"/>
         <title>Register</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
     </head>
     <body>
         <header>
@@ -27,21 +29,17 @@
                 </ul>
             </nav>
         </header>
-        <div>
-            <p>Please write in the box what your issue is:</p>
-            <input>...</input>
-            <button>Submit</button>
+    <body>
+        <br><br><br><br>
+        <div class="issues">
+            <p style="font-size: 20px;">I'm having an issue.</p>
+            <br>
+            <p style="font-size: 20px;">Leave a message for the admins below.</p>
+            <br>
+            <textarea>
+            </textarea>
+            <br><br>
+            <button class="btn">Submit</button>
         </div>
-
-
-<body>
-
-    <p>Please write in the box what your issue is:</p>
-    <input>...</input>
-    <button>Submit</button>
-
-</body>
+    </body>
 </html>
-
-
-
