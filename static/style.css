@@ -35,3 +35,14 @@ h1 {
     text-align: center;
     width: 35%
 }
+
+/* CONTACT PAGE*/
+
+
+.contact {
+    margin: center;
+    width: 100%;
+    padding-left: 10px;
+    margin-left: center;
+    text-align: center;
+}
