@@ -8,7 +8,7 @@ from __init__ import create_app
 
 
 main = Blueprint('main', __name__)
-
+detail = ""
 
 @main.route("/")
 def index():
@@ -17,7 +17,7 @@ def index():
 @main.route("/home/")
 @login_required
 def home():
-    return render_template('home.html', username=current_user.Username)
+    return render_template('home.html', username=current_user.UserName)
 
 @main.route("/contact/")
 def contact():

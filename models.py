@@ -21,7 +21,7 @@ session = Session()
 class User(Base, UserMixin):
     __tablename__ = "users"
     
-    Username = Column("UserName", String(80), primary_key=True, nullable=False)
+    UserName = Column("UserName", String(80), unique=True, primary_key=True, nullable=False)
     Password = Column("Password", String(30), nullable=False)
     Email = Column("Email", String, unique=True, nullable=False)
     Mana = Column("Mana", Integer)
@@ -31,7 +31,7 @@ class User(Base, UserMixin):
     AccountType = Column("AccountType", String)
     
     def __init__(self, Username, Password, Email, Mana, Awards, Posts, Comments, AccountType):
-        self.Username = Username
+        self.UserName = Username
         self.Password = Password
         self.Email = Email
         self.Mana = Mana
@@ -41,10 +41,10 @@ class User(Base, UserMixin):
         self.AccountType = AccountType
 
     def __repr__(self):
-        return f"({self.Username}) ({self.Password}) ({self.Email}) ({self.Mana}) ({self.Awards}) ({self.Comments}) ({self.AccountType}) ({self.Posts})"
+        return f"({self.UserName}) ({self.Password}) ({self.Email}) ({self.Mana}) ({self.Awards}) ({self.Comments}) ({self.AccountType}) ({self.Posts})"
     
     def get_id(self):
-        return str(self.Username)
+        return str(self.UserName)
     
 
 # Uses the engine to create the tables for data.
@@ -59,7 +59,7 @@ class World(Base):
     # parent_id: Mapped[int] = mapped_column(ForeignKey("parent_table.id"))
     # parent: Mapped["Parent"] = relationship(back_populates="children")
     
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50), nullable=False)
     WorldDescription = Column("WorldDescription", String, nullable=False, primary_key=True)
 
@@ -78,7 +78,7 @@ class World(Base):
 class History(Base):
     __tablename__ = "History"
 
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50))
     HistoryTitle = Column("HistoryTitle", String, nullable=False, primary_key=True)
     HistoryDescription = Column("HistoryDescription", String, nullable=False)
@@ -95,7 +95,7 @@ class History(Base):
 class Culture(Base):
     __tablename__ = "Cultures"
 
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50))
     CultureTitle = Column("CultureTitle", String, nullable=False, primary_key=True)
     CultureDescription = Column("CultureDescription", String, nullable=False)
@@ -113,7 +113,7 @@ class Culture(Base):
 class Religion(Base):
     __tablename__ = "Religions"
 
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50))
     ReligionTitle = Column("ReligionTitle", String, nullable=False, primary_key=True)
     ReligionDescription = Column("ReligionDescription", String, nullable=False)
@@ -130,7 +130,7 @@ class Religion(Base):
 class Species(Base):
     __tablename__ = "Species"
 
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50))
     SpeciesTitle = Column("SpeciesTitle", String, nullable=False, primary_key=True)
     SpeciesDescription = Column("SpeciesDescription", String, nullable=False)
@@ -147,7 +147,7 @@ class Species(Base):
 class Timeline(Base):
     __tablename__ = "Timelines"
 
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50))
     TimelineTitle = Column("TimelineTitle", String, nullable=False, primary_key=True)
     TimelineEntry = Column("TimelineEntry", String, nullable=False)
@@ -163,9 +163,13 @@ class Timeline(Base):
 
 class Image(Base):
     __tablename__ = "Images"
-    UserName = Column(Integer, ForeignKey("users.Username"))
-    id = Column(Integer, primary_key=True)
+
+    UserName = Column(Integer, ForeignKey("users.UserName"), primary_key=True)
     data = Column(LargeBinary, nullable=False)
+
+    def __init__(self, Username, data):
+        self.UserName = Username
+        self.data = data
 
     def __repr__(self):
         return f"({self.id}) ({self.data})"
@@ -174,13 +178,12 @@ class Image(Base):
 
 # engine = create_engine("sqlite:///database.db", echo=True)
 
-# Base.metadata.create_all(engine)
+Base.metadata.create_all(engine)
 
 # Session = sessionmaker(bind=engine)
 # session = Session()
 # World Database initialise.
 # w1 = World("KingdomCome", "Vardattia", "In the realm of Eldoria, a vast and enchanting world, magic flows through every corner, shaping the very essence of existence. Eldoria is composed of diverse landscapes, from towering mountain ranges to sprawling forests and serene coastal regions. The land is adorned with ancient ruins, mystical portals, and hidden realms waiting to be discovered. The celestial bodies hold great significance in Eldorian culture, and the skies are often adorned with breathtaking displays of celestial magic.")
-
 
 # w2a = World("Rambunctious51", "Dardeccia", "Dardeccia is a vast and enchanting world, brimming with breathtaking landscapes and mystical wonders. It is comprised of diverse terrains, ranging from lush forests teeming with ancient trees to towering mountains that touch the heavens. The realm is dotted with sparkling rivers, majestic lakes, and hidden caves that hold secrets untold. Dardeccia is known for its ever-changing weather, with regions experiencing distinct climates, including tropical jungles, arid deserts, and icy tundras. Magic permeates every aspect of life, and the veil between the mortal realm and the supernatural is thin, allowing for fantastical creatures and extraordinary phenomena to roam freely.")
 
