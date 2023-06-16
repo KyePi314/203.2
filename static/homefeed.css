@@ -1,0 +1,78 @@
+#title
+{
+    margin-top: 0;
+}
+/*Styles the main content on the page*/
+.main-content
+{
+    float: left;
+    width: 75%;
+
+}
+.posts
+{
+    padding: 20px;
+    margin-top: 20px;
+}
+/*Styles the actual individual posts on the newsfeed*/
+.post-box
+{
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid black;
+    padding: 0.5em;
+}
+
+.post-box h3
+{
+    margin-top: 0;
+    float: left;
+}
+.post-box  p
+{
+    float: left;
+    text-align: left;
+    outline: 1px dashed red;
+    padding: 1em;
+    margin-top: 0.3em;
+}
+.post-box .post-meta
+{
+    
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction:row;
+    justify-content: space-around;
+    float: right;
+}
+.post-box .post-meta h4, h5
+{
+    margin-left: 1em;
+    margin-top: 0;
+}
+
+.column-right
+{
+    padding-left: 1.5em;
+    float: right;
+    width: 25%;
+    
+}
+.column-right h2
+{
+    float: left;
+    font-size: 2em;
+}
+/* Clear floats after the columns */
+main:after 
+{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.contact
+{
+    float: right;
+    
+}

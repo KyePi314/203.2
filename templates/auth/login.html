@@ -7,10 +7,10 @@
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='forms.css')}}"/>
     </head>
     <body>
-        <div class="content">
+        <main>
             <div class="heading">
-                <h2 class="title">Welcome to</h2>
-                <h1 class="title">World Forge</h1>
+                <h2>Welcome to</h2>
+                <h1>World Forge</h1>
             </div>
             <h3>{{info}}</h3>
             {% with messages = get_flashed_messages() %}
@@ -40,10 +40,11 @@
                             <input type="checkbox">
                             <span class="slider-round"></span>
                         </label>
-                    </div><button class="btn">Sign In</button>
+                    </div>
+                    <button class="btn" type="submit">Sign In</button>
+                    <a href="{{ url_for('auth.signup')}}"><button class="btn" type="button">Sign Up</button></a>
                 </form>
-                <a href="{{ url_for('auth.signup')}}"><button class="btn">Sign Up</button></a>
             </div>
-        </div>
+        </main>
     </body>
 </html>
