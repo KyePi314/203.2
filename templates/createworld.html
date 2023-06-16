@@ -27,22 +27,29 @@
                 </ul>
             </nav>
         </header>
+        <br> <br> <br>
+        
         <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
         <h1 class="title">Create World</h1>
         <h3>To create a world, please type the name of the world and a basic description of it.</h3>
 
-        <!--All the fields which can be edited are inside this div-->
-        <div class="input-fields">
-            <label for="name">World Name:</label>
-            <input type="text" id="worldName" name="name"><br><br>
-            <label for="worldInfo">World description</label>
-            <input id="worldInfo" name="worldInfo" rows="5" cols="30">
-                Enter a brief description of your world here
-            </input>
-
-        </div>
-        <div class="btn-group">
-            <button class="btn" type="submit">Create World</button>
-        </div>
+        <form action="/submit" method="POST">
+            <div class="field">
+                <div class="control">
+                    <label for="worldName">World Name: </label>
+                    <input class="input" type="text" name="worldName" placeholder="Fantasia" autofocus="" required="required">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="worldInfo">World Description</label>
+                    <textarea class="input" type="text" name="worldInfo" placeholder="Enter your lore..." required="required"></textarea>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn" type="submit" value="Submit">Create World</button>
+            </div>
+            
+        </form>
     </body>
 </html>
