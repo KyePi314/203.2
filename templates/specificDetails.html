@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Register</title>
+        <title>Edit World Details</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
     </head>
@@ -28,27 +28,26 @@
                 </ul>
             </nav>
         </header>
-        <main>
-            <h1>History</h1>
-            <div class="summary" id="description">
-                <h2>History Summary</h2>
-                <p>{{ Summary }}</p>
-                <a href="{{ url_for('main.specificDetails')}}"><button class="btn">Edit Details</button></a>
+       <main>
+         <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
+            <h1>Edit Details</h1>
+            <div class="flex-left">
+                <label for="name">Add New Details:</label>
+                <textarea  id="new" name="details" rows="4" cols="10">
+                </textarea>
+                <label for="More">Additional Details</label>
+                <textarea  id="more" name="moreDetails" rows="4" cols="10">
+                </textarea>
             </div>
-            <div class="content">
-                <h3>Basic Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-                <h3>Background Information</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-                <h3>Expanded Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
+            <div class="flex-right">
+                <label for="descrip">Description</label>
+                <textarea id="descrip" name="description" rows="4" cols="10">
+                </textarea>
             </div>
-        </main>
+            <div class="btn-group">
+                <button  onclick="history.back()" class="btn">Go Back</button>
+                 <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">Save World</button></a>
+             </div>
+       </main>
     </body>
 </html>

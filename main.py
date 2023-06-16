@@ -79,6 +79,10 @@ def religion():
 def about():
     return render_template("about.html")
 
+@main.route("/specificDetails/")
+def specificDetails():
+    return render_template("specificDetails.html")
+
 app = create_app()
 
 
