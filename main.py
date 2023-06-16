@@ -94,6 +94,10 @@ def about():
 def specificDetails():
     return render_template("specificDetails.html")
 
+@main.route("/createworld/")
+def createworld():
+    return render_template("createworld.html")
+
 app = create_app()
 
 

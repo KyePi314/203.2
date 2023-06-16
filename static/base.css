@@ -101,7 +101,7 @@ h3
 /*FLEXBOX STYLING*/
 .flex-container
 {
-    width: 75%;
+    width: 50%;
     height: 600px;
     margin: auto;
     display: flex;
@@ -109,7 +109,12 @@ h3
     justify-content: space-between;
     align-items: center;
 }
-
+@media (max-width: 1000px){
+    .flex-container
+    {
+        width: 75%;
+    }
+}
 .flex-container .details
 {
     margin: 0 3em 3em 3em;
@@ -142,7 +147,12 @@ h3
     margin-right: 2em;
     width: 45%;
 }
-
+@media (max-width: 800px)
+{
+  .flex-container {
+    flex: 100%;
+  }
+}
 /*INPUT STYLING*/
 label
 {
