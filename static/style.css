@@ -1,22 +1,3 @@
-body {
-    background-image: linear-gradient(to bottom right, #380036, #0CBABA);
-}
-
-.btn {
-    border-radius: 6px;
-    border-color: grey;
-    color: black;
-    text-align: center;
-    padding: 15px 32px;
-    width: 35%;
-    margin: auto;
-}
-
-.btn:hover {
-    background-color: grey;
-    color: rgba(255, 255, 255, 0.322);
-}
-
 h1 {
     font-size: 3.5em;
     text-align: center;
@@ -26,4 +7,99 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/*USER PROFILE PAGE*/
+.flexContainer {
+    display: flex;
+}
+
+
+.userProfile {
+    margin: auto;
+    width: 35%;
+    padding-left: 10px;
+    margin-left: 200px;
+}
+
+.userStatistics {
+    margin: auto;
+    width: 25%;
+    padding-right: 10px;
+    margin-right: 200px;
+    float: right;
+}
+
+.currentSubscription {
+    margin: auto;
+    text-align: center;
+    width: 35%
+}
+
+/* CONTACT PAGE*/
+.contact {
+    margin: center;
+    width: 100%;
+    padding-left: 10px;
+    margin-left: center;
+    text-align: center;
+}
+
+/* ISSUES PAGE*/
+.issues {
+    margin: center;
+    width: 100%;
+    padding-left: 10px;
+    margin-left: center;
+    text-align: center;
+}
+
+textarea {
+    border: 1px solid black;
+    border-radius: 12px;
+    margin-bottom: 1em;
+    text-align: left;
+    padding: 0.5em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    min-height: 20em;
+    min-width: 30em;
+}
+
+/* ABOUT PAGE*/
+.about {
+    margin: center;
+    width: 100%;
+    padding-left: 10px;
+    margin-left: center;
+    text-align: center;
+}
+
+/* SUBSCRIPTION PAGE*/
+.flexibleContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.divinity {
+    margin: center;
+    width: 100%;
+    padding-left: 10px;
+    margin-left: center;
+    text-align: center;
+}
+
+.deity {
+    margin: center;
+    width: 100%;
+    padding-left: 10px;
+    margin-left: center;
+    text-align: center;
+}
+
+.celestial {
+    margin: center;
+    width: 100%;
+    padding-left: 10px;
+    margin-left: center;
+    text-align: center;
 }
