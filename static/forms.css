@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(to bottom right, #380036, #0CBABA);
+  background-image: linear-gradient(to right, #B0DAE0, #4F939C);
 }
 
 /*Styling the checkbox to look like a toggle button instead*/
@@ -87,7 +87,7 @@ input:checked + .slider-round:before {
 /*SIGNUP FORM STYLING*/
 .signup-form 
 {
-  width: 50%;
+  width: 80%;
   margin: auto;
 }
 
@@ -113,13 +113,13 @@ input:checked + .slider-round:before {
 /*LOGIN FORM STYLING*/
 .form-container
 {
-  width: 35%;
+  width: 55%;
   margin: auto;
 }
 
 .form-container form
 {
-  margin-top: 1em;
+  margin-top: 3em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -153,7 +153,6 @@ label
 span
 {
   float: left;
-
   padding: 0.5em;
 }
 input
@@ -168,7 +167,7 @@ input
 /*Styling the heading/title text for the login and sign up forms*/
 .heading
 {
-  margin: 5em 0 0 0;
+  margin: 6em 0 0 0;
   text-align: center;
   color: black;
 }

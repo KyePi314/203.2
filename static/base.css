@@ -3,11 +3,188 @@
     box-sizing: border-box;
 }
 
-
 /*MAIN CONTENT STYLING*/
+body
+{
+    background-color: #E0F4F6;
+}
 main
 {
     margin-top: 5em;
-    outline: 1px dashed red;
     width: 90%;
+    margin-left: 5%;
+}
+main #description
+{
+    text-align: center;
+    overflow: auto;
+    width: 50%;
+    margin: auto;
+    padding: 1em;
+}
+.content
+{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.content #details
+{
+    border: 1px solid black;
+    margin-bottom: 1.5em;
+    margin-top: 0.5em;
+    text-align: left;
+    padding: 0.5em 0 0.5em;
+}
+/*FONT STYLING*/
+h1
+{
+    margin-top: 1.5em;
+    font-size: 2.5em;
+    text-align: center;
+}
+h2
+{
+    font-size: 2em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 0.3em;
+}
+h3
+{
+    font-size: 1.5em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#centered
+{
+    text-align: center;
+    padding: 0.4em;
+}
+
+/*BUTTON STYLING*/
+.btn
+{
+    border-radius: 12px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-size: 20px;
+    width: 5em;
+    border: 1px solid black;
+    transition-duration: 0.4s;
+    margin: 0.3em;
+}
+.btn:hover
+{
+  background-color: #3CA54E;
+  color: white;
+  cursor:pointer;
+}
+.btn-group #left
+{
+    margin-left: 1em;
+    padding: 0.6em;
+    float: left;
+}
+.btn-group a button
+{
+    float: right;
+    width: fit-content;
+    padding: 16px;
+}
+.btn-group
+{
+    display: inline-block;
+    width: 100%;
+    margin: 1em 0 0.5em 0;
+}
+
+/*FLEXBOX STYLING*/
+.flex-container
+{
+    width: 75%;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-container .details
+{
+    margin: 0 3em 3em 3em;
+}
+
+.flex-container .details p
+{
+    overflow: auto;
+    max-width: 60%;
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+.flex-left
+{
+    display: flex;
+    flex-direction: column;
+    float: left;
+    margin-left: 1em;
+    width: 45%;
+    margin-top: 1em;
+}
+
+.flex-right 
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    float: right;
+    margin-right: 2em;
+    width: 45%;
+}
+
+/*INPUT STYLING*/
+label
+{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1em;
+    padding: 0.5em;
+}
+input, #worldDetails
+{
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 10px;
+}
+#image
+{
+    padding: 0;
+    background-color: white;
+}
+input[type=file]::file-selector-button
+{
+    background-color: white;
+    color: black;
+    width: 100%;
+    border-radius: 12px;
+    font-size: 20px;
+    border: none;
+    padding: 0.5em;
+}
+input[type=file]::file-selector-button:hover
+{
+    background-color: #3CA54E;
+    color: white;
+    cursor:pointer;
+}
+textarea
+{
+    border: 1px solid black;
+    border-radius: 12px;
+    margin-bottom: 1em;
+    text-align: left;
+    padding: 0.5em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    min-height: 20em;
+    min-width: 30em;
 }
