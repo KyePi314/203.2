@@ -4,11 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_required, current_user, LoginManager
 from flask_login import UserMixin
 from __init__ import create_app
-
-
+import base64
 
 main = Blueprint('main', __name__)
-detail = ""
+
 
 @main.route("/")
 def index():
@@ -53,7 +52,15 @@ def userprofile():
 
 @main.route("/images/")
 def images():
-    return render_template("images.html")
+    from models import session, Img
+    if current_user.UserName == Img.UserName:
+        imgs = session.query(Img).all()
+        img_list = []
+    # read image data from db back to form a rendable in html
+        for img in imgs:
+            image = base64.b64encode(img.data).decode('ascii')
+            img_list.append(image)
+    return render_template("images.html", imgs = img_list )
 
 @main.route("/editworldinfo/")
 def editworld():
