@@ -4,6 +4,8 @@
         <meta charset="utf-8"/>
         <title>Register</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
     </head>
     <body>
         <header>
@@ -27,14 +29,23 @@
                 </ul>
             </nav>
         </header>
-
-        <div>
-            <img>Placeholder for Divinity</img> <p>Divinity Tier</p>
-        </div>
-        <div>
-            <img>Placeholder for Deity</img> <p>Deity Tier</p>
-        </div>
-        <div>
-            <img>Placeholder for Celestial</img> <p>Celestial Tier</p>
+        <br><br><br>
+        <div class="flexibleContainer">
+            <div class="divinity">
+                <img>Placeholder for Divinity</img>
+                <br>
+                <button class="btn">Divinity Tier</button>
+            </div>
+            <div class="deity">
+                <img>Placeholder for Deity</img>
+                <br>
+                <button class="btn">Deity Tier</button>
+            </div>
+            <div class="celestial">
+                <img>Placeholder for Celestial</img>
+                <br>
+                <button class="btn">Celestial Tier</button>
+            </div>
         </div>
     </body>
+</html>
