@@ -43,8 +43,10 @@
                  </textarea>
              </div>
              <div class="flex-right">
-                 <label for="images">Upload New Images</label>
-                 <input type="file" id="image" name="image" accept="image/*" >
+                <form method="post" action="/Update">
+                    <label for="images">Upload New Images</label>
+                    <input type="file" id="image" name="imageFile" accept="image/*" >
+                </form>
              </div>
          </div>
          <div class="btn-group">
