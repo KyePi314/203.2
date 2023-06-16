@@ -35,6 +35,7 @@
  
          <!--All the fields which can be edited are inside this div-->
          <div class="input-fields">
+            <form method="post" action="/Update"></form>
              <div class="flex-left">
                  <label for="name">Change Name:</label>
                  <input type="text" id="name" name="name"><br><br>
@@ -43,15 +44,16 @@
                  </textarea>
              </div>
              <div class="flex-right">
-                <form method="post" action="/Update">
+                
                     <label for="images">Upload New Images</label>
                     <input type="file" id="image" name="imageFile" accept="image/*" >
-                </form>
+                
              </div>
          </div>
          <div class="btn-group">
-            <a href="{{ url_for('main.worlds')}}"><button class="btn">Delete World</button></a>
-             <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">Save World</button></a>
+            <a href="{{ url_for('main.worlds')}}"><button type="button" class="btn">Delete World</button></a>
+             <a href=" {{ url_for('main.worldinfo')}}"><button type="submit" class="btn">Save World</button></a>
+            </form>
          </div>
        </main>
     </body>
