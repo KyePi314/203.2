@@ -1,22 +1,3 @@
-body {
-    background-image: linear-gradient(to bottom right, #380036, #0CBABA);
-}
-
-.btn {
-    border-radius: 6px;
-    border-color: grey;
-    color: black;
-    text-align: center;
-    padding: 15px 32px;
-    width: 35%;
-    margin: auto;
-}
-
-.btn:hover {
-    background-color: grey;
-    color: rgba(255, 255, 255, 0.322);
-}
-
 h1 {
     font-size: 3.5em;
     text-align: center;
@@ -26,4 +7,31 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/*USER PROFILE PAGE*/
+.flexContainer {
+    display: flex;
+}
+
+
+.userProfile {
+    margin: auto;
+    width: 35%;
+    padding-left: 10px;
+    margin-left: 200px;
+}
+
+.userStatistics {
+    margin: auto;
+    width: 25%;
+    padding-right: 10px;
+    margin-right: 200px;
+    float: right;
+}
+
+.currentSubscription {
+    margin: auto;
+    text-align: center;
+    width: 35%
 }
