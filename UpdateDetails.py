@@ -2,7 +2,7 @@ from datetime import datetime
 from base64 import b64encode
 import base64
 from io import BytesIO #Converts data from Database into bytes
-from flask import render_template, request, Blueprint, redirect, session, url_for
+from flask import render_template, request, Blueprint, redirect, session, url_for, flash
 from models import (engine, User, session, Image)
 
 update = Blueprint('update', __name__)
@@ -17,5 +17,10 @@ def upload():
     file = request.files['imageFile']
     data = file.read()
     render_file = render_picture(data)
-    
 
+    newFile = Image(data=data)
+    session.add(newFile)
+    session.commit()
+    flash('Image has been uploaded!')
+    return redirect(url_for('main.worldinfo')) 
+    
