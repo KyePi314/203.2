@@ -4,6 +4,7 @@
         <meta charset="utf-8"/>
         <title>Edit World Details</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
     </head>
     <body>
         <header>
@@ -27,25 +28,29 @@
                 </ul>
             </nav>
         </header>
-        <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
-        <h1 class="title">{{worldName}}</h1>
-        <h3>Choose which details to edit</h3>
-
-        <!--All the fields which can be edited are inside this div-->
-        <div class="input-fields">
-            <label for="name">Change Name:</label>
-            <input type="text" id="name" name="name"><br><br>
-            <label for="images">Upload New Images</label>
-            <input type="file" id="image" name="image" accept="image/*">
-            <input type="submit">
-            <label for="worldDetails">World description</label>
-            <textarea id="worldDetails" name="worldDetails" rows="5" cols="30">
-                Enter a brief description of your world here
-            </textarea>
-        </div>
-        <div class="btn-group">
-            <button class="btn">Delete World</button>
-            <button class="btn">Save World</button>
-        </div>
+       <main>
+         <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
+         <h1>worldName</h1>
+         <h3 id="centered">Choose which details to edit</h3>
+ 
+         <!--All the fields which can be edited are inside this div-->
+         <div class="input-fields">
+             <div class="flex-left">
+                 <label for="name">Change Name:</label>
+                 <input type="text" id="name" name="name"><br><br>
+                 <label for="worldDetails">World description</label>
+                 <textarea id="worldDetails" name="worldDetails" rows="5" cols="30">Enter a brief description of your world here
+                 </textarea>
+             </div>
+             <div class="flex-right">
+                 <label for="images">Upload New Images</label>
+                 <input type="file" id="image" name="image" accept="image/*" >
+             </div>
+         </div>
+         <div class="btn-group">
+            <a href="{{ url_for('main.worlds')}}"><button class="btn">Delete World</button></a>
+             <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">Save World</button></a>
+         </div>
+       </main>
     </body>
 </html>
