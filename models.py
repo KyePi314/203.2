@@ -44,7 +44,7 @@ class User(Base, UserMixin):
         self.AccountType = AccountType
 
     def __repr__(self):
-        return f"({self.UserName}) ({self.Password}) ({self.Email}) ({self.Mana}) ({self.Awards}) ({self.Comments}) ({self.AccountType}) ({self.Posts})"
+        return f"({self.id})({self.UserName}) ({self.Password}) ({self.Email}) ({self.Mana}) ({self.Awards}) ({self.Comments}) ({self.AccountType}) ({self.Posts})"
     
     def get_id(self):
         return str(self.UserName)
@@ -206,37 +206,37 @@ Base.metadata.create_all(engine)
 
 
 
-# # History Database initialise.
+# # # History Database initialise.
 
 # h1a = History(1, "KingdomCome", "Vardattia", "The History of Vardattia", "Long ago, Eldoria was a land of chaos and darkness. The Elder Gods, beings of immense power and wisdom, emerged from the cosmic ether and brought balance to the realm. They established the mystical Arcane Council, a group of magical beings tasked with safeguarding the delicate equilibrium of Eldoria. Over the centuries, great empires rose and fell, leaving behind legacies etched into the annals of history. The world witnessed cataclysms, wars, and periods of enlightenment, each shaping the destiny of Eldoria.")
 
 
 
 
-# # Culture Database initialise.
+# # # Culture Database initialise.
 
 # c1 = Culture(1, "KingdomCome", "Vardattia", "The Steelhorns", "The Steelborns are a culture that use a metal bee in their sigil.")
 
 
 
-# # Religion Database initialise.
+# # # Religion Database initialise.
 
 # r1 = Religion(1, "KingdomCome", "Vardattia", "Fire Worshippers", "The Fire Worshippers worship the great torch in the sky.")
 
 
 
-# # Species Database initialise.
+# # # Species Database initialise.
 
 # s1 = Species(1, "KingdomCome", "Vardattia", "Fire Ferrets", "A species of red panda that can breathe fire.")
 
 
-# # Timeline Database initialise.
+# # # Timeline Database initialise.
 
 # t1a = Timeline(1, "KingdomCome", "Vardattia", "23AR: The Great Flamer War.", "A great war which tore the countries apart because of trolls.")
 
 
 
-#Add all new sessions.
+# #Add all new sessions.
 # session.add(w1)
 # session.add(h1a)
 # session.add(c1)
@@ -244,13 +244,14 @@ Base.metadata.create_all(engine)
 # session.add(s1)
 # session.add(t1a)
 
-# Delete Tables
-# World.__table__.drop(bind=engine)
-# History.__table__.drop(bind=engine)
-# Culture.__table__.drop(bind=engine)
-# Species.__table__.drop(bind=engine)
-# Religion.__table__.drop(bind=engine)
-# Timeline.__table__.drop(bind=engine)
-# Commit changes.
-# Img.__table__.drop(bind=engine)
+# # Delete Tables
+# # User.__table__.drop(bind=engine)
+# # World.__table__.drop(bind=engine)
+# # History.__table__.drop(bind=engine)
+# # Culture.__table__.drop(bind=engine)
+# # Species.__table__.drop(bind=engine)
+# # Religion.__table__.drop(bind=engine)
+# # Timeline.__table__.drop(bind=engine)
+# # # Commit changes.
+# # Img.__table__.drop(bind=engine)
 # session.commit()
