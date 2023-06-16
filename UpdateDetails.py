@@ -17,7 +17,7 @@ def upload():
     file = request.files['imageFile']
     data = file.read()
     render_file = render_picture(data)
-
+    
     newFile = Image(data=data)
     session.add(newFile)
     session.commit()
