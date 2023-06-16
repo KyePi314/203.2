@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title>Species</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
     </head>
     <body>
         <header>
@@ -27,23 +28,27 @@
                 </ul>
             </nav>
         </header>
+        <main>
             <h1>Species</h1>
-            <br><br>
-            <h2>First Species</h2>
-            <p>Your Species Goes Here</p>
-            <br><br>
-            <p>Information about your Species</p>
-            <br><br><br>
-            <h2>Second Species</h2>
-            <p>Your Species Goes Here</p>
-            <br><br>
-            <p>Information about your Species</p>
-            <br><br><br>
-            <h2>Third Species</h2>
-            <p>Your Species Goes Here</p>
-            <br><br>
-            <p>Information about your Species</p>
-            <br><br><br>
+            <div class="summary" id="description">
+                <h2>Species Summary</h2>
+                <p>{{ Summary }}</p>
+                <a href="{{ url_for('main.specificDetails')}}"><button class="btn">Edit Details</button></a>
+            </div>
+        <div class="content">
+            <h3>First Species</h3>
+            <div id="details">
+                <p>Information about your Species</p>
+            </div>
+            <h3>Second Species</h3>
+            <div id="details">
+                <p>Information about your Species</p>
+            </div>
+            <h3>Third Species</h3>
+            <div id="details">
+                <p>Information about your Species</p>
+            </div>
         </div>
+        </main>
     </body>
 </html>

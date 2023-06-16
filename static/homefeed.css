@@ -11,8 +11,8 @@
 }
 .posts
 {
-    padding: 20px;
-    margin-top: 20px;
+    padding: 1.25em;
+    margin-top: 1.25em;
 }
 /*Styles the actual individual posts on the newsfeed*/
 .post-box
@@ -32,7 +32,6 @@
 {
     float: left;
     text-align: left;
-    outline: 1px dashed red;
     padding: 1em;
     margin-top: 0.3em;
 }
