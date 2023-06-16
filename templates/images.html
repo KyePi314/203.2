@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title>Worlds</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
     </head>
     <body>
         <header>
@@ -29,7 +30,18 @@
         </header>
         <main>
             <div class="content">
-                
+                <ul>
+                    {% if image_list|length == 0 %}
+                        <p>Add some Images to the Gallery</p>
+                    
+                    {% else %}
+                    {% for image in image_list %}
+                    <li>
+                        <img src="data:;base64,{{image}}"/>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
             </div>
         </main>
     </body>
