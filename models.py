@@ -59,7 +59,7 @@ class World(Base):
     # parent_id: Mapped[int] = mapped_column(ForeignKey("parent_table.id"))
     # parent: Mapped["Parent"] = relationship(back_populates="children")
     
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50), nullable=False)
     WorldDescription = Column("WorldDescription", String, nullable=False, primary_key=True)
 
@@ -78,7 +78,7 @@ class World(Base):
 class History(Base):
     __tablename__ = "History"
 
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50))
     HistoryTitle = Column("HistoryTitle", String, nullable=False, primary_key=True)
     HistoryDescription = Column("HistoryDescription", String, nullable=False)
@@ -95,7 +95,7 @@ class History(Base):
 class Culture(Base):
     __tablename__ = "Cultures"
 
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50))
     CultureTitle = Column("CultureTitle", String, nullable=False, primary_key=True)
     CultureDescription = Column("CultureDescription", String, nullable=False)
@@ -113,7 +113,7 @@ class Culture(Base):
 class Religion(Base):
     __tablename__ = "Religions"
 
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50))
     ReligionTitle = Column("ReligionTitle", String, nullable=False, primary_key=True)
     ReligionDescription = Column("ReligionDescription", String, nullable=False)
@@ -130,7 +130,7 @@ class Religion(Base):
 class Species(Base):
     __tablename__ = "Species"
 
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50))
     SpeciesTitle = Column("SpeciesTitle", String, nullable=False, primary_key=True)
     SpeciesDescription = Column("SpeciesDescription", String, nullable=False)
@@ -147,7 +147,7 @@ class Species(Base):
 class Timeline(Base):
     __tablename__ = "Timelines"
 
-    UserName = Column(Integer, ForeignKey("users.Username"))
+    UserName = Column(Integer, ForeignKey("users.UserName"))
     WorldName = Column("WorldName", String(50))
     TimelineTitle = Column("TimelineTitle", String, nullable=False, primary_key=True)
     TimelineEntry = Column("TimelineEntry", String, nullable=False)
@@ -205,6 +205,7 @@ class Image(Base):
 # # Culture Database initialise.
 
 # c1 = Culture("KingdomCome", "Vardattia", "The Steelhorns", "The Steelborns are a culture that use a metal bee in their sigil.")
+# c1 = Culture("KingdomCome", "Vardattia", "The Steelhorns", "The Steelborns are a culture that use a metal bee in their sigil.")
 
 # c2 = Culture("Rambunctious51", "Dardeccia", "Firefoots", "The Firefoots are a culture of fireflies that can spew lava from their feet.")
 
@@ -213,6 +214,7 @@ class Image(Base):
 
 # # Religion Database initialise.
 
+# r1 = Religion("KingdomCome", "Vardattia", "Fire Worshippers", "The Fire Worshippers worship the great torch in the sky.")
 # r1 = Religion("KingdomCome", "Vardattia", "Fire Worshippers", "The Fire Worshippers worship the great torch in the sky.")
 
 # r2 = Religion("Rambunctious51", "Dardeccia", "Bendigata", "A great wizard who became a prophet.")
@@ -223,6 +225,7 @@ class Image(Base):
 # # Species Database initialise.
 
 # s1 = Species("KingdomCome", "Vardattia", "Fire Ferrets", "A species of red panda that can breathe fire.")
+# s1 = Species("KingdomCome", "Vardattia", "Fire Ferrets", "A species of red panda that can breathe fire.")
 
 # s2 = Species("Rambunctious51", "Dardeccia", "Orbols", "Orb beings that like to chill.")
 
@@ -231,6 +234,7 @@ class Image(Base):
 
 # # Timeline Database initialise.
 
+# t1a = Timeline("KingdomCome", "Vardattia", "23AR: The Great Flamer War.", "A great war which tore the countries apart because of trolls.")
 # t1a = Timeline("KingdomCome", "Vardattia", "23AR: The Great Flamer War.", "A great war which tore the countries apart because of trolls.")
 
 # t1b = Timeline("KingdomCome", "Vardattia", "45AR: The Relaxing.", "The war settled to a close and peace was again fostered.")
@@ -249,6 +253,30 @@ class Image(Base):
 
 
 #Add all new sessions.
+# session.add(w1)
+# session.add(w2a)
+# session.add(w2b)
+# session.add(w3)
+# session.add(h1a)
+# session.add(h1b)
+# session.add(h2)
+# session.add(h3)
+# session.add(c1)
+# session.add(c2)
+# session.add(c3)
+# session.add(r1)
+# session.add(r2)
+# session.add(r3)
+# session.add(s1)
+# session.add(s2)
+# session.add(s3)
+# session.add(t1a)
+# session.add(t1b)
+# session.add(t1c)
+# session.add(t2a)
+# session.add(t2b)
+# session.add(t3a)
+# session.add(t3b)
 # session.add(w1)
 # session.add(w2a)
 # session.add(w2b)

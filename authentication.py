@@ -10,7 +10,6 @@ from sqlalchemy import delete
 
 
 auth = Blueprint('auth', __name__)
-# Temp database info to get login stuff tpio run and load the home page
 
 
 
