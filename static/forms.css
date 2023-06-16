@@ -113,7 +113,7 @@ input:checked + .slider-round:before {
 /*LOGIN FORM STYLING*/
 .form-container
 {
-  width: 55%;
+  width: 30%;
   margin: auto;
 }
 
