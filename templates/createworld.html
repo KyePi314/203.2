@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <title>Worlds</title>
-        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
+        <meta charset="utf-8"/>
+        <title>Edit World Details</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
     </head>
     <body>
         <header>
@@ -27,14 +27,22 @@
                 </ul>
             </nav>
         </header>
-        <div class="worldsPage">
-            <h1>Your Worlds</h1>
-            <br><br>
-            <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">World One</button></a>
-            <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">World Two</button></a>
-            <a href=" {{ url_for('main.createworld')}}"><button class="btn">Create New World</button></a>
-            <br><br>
-            <button class="btn">Unlock More Worlds</button>
+        <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
+        <h1 class="title">Create World</h1>
+        <h3>To create a world, please type the name of the world and a basic description of it.</h3>
+
+        <!--All the fields which can be edited are inside this div-->
+        <div class="input-fields">
+            <label for="name">World Name:</label>
+            <input type="text" id="worldName" name="name"><br><br>
+            <label for="worldInfo">World description</label>
+            <input id="worldInfo" name="worldInfo" rows="5" cols="30">
+                Enter a brief description of your world here
+            </input>
+
+        </div>
+        <div class="btn-group">
+            <button class="btn" type="submit">Create World</button>
         </div>
     </body>
 </html>

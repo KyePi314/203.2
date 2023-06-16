@@ -11,6 +11,9 @@ from sqlalchemy import delete
 
 auth = Blueprint('auth', __name__)
 
+
+
+
 @auth.route('/login', methods=['GET', 'POST']) # Defining the login page path
 def login(): # Log in page function
     if request.method == 'GET':
