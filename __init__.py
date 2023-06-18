@@ -22,12 +22,13 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    # Registering the blueprint for the auth routes in the site
+    # Registering the blueprints for the  site
     from UpdateDetails import update as update_blueprint
     app.register_blueprint(update_blueprint)
     from authentication import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
-    #Registering the main routes used in the site
     from main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+    from worlds import create as create_blueprint
+    app.register_blueprint(create_blueprint)
     return app
