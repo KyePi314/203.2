@@ -13,10 +13,6 @@ main = Blueprint('main', __name__)
 def index():
     return render_template("auth/login.html")
 
-@main.route("/createworld/")
-def createworld():
-    return render_template("createworld.html")
-
 @main.route("/home/")
 @login_required
 def home():
