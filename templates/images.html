@@ -12,7 +12,7 @@
                 <ul>
                     <li><a href="{{ url_for('main.home')}}">Home</a></li>
                     <li><a href="{{ url_for('main.subscription')}}">Subscription</a></li>
-                    <li><a href="{{ url_for('main.worlds')}}">Worlds</a></li>
+                    <li><a href="{{ url_for('update.worlds')}}">Worlds</a></li>
                     <li><a href="{{ url_for('main.userprofile')}}">User Profile</a></li>
                     <div class="dropdown">
                         <button class="dropdown-btn">More
@@ -29,18 +29,14 @@
             </nav>
         </header>
         <main>
+            <h1>Images For {{ World }}</h1>
             <div class="content">
                 <ul>
-                    {% if image_list|length == 0 %}
-                        <p>Add some Images to the Gallery</p>
-                    
-                    {% else %}
-                    {% for image in image_list %}
+                    {% for image in img_list %}
                     <li>
                         <img src="data:;base64,{{image}}"/>
                     </li>
                     {% endfor %}
-                    {% endif %}
                 </ul>
             </div>
         </main>
