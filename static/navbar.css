@@ -58,21 +58,23 @@ header
   }
 nav
 {
-    
+    background-color: #7DBAC2;
+    overflow: hidden;
     width: 100%;
 }
 
 nav ul
 {
-    
+    width: 60%;
+    margin: auto;
     list-style-type: none;
     padding: 0;
-    background-color: #7DBAC2;
-    overflow: hidden;
+    
 
 }
 nav li, .dropdown
 {
+    margin: auto;
     margin-left: 3em;
     float: left;
     padding-left: 0.5em;

@@ -180,18 +180,20 @@ class Img(Base):
     __tablename__ = "Images"
     user = relationship('User')
     id = Column(Integer, ForeignKey("users.id"), primary_key=True, autoincrement=True)
+    worldName = Column(String, nullable=False)
     UserName = Column(String, nullable=False)
     data = Column(LargeBinary, nullable=False)
     rendered_data = Column(Text, nullable=False)
 
-    def __init__(self, id, UserName, data, rendered_data):
+    def __init__(self, id, worldName, UserName, data, rendered_data):
         self.id = id
+        self.worldName = worldName
         self.UserName = UserName
         self.data = data
         self.rendered_data = rendered_data
 
     def __repr__(self):
-        return f"({self.id}) ({self.UserName}) ({self.data}) ({self.rendered_data})"
+        return f"({self.id}) ({self.worldName}) ({self.UserName}) ({self.data}) ({self.rendered_data})"
 
 # #Uses the engine to create the tables for data.
 
@@ -318,5 +320,5 @@ Base.metadata.create_all(engine)
 # # Religion.__table__.drop(bind=engine)
 # # Timeline.__table__.drop(bind=engine)
 # # # Commit changes.
-# # Img.__table__.drop(bind=engine)
+# Img.__table__.drop(bind=engine)
 # session.commit()

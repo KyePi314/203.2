@@ -37,14 +37,7 @@ def subscription():
 @main.route("/Timeline/")
 def timeline():
     return render_template("Timeline.html")
-   
-@main.route("/worldsPage/")
-def worlds():
-    return render_template("worldsPage.html")
 
-@main.route("/worldinfo/")
-def worldinfo():
-    return render_template("worldinfo.html", WorldName = "Placeholder")
 
 @main.route("/userprofile/")
 def userprofile():
@@ -53,14 +46,13 @@ def userprofile():
 @main.route("/images/")
 def images():
     from models import session, Img
-    if current_user.UserName == Img.UserName:
-        imgs = session.query(Img).all()
-        img_list = []
+    imgs = session.query(Img).filter_by(UserName = current_user.UserName).all()
+    img_list = []
     # read image data from db back to form a rendable in html
-        for img in imgs:
-            image = base64.b64encode(img.data).decode('ascii')
-            img_list.append(image)
-    return render_template("images.html", imgs = img_list )
+    for img in imgs:
+        image = base64.b64encode(img.data).decode('ascii')
+        img_list.append(image)
+    return render_template("images.html", img_list = img_list )
 
 @main.route("/editworldinfo/")
 def editworld():

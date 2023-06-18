@@ -11,7 +11,7 @@
                 <ul>
                     <li><a href="{{ url_for('main.home')}}">Home</a></li>
                     <li><a href="{{ url_for('main.subscription')}}">Subscription</a></li>
-                    <li><a href="{{ url_for('main.worlds')}}">Worlds</a></li>
+                    <li><a href="{{ url_for('update.worlds')}}">Worlds</a></li>
                     <li><a href="{{ url_for('main.userprofile')}}">User Profile</a></li>
                     <div class="dropdown">
                         <button class="dropdown-btn">More
@@ -30,8 +30,10 @@
         <div class="worldsPage">
             <h1>Your Worlds</h1>
             <br><br>
-            <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">World One</button></a>
-            <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">World Two</button></a>
+            <form method="POST, GET" action="/worldinfo">
+                <button type="submit" value="world1" name="c1" class="btn">World One</button>
+                <button type="submit" value="world2" name="c2"  class="btn">World Two</button>
+            </form>
             <a href=" {{ url_for('main.createworld')}}"><button class="btn">Create New World</button></a>
             <br><br>
             <button class="btn">Unlock More Worlds</button>

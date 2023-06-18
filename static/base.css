@@ -147,12 +147,6 @@ h3
     margin-right: 2em;
     width: 45%;
 }
-@media (max-width: 800px)
-{
-  .flex-container {
-    flex: 100%;
-  }
-}
 /*INPUT STYLING*/
 label
 {
@@ -197,4 +191,21 @@ textarea
     font-family: Georgia, 'Times New Roman', Times, serif;
     min-height: 20em;
     min-width: 30em;
+}
+
+/*STYLING IMAGES*/
+.content ul
+{
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    padding: 0.5em;
+}
+img
+{
+    max-width: 20em;
+    max-height: 20em;
 }
