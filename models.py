@@ -202,37 +202,75 @@ Base.metadata.create_all(engine)
 # Session = sessionmaker(bind=engine)
 # session = Session()
 # World Database initialise.
-# w1 = World(1, "KingdomCome", "Vardattia", "In the realm of Eldoria, a vast and enchanting world, magic flows through every corner, shaping the very essence of existence. Eldoria is composed of diverse landscapes, from towering mountain ranges to sprawling forests and serene coastal regions. The land is adorned with ancient ruins, mystical portals, and hidden realms waiting to be discovered. The celestial bodies hold great significance in Eldorian culture, and the skies are often adorned with breathtaking displays of celestial magic.")
+
+# w1 = World("KingdomCome", "Vardattia", "In the realm of Eldoria, a vast and enchanting world, magic flows through every corner, shaping the very essence of existence. Eldoria is composed of diverse landscapes, from towering mountain ranges to sprawling forests and serene coastal regions. The land is adorned with ancient ruins, mystical portals, and hidden realms waiting to be discovered. The celestial bodies hold great significance in Eldorian culture, and the skies are often adorned with breathtaking displays of celestial magic.")
 
 
+# w2a = World("Rambunctious51", "Dardeccia", "Dardeccia is a vast and enchanting world, brimming with breathtaking landscapes and mystical wonders. It is comprised of diverse terrains, ranging from lush forests teeming with ancient trees to towering mountains that touch the heavens. The realm is dotted with sparkling rivers, majestic lakes, and hidden caves that hold secrets untold. Dardeccia is known for its ever-changing weather, with regions experiencing distinct climates, including tropical jungles, arid deserts, and icy tundras. Magic permeates every aspect of life, and the veil between the mortal realm and the supernatural is thin, allowing for fantastical creatures and extraordinary phenomena to roam freely.")
 
-# # # History Database initialise.
-
-# h1a = History(1, "KingdomCome", "Vardattia", "The History of Vardattia", "Long ago, Eldoria was a land of chaos and darkness. The Elder Gods, beings of immense power and wisdom, emerged from the cosmic ether and brought balance to the realm. They established the mystical Arcane Council, a group of magical beings tasked with safeguarding the delicate equilibrium of Eldoria. Over the centuries, great empires rose and fell, leaving behind legacies etched into the annals of history. The world witnessed cataclysms, wars, and periods of enlightenment, each shaping the destiny of Eldoria.")
-
+# w2b = World("Rambunctious51", "Sorata", "A land of coolness, chill and awesome - edit later.")
 
 
-
-# # # Culture Database initialise.
-
-# c1 = Culture(1, "KingdomCome", "Vardattia", "The Steelhorns", "The Steelborns are a culture that use a metal bee in their sigil.")
+# w3 = World("firebrand", "Fantasia", "This world is based on a famous ancient Atlantis Myth.")
 
 
+# History Database initialise.
 
-# # # Religion Database initialise.
+# h1a = History("KingdomCome", "Vardattia", "The History of Vardattia", "Long ago, Eldoria was a land of chaos and darkness. The Elder Gods, beings of immense power and wisdom, emerged from the cosmic ether and brought balance to the realm. They established the mystical Arcane Council, a group of magical beings tasked with safeguarding the delicate equilibrium of Eldoria. Over the centuries, great empires rose and fell, leaving behind legacies etched into the annals of history. The world witnessed cataclysms, wars, and periods of enlightenment, each shaping the destiny of Eldoria.")
 
-# r1 = Religion(1, "KingdomCome", "Vardattia", "Fire Worshippers", "The Fire Worshippers worship the great torch in the sky.")
-
-
-
-# # # Species Database initialise.
-
-# s1 = Species(1, "KingdomCome", "Vardattia", "Fire Ferrets", "A species of red panda that can breathe fire.")
+# h1b = History("KingdomCome", "Vardattia", "The History of Moloresh", "During the Era of Lost Kingdoms, a forgotten chapter in Eldoria's history, magnificent realms and powerful empires thrived across the land known as the Moloresh. These kingdoms possessed unimaginable wealth, profound knowledge, and incredible magical artifacts. However, their fates were ultimately sealed by a combination of internal strife, external threats, and mysterious calamities.")
 
 
-# # # Timeline Database initialise.
+# h2 = History("Rambunctious51", "Dardeccia", "History of the Kingdom", "Dardeccia is home to a rich tapestry of cultures, each with its own customs, traditions, and values. The Elven civilization, residing within the ancient forests, is deeply attuned to nature and magic. They are masters of archery, craftsmanship, and arcane arts. The Dwarves, dwelling in sprawling underground cities and mountains, excel in mining, engineering, and the forging of legendary weapons and armor. Known for their stoicism and love for exploration, they have an insatiable thirst for knowledge.")
 
-# t1a = Timeline(1, "KingdomCome", "Vardattia", "23AR: The Great Flamer War.", "A great war which tore the countries apart because of trolls.")
+# h3 = History("firebrand", "Fantasia", "The Five Steel Provinces", "Please insert lore...")
+
+
+# # Culture Database initialise.
+
+# c1 = Culture("KingdomCome", "Vardattia", "The Steelhorns", "The Steelborns are a culture that use a metal bee in their sigil.")
+
+# c2 = Culture("Rambunctious51", "Dardeccia", "Firefoots", "The Firefoots are a culture of fireflies that can spew lava from their feet.")
+
+# c3 = Culture("firebrand", "Fantasia", "Centaurs", "Centaurs roam the wild forests.")
+
+
+# # Religion Database initialise.
+
+# r1 = Religion("KingdomCome", "Vardattia", "Fire Worshippers", "The Fire Worshippers worship the great torch in the sky.")
+
+# r2 = Religion("Rambunctious51", "Dardeccia", "Bendigata", "A great wizard who became a prophet.")
+
+# r3 = Religion("firebrand", "Fantasia", "Tartarians", "Worshippers of the Greek Titans.")
+
+
+# # Species Database initialise.
+
+# s1 = Species("KingdomCome", "Vardattia", "Fire Ferrets", "A species of red panda that can breathe fire.")
+
+# s2 = Species("Rambunctious51", "Dardeccia", "Orbols", "Orb beings that like to chill.")
+
+# s3 = Species("firebrand", "Fantasia", "Centaurs", "Centaurs are quadrupeds with two extra human arms and are half man, half horse.")
+
+
+# # Timeline Database initialise.
+
+# t1a = Timeline("KingdomCome", "Vardattia", "23AR: The Great Flamer War.", "A great war which tore the countries apart because of trolls.")
+
+# t1b = Timeline("KingdomCome", "Vardattia", "45AR: The Relaxing.", "The war settled to a close and peace was again fostered.")
+
+# t1c = Timeline("KingdomCome", "Vardattia", "64AR: Here We Go Again Conflict.", "Those dang evildoers are at it again.")
+
+
+# t2a = Timeline("Rambunctious51", "Dardeccia", "Year 1: Forges of the Gods.", "The Forges of the Gods are lit and the world springs to life in fire and glory.")
+
+# t2b = Timeline("Rambunctious51", "Dardeccia", "Year 14: The Great Smiths.", "Several apprentices to the gods set out to make their own kingdoms apart from the gods.")
+
+
+# t3a = Timeline("firebrand", "Fantasia", "360BC: The Titan Awakening.", "The Athenians discover a way into Atlantis deep beneath the ocean and awaken the titans.")
+
+# t3b = Timeline("firebrand", "Fantasia", "2023AD: The Story Begins!", "The Greek Gods must seal the titans back away with the help of other gods.")
+
 
 
 
