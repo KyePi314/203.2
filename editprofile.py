@@ -14,7 +14,7 @@ from sqlalchemy.orm import sessionmaker
 
 profile = Blueprint('profile', __name__)
 
-
+#Must fix tomorrow.
 #Not currently working:
 @profile.route('/changeemail', methods=['GET', 'POST'])
 def editEmail():
@@ -47,4 +47,4 @@ def editPass():
             user.Password = newpass
             session.commit()
             flash("Password changed successfully!")
-            return redirect(url_for('main.userprofile'))
+            return redirect(url_for('main.userprofile')) 
