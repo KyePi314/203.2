@@ -41,7 +41,7 @@ def timeline():
 
 @main.route("/userprofile/")
 def userprofile():
-    return render_template("userProfile.html", mana=current_user.Mana, awards=current_user.Awards, comments=current_user.Comments, posts=current_user.Posts, accountType=current_user.AccountType)
+    return render_template("userProfile.html", user=current_user.UserName, pwd=current_user.Password, email=current_user.Email, mana=current_user.Mana, awards=current_user.Awards, comments=current_user.Comments, posts=current_user.Posts, accountType=current_user.AccountType)
 
 @main.route("/images/")
 def images():
