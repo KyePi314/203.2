@@ -4,6 +4,7 @@
         <meta charset="utf-8"/>
         <title>Edit World Details</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='forms.css')}}"/>
     </head>
     <body>
         <header>
@@ -32,6 +33,14 @@
         <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
         <h1 class="title">Create World</h1>
         <h3>To create a world, please type the name of the world and a basic description of it.</h3>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-msg">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
 
         <form action="/submit" method="POST">
             <div class="field">
