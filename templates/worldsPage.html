@@ -28,13 +28,14 @@
             </nav>
         </header>
         <div class="worldsPage">
+            <br><br><br><br>
             <h1>Your Worlds</h1>
             <br><br>
             <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">World One</button></a>
             <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">World Two</button></a>
             <a href=" {{ url_for('main.createworld')}}"><button class="btn">Create New World</button></a>
             <br><br>
-            <button class="btn">Unlock More Worlds</button>
+            <a href="{{ url_for('main.subscription')}}"><button class="btn">Unlock More Worlds</button></a>
         </div>
     </body>
 </html>

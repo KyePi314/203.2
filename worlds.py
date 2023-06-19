@@ -41,9 +41,13 @@ def createworld():
             return redirect(url_for('main.worlds'))
 
         
-
-        
-        
+@create.route('/delete', methods=['GET', 'POST'])
+def deleteworld():
+    if request.method == 'GET':
+        return render_template('worldinfo.html')
+    else:
+        world = session.query(World).filter(World.UserName == current_user.UserName)
+        #Add code for whatever the current world is here.
 
 
 
