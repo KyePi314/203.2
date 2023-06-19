@@ -3,11 +3,16 @@
     margin-top: 0;
 }
 /*Styles the main content on the page*/
-.main-content
+.main-content, .column-right
 {
     float: left;
-    width: 75%;
-
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 60em;
 }
 .posts
 {
@@ -52,17 +57,11 @@
 
 .column-right
 {
-    padding-left: 1.5em;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 30em;
     float: right;
-    width: 15%;
-    
-}
-
-@media (max-width: 900px){
-    .column-right{
-        width: 25%;
-    }
-    
 }
 .column-right h2
 {
