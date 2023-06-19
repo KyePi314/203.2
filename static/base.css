@@ -1,18 +1,22 @@
 * 
 {
     box-sizing: border-box;
+    
 }
 
 /*MAIN CONTENT STYLING*/
 body
 {
-    background-color: #E0F4F6;
+    background-color: #E0F4F6;   
+    overflow: auto;   
 }
 main
 {
+    overflow: auto;
     margin-top: 5em;
     width: 90%;
     margin-left: 5%;
+    
 }
 main #description
 {
@@ -20,7 +24,7 @@ main #description
     overflow: auto;
     width: 50%;
     margin: auto;
-    padding: 1em;
+    padding-bottom: 4em;
 }
 .content
 {
@@ -101,19 +105,14 @@ h3
 /*FLEXBOX STYLING*/
 .flex-container
 {
-    width: 50%;
+    max-width: 50em;
+    width: 100%;
     height: 600px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-}
-@media (max-width: 1000px){
-    .flex-container
-    {
-        width: 75%;
-    }
 }
 .flex-container .details
 {
@@ -147,11 +146,20 @@ h3
     margin-right: 2em;
     width: 45%;
 }
-@media (max-width: 800px)
+.flex-form
 {
-  .flex-container {
-    flex: 100%;
-  }
+    width: 100%;
+    max-width: 30em;
+    margin: auto;
+}
+.flex-form form
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+    
 }
 /*INPUT STYLING*/
 label
@@ -198,3 +206,24 @@ textarea
     min-height: 20em;
     min-width: 30em;
 }
+#options
+{
+    padding: 0.5em;
+}
+/*STYLING IMAGES*/
+.content ul
+{
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    padding: 0.5em;
+}
+img
+{
+    max-width: 20em;
+    max-height: 20em;
+}
+

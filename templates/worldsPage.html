@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title>Worlds</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
     </head>
     <body>
         <header>
@@ -11,7 +12,7 @@
                 <ul>
                     <li><a href="{{ url_for('main.home')}}">Home</a></li>
                     <li><a href="{{ url_for('main.subscription')}}">Subscription</a></li>
-                    <li><a href="{{ url_for('main.worlds')}}">Worlds</a></li>
+                    <li><a href="{{ url_for('update.worlds')}}">Worlds</a></li>
                     <li><a href="{{ url_for('main.userprofile')}}">User Profile</a></li>
                     <div class="dropdown">
                         <button class="dropdown-btn">More
@@ -30,12 +31,19 @@
         <div class="worldsPage">
             <br><br><br><br>
             <h1>Your Worlds</h1>
-            <br><br>
-            <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">World One</button></a>
-            <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">World Two</button></a>
-            <a href=" {{ url_for('main.createworld')}}"><button class="btn">Create New World</button></a>
-            <br><br>
-            <a href="{{ url_for('main.subscription')}}"><button class="btn">Unlock More Worlds</button></a>
+            <div class="flex-form">
+                <form method="POST" action="/worldinfo">
+                    <select id="options" name="options">
+                        <option value="one">World One</option>
+                        <option value="two">World Two</option>
+                    </select>
+                    <button type="submit" class="btn">Load World</button>
+                    <a href=" {{ url_for('main.createworld')}}"><button class="btn" type="button">Create New World</button></a>
+                    <button class="btn" type="button">Unlock More Worlds</button>
+                </form>
+            </div>
+            
+           
         </div>
     </body>
 </html>
