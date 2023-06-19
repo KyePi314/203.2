@@ -8,7 +8,7 @@ from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import (render_template, request, Blueprint, redirect, session, url_for, flash)
 from flask_login import current_user
-from models import User, session
+from models import World, User, session
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
 
@@ -16,35 +16,36 @@ profile = Blueprint('profile', __name__)
 
 #Must fix tomorrow.
 #Not currently working:
-@profile.route('/changeemail', methods=['GET', 'POST'])
-def editEmail():
+@profile.route('/userProfile', methods=['GET', 'POST'])
+def userProfile():
     if request.method == 'GET':
-        print("Error GET")
         return render_template('userProfile.html')
     else:
-        print("Error POST")
         newemail = request.form.get('email')
 
-        user = session.query(User).filter(User.UserName == current_user.name)
+        user = session.query(User).filter(User.UserName == current_user.UserName).first()
         user.Email = newemail
-        session.commit()
-        flash("Email changed successfully!")
-        return redirect(url_for('main.userprofile'))
-
-@profile.route('/changepass', methods=['GET', 'POST'])
-def editPass():
-    if request.method == 'GET':
-        return render_template('userProfile.html')
-    else:
-        #Placeholder for now.
-        newpass = request.form.get('password')
-        confirmpass = request.form.get('confirmpassword')
-        if(newpass != confirmpass):
-            flash("The passwords must be matching!")
-            return redirect(url_for('main.userprofile'))
+        if(newemail == current_user.Email):
+            flash("You cannot change your email to current email.")
         else:
-            user = session.query(User).filter(User.UserName == current_user.name)
-            user.Password = newpass
             session.commit()
-            flash("Password changed successfully!")
-            return redirect(url_for('main.userprofile')) 
+            flash("Email changed successfully!")
+            return redirect(url_for('main.userProfile'))
+
+# @profile.route('/changepass', methods=['GET', 'POST'])
+# def changepass():
+#     if request.method == 'GET':
+#         return render_template('userProfile.html')
+#     else:
+#         #Placeholder for now.
+#         newpass = request.form.get('password')
+#         confirmpass = request.form.get('confirmpassword')
+#         if(newpass != confirmpass):
+#             flash("The passwords must be matching!")
+#             return redirect(url_for('main.userProfile'))
+#         else:
+#             user = session.query(User).filter(User.UserName == current_user.UserName).first()
+#             user.Password = newpass
+#             session.commit()
+#             flash("Password changed successfully!")
+#             return redirect(url_for('main.userProfile')) 
