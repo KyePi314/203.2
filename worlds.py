@@ -14,7 +14,7 @@ from sqlalchemy.orm import sessionmaker
 
 create = Blueprint('create', __name__)
 
-@create.route('/submit', methods=['GET', 'POST'])
+@create.route('/createworld', methods=['GET', 'POST'])
 def createworld():
     if request.method == 'GET':
         return render_template('createworld.html')
@@ -38,10 +38,10 @@ def createworld():
             flash('Your world has now been added!')
             session.add(new_world)
             session.commit()
-            return redirect(url_for('main.worlds'))
+            return redirect(url_for('main.createworld'))
 
         
-@create.route('/delete', methods=['GET', 'POST'])
+@create.route('/deleteworld', methods=['GET', 'POST'])
 def deleteworld():
     if request.method == 'GET':
         return render_template('worldinfo.html')
