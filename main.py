@@ -9,7 +9,7 @@ import base64
 main = Blueprint('main', __name__)
 
 
-@main.route("/")
+@main.route("/", methods=['POST', 'GET'])
 def index():
     return render_template("auth/login.html")
 

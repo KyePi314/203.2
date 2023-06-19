@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title>Worlds</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
     </head>
     <body>
         <header>
@@ -29,14 +30,19 @@
         </header>
         <div class="worldsPage">
             <h1>Your Worlds</h1>
-            <br><br>
-            <form method="POST, GET" action="/worldinfo">
-                <button type="submit" value="world1" name="c1" class="btn">World One</button>
-                <button type="submit" value="world2" name="c2"  class="btn">World Two</button>
-            </form>
-            <a href=" {{ url_for('main.createworld')}}"><button class="btn">Create New World</button></a>
-            <br><br>
-            <button class="btn">Unlock More Worlds</button>
+            <div class="flex-form">
+                <form method="POST" action="/worldinfo">
+                    <select id="options" name="options">
+                        <option value="one">World One</option>
+                        <option value="two">World Two</option>
+                    </select>
+                    <button type="submit" class="btn">Load World</button>
+                    <a href=" {{ url_for('main.createworld')}}"><button class="btn" type="button">Create New World</button></a>
+                    <button class="btn" type="button">Unlock More Worlds</button>
+                </form>
+            </div>
+            
+           
         </div>
     </body>
 </html>

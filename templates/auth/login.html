@@ -41,8 +41,10 @@
                             <span class="slider-round"></span>
                         </label>
                     </div>
-                    <button class="btn" type="submit">Sign In</button>
-                    <a href="{{ url_for('auth.signup')}}"><button class="btn" type="button">Sign Up</button></a>
+                    <div class="form-btns">
+                        <button class="btn" type="submit">Sign In</button>
+                        <a href="{{ url_for('auth.signup')}}"><button class="btn" type="button">Sign Up</button></a>
+                    </div>
                 </form>
             </div>
         </main>

@@ -8,29 +8,32 @@ from flask_login import current_user, login_required
 
 
 update = Blueprint('update', __name__)
-
 ### Code that handles getting the correct world ###
 @update.route("/worldspage", methods=['POST', 'GET'])
 def worlds():
-    world = session.query(World).filter_by(UserName = current_user.UserName).all()
-    i = []
-    for x in world:
-        i.append(x.id)  
-        print(current_user.id, "  + ", x)
-    if request.method == 'POST':
-        
-        if request.form.get('c1', None) == "world1":
-            w1 = min(i)
-            world1 = session.query(World).filter_by(w1).first()
-            return redirect(url_for('main.worldinfo'))
-        elif request.form.get('c2', None) == 'world2':
-            pass
-        else:
-            pass
-    elif request.method == 'GET':
-        return render_template("worldsPage.html")
     return render_template("worldsPage.html")
 
+@update.route("/worldinfo/", methods=['POST', 'GET'])
+def worldinfo():
+    # Finds the worlds saved to the user currently logged in
+    world = session.query(World.id).filter_by(UserName = current_user.UserName).all()
+    i = []
+    # saves the id's of the found worlds in the list
+    for x in world:
+        i.append(x.id)  
+    # Gets the world choice dropdown from the html form
+    select = request.form.get('options')
+    if request.method == 'POST':
+         # Worlds are identified by their id's, lowest number to largest
+        if select == "one":
+            w1 = min(i)
+            world1 = session.query(World).filter_by(id = w1).first()
+            return render_template("worldinfo.html", WorldName=world1.WorldName, description=world1.WorldDescription)
+        if select == 'two':
+            w2 = max(i)
+            world2 = session.query(World).filter_by(id = w2).first()
+            return render_template("worldinfo.html", WorldName=world2.WorldName, description=world2.WorldDescription)
+    return render_template("worldinfo.html")
 
 
 #### Code for uploading pictures to Image database ####
