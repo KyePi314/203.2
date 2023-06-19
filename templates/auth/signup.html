@@ -7,8 +7,8 @@
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='forms.css')}}"/>
     </head>
     <body>
-            <main>
-                <h1>Sign Up</h1>
+        <main>
+            <h1 class="heading">Sign Up</h1>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     <div class="flash-msg">
@@ -28,7 +28,7 @@
                         <input class="input" type="password" name="password"placeholder="Password" autofocus=""> 
                     </label>
                     <label for="password">Password Again
-                        <input class="input" type="pwd-check" name="pwd-check"placeholder="Password" autofocus=""> 
+                        <input class="input" type="password" name="pwd-check"placeholder="Password" autofocus=""> 
                     </label>
                     <div class="form-btns">
                         <a href="{{ url_for('auth.login')}}"><button class="btn" type="button">Go Back</button></a>
