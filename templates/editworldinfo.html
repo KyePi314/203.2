@@ -30,27 +30,26 @@
         </header>
        <main>
          <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
-         <h1>worldName</h1>
+         <h1>{{ worldName }}</h1>
          <h3 id="centered">Choose which details to edit</h3>
  
          <!--All the fields which can be edited are inside this div-->
             <div class="input-fields">
-                <form method="post" action="/Update"  enctype="multipart/form-data" >
+                <form method="POST" action="/editworldinfo"  enctype="multipart/form-data" >
                     <div class="flex-left">
+                        <input type="hidden" name="worldName" value="{{ worldName }}">
                         <label for="name">Change Name:</label>
                         <input type="text" id="name" name="name"><br><br>
                         <label for="worldDetails">World description</label>
-                        <textarea id="worldDetails" name="worldDetails" rows="5" cols="30">Enter a brief description of your world here
+                        <textarea id="worldDetails" name="worldDetails" rows="5" cols="30">
                         </textarea>
                     </div>
                     <div class="flex-right">
-                        
                             <label for="images">Upload New Images</label>
                             <input type="file" id="image" name="imageFile" accept="image/*" >
                     </div>
-                
                     <div class="btn-group">
-                        <a href="{{ url_for('main.worlds')}}"><button type="button" class="btn">Delete World</button></a>
+                        <a href="{{ url_for('update.worlds')}}"><button type="button" class="btn">Delete World</button></a>
                         <button type="submit" class="btn">Save World</button>
                     </div>
                 </form>

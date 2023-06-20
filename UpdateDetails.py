@@ -40,27 +40,42 @@ def worldinfo():
             timelines = session.query(Timeline).filter_by(WorldName=select).first()
             religion = session.query(Religion).filter_by(WorldName=select).first()
             species = session.query(Species).filter_by(WorldName=select).first()
-
+            
             return render_template("worldinfo.html", WorldName=world.WorldName, description=world.WorldDescription, Culture_details=culture.CultureTitle if culture else None, History_details=history.HistoryTitle if history else None, Timeline_details=timelines.TimelineTitle if timelines else None, Species_details=species.SpeciesTitle if species else None, Religions_details=religion.ReligionTitle if religion else None)
+    
     return render_template("worldinfo.html")
 
-
-#### Code for uploading pictures to Image database ####
+#### Code for uploading pictures to Image database and updating the world's details ####
 def render_picture(data):
     render_pic = base64.b64encode(data).decode('ascii')
     return render_pic
 
-@update.route('/Update', methods=['POST'])
-def Update():
-    img = request.files['imageFile']
-    data = img.read()
-    render_file = render_picture(data)
-    rows = session.query(Img).count()
-    imgId = rows + 1
-    imgFile = Img(id=imgId, UserName=current_user.UserName, data=data, rendered_data=render_file)
-   
-    session.add(imgFile)
-    session.commit()
-    return redirect(url_for('update.worlds'))
+@update.route("/editworldinfo/", methods=['POST', 'GET'])
+def editworld():
+    world_name = request.args.get('WorldName')
+    if request.method == 'POST':
+        new_name = request.form.get('name')
+        new_description = request.form.get('worldDetails')
+        world_name = request.form.get('worldName')
+        print("FORM: ", world_name)
+        if 'imageFile' in request.files:
+            img = request.files['imageFile']
+            data = img.read()
+            render_file = render_picture(data)
+            rows = session.query(Img).count()
+            imgId = rows + 1
+            imgFile = Img(worldName=new_name if new_name else world_name, id=imgId, UserName=current_user.UserName, data=data, rendered_data=render_file)
+            session.add(imgFile)
+        updateWorld = session.query(World).filter_by(WorldName = world_name).first()
+        if new_name != "":
+            updateWorld.WorldName = new_name
+        if new_description != "":
+            updateWorld.WorldDescription = new_description 
+        
+        session.commit()
+        return redirect(url_for('update.worlds'))
+    
+    return render_template("editworldinfo.html", worldName=world_name)
+    
 
 
