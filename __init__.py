@@ -29,6 +29,8 @@ def create_app():
     app.register_blueprint(profile_blueprint)
     from authentication import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
+    from submitissue import issue as issue_blueprint
+    app.register_blueprint(issue_blueprint)
     from main import main as main_blueprint
     app.register_blueprint(main_blueprint)
     from worlds import create as create_blueprint

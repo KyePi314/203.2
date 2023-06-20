@@ -8,6 +8,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker, relationship
+from datetime import datetime
+from datetime import date
 
 
 Base = declarative_base()
@@ -194,6 +196,30 @@ class Img(Base):
 
     def __repr__(self):
         return f"({self.id}) ({self.worldName}) ({self.UserName}) ({self.data}) ({self.rendered_data})"
+
+currentdate = date.today()
+time = datetime.now()
+
+# Fix later:
+
+# class Issue(Base):
+#     __tablename__ = "Issues"
+#     id = Column(Integer, ForeignKey("users.id"), primary_key=True, autoincrement=True)
+#     UserName = Column("UserName", String, nullable=False)
+#     IssueInfo = Column("IssueInfo", String, nullable=False)
+#     Date = Column("Date", currentdate, String)
+#     Time = Column("Time", time, String)
+
+#     def __init__(self, id, UserName, IssueInfo, date, time):
+#         self.id = id
+#         self.UserName = UserName
+#         self.IssueInfo = IssueInfo
+#         self.Date = date
+#         self.Time = time
+
+#     def __repr__(self):
+#         return f"({self.id}) ({self.UserName}) ({self.IssueInfo}) ({self.Date}) ({self.Time})"
+
 
 # #Uses the engine to create the tables for data.
 
