@@ -12,7 +12,7 @@
                 <ul>
                     <li><a href="{{ url_for('main.home')}}">Home</a></li>
                     <li><a href="{{ url_for('main.subscription')}}">Subscription</a></li>
-                    <li><a href="{{ url_for('main.worlds')}}">Worlds</a></li>
+                    <li><a href="{{ url_for('update.worlds')}}">Worlds</a></li>
                     <li><a href="{{ url_for('main.userprofile')}}">User Profile</a></li>
                     <div class="dropdown">
                         <button class="dropdown-btn">More
@@ -34,27 +34,27 @@
          <h3 id="centered">Choose which details to edit</h3>
  
          <!--All the fields which can be edited are inside this div-->
-         <div class="input-fields">
-            <form method="post" action="/Update"></form>
-             <div class="flex-left">
-                 <label for="name">Change Name:</label>
-                 <input type="text" id="name" name="name"><br><br>
-                 <label for="worldDetails">World description</label>
-                 <textarea id="worldDetails" name="worldDetails" rows="5" cols="30">Enter a brief description of your world here
-                 </textarea>
-             </div>
-             <div class="flex-right">
+            <div class="input-fields">
+                <form method="post" action="/Update"  enctype="multipart/form-data" >
+                    <div class="flex-left">
+                        <label for="name">Change Name:</label>
+                        <input type="text" id="name" name="name"><br><br>
+                        <label for="worldDetails">World description</label>
+                        <textarea id="worldDetails" name="worldDetails" rows="5" cols="30">Enter a brief description of your world here
+                        </textarea>
+                    </div>
+                    <div class="flex-right">
+                        
+                            <label for="images">Upload New Images</label>
+                            <input type="file" id="image" name="imageFile" accept="image/*" >
+                    </div>
                 
-                    <label for="images">Upload New Images</label>
-                    <input type="file" id="image" name="imageFile" accept="image/*" >
-                
-             </div>
-         </div>
-         <div class="btn-group">
-            <a href="{{ url_for('main.worlds')}}"><button type="button" class="btn">Delete World</button></a>
-             <a href=" {{ url_for('main.worldinfo')}}"><button type="submit" class="btn">Save World</button></a>
-            </form>
-         </div>
+                    <div class="btn-group">
+                        <a href="{{ url_for('main.worlds')}}"><button type="button" class="btn">Delete World</button></a>
+                        <button type="submit" class="btn">Save World</button>
+                    </div>
+                </form>
+            </div>
        </main>
     </body>
 </html>

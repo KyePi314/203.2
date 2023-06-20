@@ -4,6 +4,7 @@
         <meta charset="utf-8"/>
         <title>Register</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
     </head>
     <body>
         <header>
@@ -11,7 +12,7 @@
                 <ul>
                     <li><a href="{{ url_for('main.home')}}">Home</a></li>
                     <li><a href="{{ url_for('main.subscription')}}">Subscription</a></li>
-                    <li><a href="{{ url_for('main.worlds')}}">Worlds</a></li>
+                    <li><a href="{{ url_for('update.worlds')}}">Worlds</a></li>
                     <li><a href="{{ url_for('main.userprofile')}}">User Profile</a></li>
                     <div class="dropdown">
                         <button class="dropdown-btn">More
@@ -27,9 +28,15 @@
                 </ul>
             </nav>
         </header>
-        <div>
-            <p>MAP OF [X]</p>
-            <image>Map Placeholder</image>
-        </div>
+        <main>
+            <br><br><br>
+            <div class="main">
+                <p style="font-size: 20px;">MAP OF [X]</p>
+                <br>
+                <br>
+                <image style="font-size: 20px;">[   MAP   ]</image>
+            </div>
+        </main>
+        
     </body>
 </html>

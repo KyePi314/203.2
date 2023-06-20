@@ -14,7 +14,7 @@
                 <ul>
                     <li><a href="{{ url_for('main.home')}}">Home</a></li>
                     <li><a href="{{ url_for('main.subscription')}}">Subscription</a></li>
-                    <li><a href="{{ url_for('main.worlds')}}">Worlds</a></li>
+                    <li><a href="{{ url_for('update.worlds')}}">Worlds</a></li>
                     <li><a href="{{ url_for('main.userprofile')}}">User Profile</a></li>
                     <div class="dropdown">
                         <button class="dropdown-btn">More
@@ -80,8 +80,9 @@
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
                 </p>
+                <div class="contact"><a href="{{url_for('main.contact')}}"><button class="btn">Contact</button></a></div>
             </div>
-            <div class="contact"><a href="{{url_for('main.contact')}}"><button class="btn">Contact</button></a></div>
+            
         </main>
     </body>
 </html>

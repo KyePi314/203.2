@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <title>Worlds</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
     </head>
     <body>
         <header>
@@ -11,7 +12,7 @@
                 <ul>
                     <li><a href="{{ url_for('main.home')}}">Home</a></li>
                     <li><a href="{{ url_for('main.subscription')}}">Subscription</a></li>
-                    <li><a href="{{ url_for('main.worlds')}}">Worlds</a></li>
+                    <li><a href="{{ url_for('update.worlds')}}">Worlds</a></li>
                     <li><a href="{{ url_for('main.userprofile')}}">User Profile</a></li>
                     <div class="dropdown">
                         <button class="dropdown-btn">More
@@ -28,8 +29,15 @@
             </nav>
         </header>
         <main>
+            <h1>Images For {{ World }}</h1>
             <div class="content">
-                
+                <ul>
+                    {% for image in img_list %}
+                    <li>
+                        <img src="data:;base64,{{image}}"/>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </main>
     </body>

@@ -10,7 +10,6 @@ from sqlalchemy import delete
 
 
 auth = Blueprint('auth', __name__)
-# Temp database info to get login stuff tpio run and load the home page
 
 
 
@@ -45,6 +44,8 @@ def signup():
         email = request.form.get('email')
         pwd_check = request.form.get('pwd-check')
         user = session.query(User).filter_by(Email=email).first()
+        rows = session.query(User).count()
+        userId = rows + 1
         if name == "" or pwd == "" or email == "":
             flash('Please fill out form!')
             return redirect(url_for('auth.signup'))
@@ -55,7 +56,7 @@ def signup():
             flash('Email is already in use with an existing account!')
             return redirect(url_for('auth.signup'))
         password = generate_password_hash(pwd, method='sha1')
-        new_user = User(Email=email, UserName=name, Password=password,  Mana=0, Awards=0, Posts=0, AccountType="Basic", Comments=0)
+        new_user = User(id=userId, Email=email, UserName=name, Password=password,  Mana=0, Awards=0, Posts=0, AccountType="Basic", Comments=0)
         session.add(new_user)
         session.commit()
         return redirect(url_for('auth.login'))

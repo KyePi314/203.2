@@ -4,13 +4,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_required, current_user, LoginManager
 from flask_login import UserMixin
 from __init__ import create_app
-
-
+import base64
 
 main = Blueprint('main', __name__)
-detail = ""
 
-@main.route("/")
+
+@main.route("/", methods=['POST', 'GET'])
 def index():
     return render_template("auth/login.html")
 
@@ -38,22 +37,22 @@ def subscription():
 @main.route("/Timeline/")
 def timeline():
     return render_template("Timeline.html")
-   
-@main.route("/worldsPage/")
-def worlds():
-    return render_template("worldsPage.html")
 
-@main.route("/worldinfo/")
-def worldinfo():
-    return render_template("worldinfo.html", WorldName = "Placeholder")
 
 @main.route("/userprofile/")
 def userprofile():
-    return render_template("userProfile.html", mana=current_user.Mana, awards=current_user.Awards, comments=current_user.Comments, posts=current_user.Posts, accountType=current_user.AccountType)
+    return render_template("userProfile.html", user=current_user.UserName, pwd=current_user.Password, email=current_user.Email, mana=current_user.Mana, awards=current_user.Awards, comments=current_user.Comments, posts=current_user.Posts, accountType=current_user.AccountType)
 
 @main.route("/images/")
 def images():
-    return render_template("images.html")
+    from models import session, Img
+    imgs = session.query(Img).filter_by(UserName = current_user.UserName).all()
+    img_list = []
+    # read image data from db back to form a rendable in html
+    for img in imgs:
+        image = base64.b64encode(img.data).decode('ascii')
+        img_list.append(image)
+    return render_template("images.html", img_list = img_list )
 
 @main.route("/editworldinfo/")
 def editworld():
@@ -82,6 +81,10 @@ def about():
 @main.route("/specificDetails/")
 def specificDetails():
     return render_template("specificDetails.html")
+
+@main.route("/createworld/")
+def createworld():
+    return render_template("createworld.html")
 
 app = create_app()
 
