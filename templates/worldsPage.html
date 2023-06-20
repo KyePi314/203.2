@@ -5,6 +5,7 @@
         <title>Worlds</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}"/>
+        
     </head>
     <body>
         <header>
@@ -28,22 +29,58 @@
                 </ul>
             </nav>
         </header>
-        <div class="worldsPage">
-            <br><br><br><br>
+        <main>
             <h1>Your Worlds</h1>
             <div class="flex-form">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="flash-msg">
+                            {{ messages[0] }}
+                        </div>
+                    {% endif %}
+                {% endwith %}
                 <form method="POST" action="/worldinfo">
-                    <select id="options" name="options">
-                        <option value="one">World One</option>
-                        <option value="two">World Two</option>
-                    </select>
+                    {% if worlds_list|length %}
+                        <select id="options" name="option">
+                            <!--Dynamically displaps the world name options depending on the users saved worlds-->
+                            <option value="choose">Please Choose One</option>
+                            {% for world in worlds_list %}
+                                <option value="{{ world}}">{{ world }}</option>
+                            {% endfor %}
+                        </select>
+                    {% else %}
+                        <p>No Saved Worlds Available, Please Create One Below</p>
+                    {% endif %}
                     <button type="submit" class="btn">Load World</button>
                     <a href=" {{ url_for('main.createworld')}}"><button class="btn" type="button">Create New World</button></a>
                     <a href="{{ url_for('main.subscription')}}"><button class="btn" type="button">Unlock More Worlds</button></a>
                 </form>
             </div>
-            
-           
-        </div>
+            <!--The Code in the Script tags handles the dynamically changed values from the dropdown and passes the chosen value back to the python function-->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+              // Handle dropdown change event
+              $(document).ready(function() {
+                $('#options').change(function() {
+                  var option = $(this).val();
+                  var stringOption = String(option);
+                  // Pass the selected value to Flask using AJAX
+                  $.ajax({
+                    type: 'POST',
+                    url: '/worldinfo',
+                    data: { option: stringOption },
+                    success: function(response) {
+                      // Handle the response from Flask if needed
+                      console.log(response);
+                    },
+                    error: function(error) {
+                      // Handle any errors that occur during the AJAX request
+                      console.log(error);
+                    }
+                  });
+                });
+              });
+            </script>
+        </main>
     </body>
 </html>
