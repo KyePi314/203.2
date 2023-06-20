@@ -25,8 +25,12 @@ def create_app():
     # Registering the blueprints for the  site
     from UpdateDetails import update as update_blueprint
     app.register_blueprint(update_blueprint)
+    from editprofile import profile as profile_blueprint
+    app.register_blueprint(profile_blueprint)
     from authentication import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
+    from submitissue import issue as issue_blueprint
+    app.register_blueprint(issue_blueprint)
     from main import main as main_blueprint
     app.register_blueprint(main_blueprint)
     from worlds import create as create_blueprint
