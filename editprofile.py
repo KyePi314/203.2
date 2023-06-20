@@ -17,8 +17,8 @@ profile = Blueprint('profile', __name__)
 
 #Must fix tomorrow.
 #Not currently working:
-@profile.route('/userprofile', methods=['GET', 'POST'])
-def userprofile():
+@profile.route('/changeemail', methods=['GET', 'POST'])
+def changeemail():
     if request.method == 'GET':
         return render_template('userprofile.html')
     else:
@@ -26,7 +26,7 @@ def userprofile():
         sameemail = session.query(User).filter_by(Email=newemail).first()
         user = session.query(User).filter(User.UserName == current_user.UserName).first()
         if(newemail == current_user.Email):
-            flash("Email is the same.")
+            flash("Email cannot be the same!")
             return redirect(url_for('main.userprofile'))
         elif sameemail:
             flash("Email currently in use already!")
@@ -39,20 +39,18 @@ def userprofile():
 
 
 
-@profile.route('/changepass', methods=['GET', 'POST'])
+@profile.route('/changepass', methods=['POST'])
 def changepass():
-    if request.method == 'GET':
-        return render_template('userprofile.html')
-    else:
         #Placeholder for now.
-        newpass = request.form.get('password')
-        confirmpass = request.form.get('confirmpassword')
-        if(newpass != confirmpass):
-            flash("The passwords must be matching!")
-            return redirect(url_for('main.userprofile'))
-        else:
-            user = session.query(User).filter(User.UserName == current_user.UserName).first()
-            user.Password = newpass
-            session.commit()
-            flash("Password changed successfully!")
-            return redirect(url_for('main.userprofile')) 
+    newpass = request.form.get('password')
+    confirmpass = request.form.get('confirmpassword')
+    if(newpass != confirmpass):
+        flash("The passwords must be matching!")
+        return redirect(url_for('main.userprofile'))
+    else:
+        user = session.query(User).filter(User.UserName == current_user.UserName).first()
+        password = generate_password_hash(newpass, method='sha1')
+        user.Password = password
+        session.commit()
+        flash("Password changed successfully!")
+        return redirect(url_for('main.userprofile')) 

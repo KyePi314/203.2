@@ -31,15 +31,27 @@
         </header>
     <body>
         <br><br><br><br>
-        <div class="issues">
-            <p style="font-size: 20px;">I'm having an issue.</p>
-            <br>
-            <p style="font-size: 20px;">Leave a message for the admins below.</p>
-            <br>
-            <textarea>
-            </textarea>
-            <br><br>
-            <button class="btn">Submit</button>
-        </div>
+        <br><br>
+        <br><br>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-msg">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/submitissue" method="POST">
+            <div class="issues">
+                <p style="font-size: 30px;">I'm having an issue.</p>
+                <br>
+                <p style="font-size: 20px;">Leave a message for the admins below.</p>
+                <br>
+                <textarea name="textissue" required>The issue I am having is...</textarea>
+                <br><br>
+                <button class="btn" type="submit">Submit</button>
+            </div>
+        </form>
     </body>
 </html>
