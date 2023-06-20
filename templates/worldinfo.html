@@ -43,32 +43,53 @@
                 <div class="flex-container">
                     <div class="details">
                         <h3>Culture</h3>
-                        <p>Culture details summary here</p>
-                        <a href="{{ url_for('main.culture')}}"><button class="btn">View</button></a>
+                        {% if Culture_details %}
+                            <p>{{ Culture_details }}</p>
+                        {% else %}
+                            <p>No current details saved for this world</p>
+                        {% endif %}
+                            <a href="{{ url_for('main.culture')}}"><button class="btn">View</button></a>
                     </div>
                     <div class="details">
                         <h3>History</h3>
-                        <p>details summary here</p>
+                        {% if History_details %}
+                            <p>{{ History_details }}</p>
+                        {% else %}
+                            <p>No current details saved for this world</p>
+                        {% endif %}
                         <a href="{{ url_for('main.history')}}"><button class="btn">View</button></a>
+                        
                     </div>
                     <div class="details">
                         <h3>Species</h3>
-                        <p>details summary here</p>
+                        {% if Species_details %}
+                            <p>{{ Species_details }}</p>
+                        {% else %}
+                            <p>No current details saved for this world</p>
+                        {% endif %}
                         <a href="{{ url_for('main.species')}}"><button class="btn">View</button></a>
                     </div>
                     <div class="details">
                         <h3>Religions</h3>
-                        <p>details summary here</p>
+                        {% if Religions_details %}
+                            <p>{{ Religions_details }}</p>
+                        {% else %}
+                            <p>No current details saved for this world</p>
+                        {% endif %}
                         <a href="{{ url_for('main.religion')}}"><button class="btn">View</button></a>
                     </div>
                     <div class="details">
                         <h3>Timeline</h3>
-                        <p>details summary here</p>
+                        {% if Timeline_details %}
+                            <p>{{ Timeline_details }}</p>
+                        {% else %}
+                            <p>No current details saved for this world</p>
+                        {% endif %}
                         <a href="{{ url_for('main.timeline')}}"> <button class="btn">View</button></a>
                     </div>
                     <div class="details">
                         <h3>Maps</h3>
-                        <p>details summary here</p>
+                        <p>Maps details</p>
                         <a href="{{ url_for('main.maps')}}"><button class="btn">View</button></a>
                     </div>
                     <div class="details">
