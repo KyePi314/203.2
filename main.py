@@ -54,9 +54,6 @@ def images():
         img_list.append(image)
     return render_template("images.html", img_list = img_list )
 
-@main.route("/editworldinfo/")
-def editworld():
-    return render_template("editworldinfo.html")
 
 @main.route("/culture/")
 def culture():
