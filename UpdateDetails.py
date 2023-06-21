@@ -3,11 +3,29 @@ from base64 import b64encode
 import base64
 from io import BytesIO #Converts data from Database into bytes
 from flask import render_template, request, Blueprint, redirect, session, url_for, flash
-from models import (engine, User, session, Img, World, Culture, History, Timeline, Religion, Species)
+from models import (engine, User, session, Img, World, Culture, History, Timeline, Religion, Species, Post)
 from flask_login import current_user, login_required
 
 
 update = Blueprint('update', __name__)
+
+
+
+@update.route('/Post', methods=['GET', 'POST'])
+@login_required
+def post():
+    if request.method == 'POST':
+        title = request.form.get("title")
+        content = request.form.get("content")
+        rows = session.query(Post).count()
+        postID = rows + 1
+        new_post = Post(UserName=current_user.UserName, id=postID, title=title, content=content)
+        session.add(new_post)
+        session.commit()
+        return redirect(url_for("main.home"))
+    return render_template("Post.html")
+
+
 ### Code that handles getting the correct world ###
 @update.route("/worldspage", methods=['POST', 'GET'])
 def worlds():
