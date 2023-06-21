@@ -11,7 +11,6 @@ from flask_login import current_user
 from models import World, User, session
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
-from UpdateDetails import exportworldname
 
 create = Blueprint('create', __name__)
 
@@ -42,11 +41,12 @@ def createworld():
             return redirect(url_for('main.createworld'))
 
         
-@create.route('/deleteworld', methods=['POST'])
-def deleteworld():
+@create.route('/worlddelete', methods=['POST'])
+def worlddelete():
 
-    #Error: werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'main.editworldinfo'. Did you mean 'main.createworld' instead?
-    worldname = session.query(World).filter(World.WorldName == exportworldname).first()
+    world_name = request.args.get('WorldName')
+    #Not working. - HTML page isn't loading list.
+    worldname = session.query(World).filter(World.WorldName == world_name).first()
     session.delete(worldname)
     session.commit()
     flash("This world has been deleted successfully!")
