@@ -7,6 +7,9 @@ from models import (engine, User, session, Img, World, Culture, History, Timelin
 from flask_login import current_user, login_required
 from sqlalchemy import MetaData
 
+global exportworldname
+exportworldname = None  
+
 update = Blueprint('update', __name__)
 
 @update.route('/Post', methods=['GET', 'POST'])
@@ -50,6 +53,9 @@ def worldinfo():
             timelines = session.query(Timeline).filter_by(WorldName=select).first()
             religion = session.query(Religion).filter_by(WorldName=select).first()
             species = session.query(Species).filter_by(WorldName=select).first()
+
+            exportworldname = world.WorldName
+
             return render_template("worldinfo.html", WorldName=world.WorldName, description=world.WorldDescription, Culture_details=culture.CultureTitle if culture else None, History_details=history.HistoryTitle if history else None, Timeline_details=timelines.TimelineTitle if timelines else None, Species_details=species.SpeciesTitle if species else None, Religions_details=religion.ReligionTitle if religion else None)
     
 
@@ -89,7 +95,6 @@ def specificDetails():
             elif select == 'Timeline':
                 pass    
 
-    return render_template("specificDetails.html", WorldName=worldname)
 
 #### Code for uploading pictures to Image database and updating the world's details ####
 def render_picture(data):
@@ -112,7 +117,7 @@ def editworld():
             imgId = rows + 1
             imgFile = Img(worldName=new_name if new_name else world_name, id=imgId, UserName=current_user.UserName, data=data, rendered_data=render_file)
             session.add(imgFile)
-        updateWorld =   session.query(World).filter_by(WorldName = world_name).first()
+        updateWorld = session.query(World).filter_by(WorldName = world_name).first()
         if new_name != "":
             updateWorld.WorldName = new_name
         if new_description != "":
