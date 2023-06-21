@@ -15,8 +15,6 @@ from sqlalchemy.orm import sessionmaker
 #Way of handling routing that connect to the main app.
 profile = Blueprint('profile', __name__)
 
-#Must fix tomorrow.
-#Not currently working:
 @profile.route('/changeemail', methods=['GET', 'POST'])
 def changeemail():
     if request.method == 'GET':
@@ -39,7 +37,7 @@ def changeemail():
 
 @profile.route('/changepass', methods=['POST'])
 def changepass():
-        #Placeholder for now.
+
     newpass = request.form.get('password')
     confirmpass = request.form.get('confirmpassword')
     if(newpass != confirmpass):

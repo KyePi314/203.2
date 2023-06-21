@@ -41,19 +41,17 @@ def createworld():
             return redirect(url_for('main.createworld'))
 
         
-@create.route('/deleteworld', methods=['GET', 'POST'])
-def deleteworld():
-    if request.method == 'GET':
-        return render_template('worldinfo.html')
-    else:
-        world = session.query(World).filter(World.UserName == current_user.UserName)
-        # if(currentworld == 0):
-            
-        # elif(currentworld == 1):
+@create.route('/worlddelete', methods=['POST'])
+def worlddelete():
+
+    world_name = request.args.get('WorldName')
+    #Not working. - HTML page isn't loading list.
+    worldname = session.query(World).filter(World.WorldName == world_name).first()
+    session.delete(worldname)
+    session.commit()
+    flash("This world has been deleted successfully!")
+    return redirect(url_for('main.editworldinfo'))
         
-        #Add code for whatever the current world is here.
-
-
 
 
 # #Create the Database
