@@ -45,6 +45,7 @@ def createworld():
 @create.route('/deleteworld', methods=['POST'])
 def deleteworld():
 
+    #Error: werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'main.editworldinfo'. Did you mean 'main.createworld' instead?
     worldname = session.query(World).filter(World.WorldName == exportworldname).first()
     session.delete(worldname)
     session.commit()
