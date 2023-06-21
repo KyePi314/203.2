@@ -34,39 +34,26 @@
             <div class="main-content">
                 <h1 id="title">Welcome, {{ username }}</h1>
                 <div class="posts">
-                    <div class="post-box">
-                        <h3>Example Post </h3>
-                        <div class="post-meta">
-                            <h4>username</h4>
-                            <h5>time</h5>
-                        </div>
-                        <div class="post-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing<br>elit. Vestibulum porta odio eu metus <br>vestibulum, eget varius nisi finibus. Mauris id rutrum quam. Integer ac mi elit. </p>
-                        </div>
-                    </div>
-                    <div class="post-box">
-                        <h3>Example Post </h3>
-                        <div class="post-meta">
-                            <h4>username</h4>
-                            <h5>time</h5>
-                        </div>
-                        <div class="post-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing<br>elit. Vestibulum porta odio eu metus <br>vestibulum, eget varius nisi finibus. Mauris id rutrum quam. Integer ac mi elit. </p>
-                        </div>
-                    </div>
-                    <div class="post-box">
-                        <h3>Example Post </h3>
-                        <div class="post-meta">
-                            <h4>username</h4>
-                            <h5>time</h5>
-                        </div>
-                        <div class="post-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing<br>elit. Vestibulum porta odio eu metus <br>vestibulum, eget varius nisi finibus. Mauris id rutrum quam. Integer ac mi elit. </p>
-                        </div>
-                    </div>
+                    {% if posts|length %}
+                        {% for post in posts %}
+                            <article class="post-box">
+                                <h3>{{ post.title }} </h3>
+                                <div class="post-meta">
+                                    <h4>{{ post.UserName }}</h4>
+                                    <h5>{{ post.posted_date }}</h5>
+                                </div>
+                                <div class="post-content">
+                                    <p>{{ post.content }}</p>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    {% else %}
+                        <h1>No posts to show</h1>
+                    {% endif %}
                 </div>
             </div>
             <div class="column-right">
+                <a href="{{ url_for('update.post')}}"><button class="btn">Make a post</button></a>
                 <h2>Notifications</h2>
                 <p>
                     Subscribe today to have access to more worlds, tools and more!

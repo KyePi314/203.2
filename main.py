@@ -13,10 +13,12 @@ main = Blueprint('main', __name__)
 def index():
     return render_template("auth/login.html")
 
-@main.route("/home/")
+@main.get('/home/')
 @login_required
 def home():
-    return render_template('home.html', username=current_user.UserName)
+    from models import session, Post
+    find_post = session.query(Post).all()
+    return render_template("home.html", posts=find_post, username=current_user.UserName)
 
 @main.route("/contact/")
 def contact():
