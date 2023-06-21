@@ -29,26 +29,30 @@
             </nav>
         </header>
         <main>
-            <h1>Culture</h1>
-            <div class="summary" id="description">
-                <h2>Culture Summary</h2>
-                <p>{{ Summary }}</p>
-                <a href="{{ url_for('main.specificDetails')}}"><button class="btn">Edit Details</button></a>
-            </div>
-            <div class="content">
-                <h3>Basic Details</h3>
-                <div id="details">
-                    <p>Example</p>
+            <h1>{{ WorldName }} Culture's</h1>
+            {% if details %}
+                <div class="summary" id="description">
+                    <h2>Culture Summary</h2>
+                    <p>{{ Summary }}</p>
+                    <a href="{{ url_for('update.specificDetails')}}"><button class="btn">Edit Details</button></a>
                 </div>
-                <h3>Background Information</h3>
-                <div id="details">
-                    <p>Example</p>
+                <div class="content">
+                    <h3>{{ details.CultureTitle }}</h3>
+                    <div id="details">
+                        <p>Example</p>
+                    </div>
+                    <h3>{{ details.CultureDescription }}</h3>
+                    <div id="details">
+                        <p>Example</p>
+                    </div>
                 </div>
-                <h3>Expanded Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-            </div>
+                {% else %}
+                <h2>No Saved Data for Culture, Add some below!</h2>
+                <form action="/specificDetails/{{ WorldName }}" method="get">
+                    <input type="hidden" name="worldname" value="{{ WorldName }}">
+                    <button class="btn">Add Details</button>
+                </form>
+            {% endif %}
         </main>
     </body>
 </html>

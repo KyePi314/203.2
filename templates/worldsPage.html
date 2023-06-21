@@ -39,7 +39,7 @@
                         </div>
                     {% endif %}
                 {% endwith %}
-                <form method="POST" action="/worldinfo">
+                <form method="POST" action="/worldinfo/{{ WorldName }}">
                     {% if worlds_list|length %}
                         <select id="options" name="option">
                             <!--Dynamically displaps the world name options depending on the users saved worlds-->

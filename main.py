@@ -57,9 +57,9 @@ def images():
     return render_template("images.html", img_list = img_list )
 
 
-@main.route("/culture/")
-def culture():
-    return render_template("culture.html")
+# @main.route("/culture/")
+# def culture():
+#     return render_template("culture.html")
 
 @main.route("/history/")
 def history():
@@ -77,9 +77,9 @@ def religion():
 def about():
     return render_template("about.html")
 
-@main.route("/specificDetails/")
-def specificDetails():
-    return render_template("specificDetails.html")
+# @main.route("/specificDetails/")
+# def specificDetails():
+#     return render_template("specificDetails.html")
 
 @main.route("/createworld/")
 def createworld():
