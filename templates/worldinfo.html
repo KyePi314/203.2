@@ -49,7 +49,9 @@
                         {% else %}
                             <p>No current details saved for this world</p>
                         {% endif %}
-                            <a href="{{ url_for('main.culture')}}"><button class="btn">View</button></a>
+                        <a href="{{url_for('update.culture', WorldName = WorldName)}}">
+                            <button class="btn">View</button>
+                        </a>
                     </div>
                     <div class="details">
                         <h3>History</h3>
@@ -58,7 +60,7 @@
                         {% else %}
                             <p>No current details saved for this world</p>
                         {% endif %}
-                        <a href="{{ url_for('main.history')}}"><button class="btn">View</button></a>
+                        <a href="{{ url_for('main.history', WorldName = WorldName)}}"><button class="btn">View</button></a>
                         
                     </div>
                     <div class="details">
@@ -68,7 +70,7 @@
                         {% else %}
                             <p>No current details saved for this world</p>
                         {% endif %}
-                        <a href="{{ url_for('main.species')}}"><button class="btn">View</button></a>
+                        <a href="{{ url_for('main.species', WorldName = WorldName)}}"><button class="btn">View</button></a>
                     </div>
                     <div class="details">
                         <h3>Religions</h3>
@@ -77,7 +79,7 @@
                         {% else %}
                             <p>No current details saved for this world</p>
                         {% endif %}
-                        <a href="{{ url_for('main.religion')}}"><button class="btn">View</button></a>
+                        <a href="{{ url_for('main.religion', WorldName = WorldName)}}"><button class="btn">View</button></a>
                     </div>
                     <div class="details">
                         <h3>Timeline</h3>
@@ -86,17 +88,17 @@
                         {% else %}
                             <p>No current details saved for this world</p>
                         {% endif %}
-                        <a href="{{ url_for('main.timeline')}}"> <button class="btn">View</button></a>
+                        <a href="{{ url_for('main.timeline', WorldName = WorldName)}}"> <button class="btn">View</button></a>
                     </div>
                     <div class="details">
                         <h3>Maps</h3>
                         <p>Maps details</p>
-                        <a href="{{ url_for('main.maps')}}"><button class="btn">View</button></a>
+                        <a href="{{ url_for('main.maps', WorldName = WorldName)}}"><button class="btn">View</button></a>
                     </div>
                     <div class="details">
                         <h3>Images</h3>
                         <p>Images can be found here</p>
-                        <a href="{{ url_for('main.images')}}"><button class="btn">View</button></a>
+                        <a href="{{ url_for('main.images', WorldName = WorldName)}}"><button class="btn">View</button></a>
                     </div>
                 </div>
         </main>
