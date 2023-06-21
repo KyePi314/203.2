@@ -18,9 +18,16 @@ issue = Blueprint('issue', __name__)
 currentdate = date.today()
 time = datetime.now()
 message = "Thank you for submitting an issue. An admin will get back to you soon. Issue Report sent at {}.".format(time, currentdate)
+message2 = "Thank you for submitting a Restore World request. The admins will get to work restoring a world that you deleted recently. Unfortunately if the world was deleted more than 14 days ago, then it will not be able to be restored."
 
 @issue.route('/submitissue', methods=['POST'])
 def submitissue():
         #Temporary
     flash(message)
+    return render_template('issues.html')
+
+@issue.route('/restoreworld', methods=['POST'])
+def restoreworld():
+        #Temporary
+    flash(message2)
     return render_template('issues.html')
