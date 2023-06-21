@@ -47,7 +47,12 @@ def deleteworld():
         return render_template('worldinfo.html')
     else:
         world = session.query(World).filter(World.UserName == current_user.UserName)
+        # if(currentworld == 0):
+            
+        # elif(currentworld == 1):
+        
         #Add code for whatever the current world is here.
+
 
 
 
