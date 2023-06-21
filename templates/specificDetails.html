@@ -29,25 +29,29 @@
             </nav>
         </header>
        <main>
-         <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
-            <h1>Edit Details</h1>
-            <div class="flex-left">
-                <label for="name">Add New Details:</label>
-                <textarea  id="new" name="details" rows="4" cols="10">
-                </textarea>
-                <label for="More">Additional Details</label>
-                <textarea  id="more" name="moreDetails" rows="4" cols="10">
-                </textarea>
-            </div>
-            <div class="flex-right">
-                <label for="descrip">Description</label>
-                <textarea id="descrip" name="description" rows="4" cols="10">
-                </textarea>
-            </div>
-            <div class="btn-group">
-                <button  onclick="history.back()" class="btn">Go Back</button>
-                 <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">Save World</button></a>
-             </div>
+            <h1>{{ WorldName }}</h1>
+            <h2>Edit Details</h2>
+            <form action="/specificDetails" method="POST">
+                <select name="choose_detail" id="choose_detail">
+                    <option value="choose">Please Choose One</option>
+                    <option value="Culture">Culture</option>
+                    <option value="History">History</option>
+                </select>
+
+                <div class="flex-left">
+                    <label for="title">Add title:</label>
+                    <input id="title" name="title" />
+                </div>
+                <div class="flex-right">
+                    <label for="detail_description">Description</label>
+                    <textarea id="detail_description" name="detail_description" rows="4" cols="10">
+                    </textarea>
+                </div>
+                <div class="btn-group">
+                    <button  onclick="history.back()" type="button" class="btn">Go Back</button>
+                    <button class="btn" type="submit">Save World</button>
+                 </div>
+            </form>
        </main>
     </body>
 </html>
