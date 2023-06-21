@@ -37,8 +37,6 @@ def changeemail():
             flash("Email changed successfully!")
             return redirect(url_for('main.userprofile'))
 
-
-
 @profile.route('/changepass', methods=['POST'])
 def changepass():
         #Placeholder for now.
