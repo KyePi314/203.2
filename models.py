@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, ForeignKey, Column, String, Integer, CHAR, delete, LargeBinary, Text
+from sqlalchemy import create_engine, ForeignKey, Column, String, Integer, CHAR, delete, LargeBinary, Text, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from flask_login import UserMixin
 from sqlalchemy.ext.declarative import declarative_base
@@ -224,6 +224,19 @@ time = datetime.now()
 # #Uses the engine to create the tables for data.
 
 # engine = create_engine("sqlite:///database.db", echo=True)
+
+class Post(Base):
+    __tablename__ = "posts"
+    user = relationship('User')
+    id = Column(Integer, ForeignKey("users.id"), primary_key=True, autoincrement=True)
+    UserName = Column(String, nullable=False)
+    title = Column(String, nullable=False)
+    content = Column(String, nullable=False)
+    posted_date = Column(DateTime, default=datetime.now)
+
+# engine = create_engine("sqlite:///database.db", echo=True)
+
+
 
 Base.metadata.create_all(engine)
 

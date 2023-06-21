@@ -30,10 +30,11 @@
         </header>
         <main>
             <h1 class="title">{{ WorldName }}</h1>
-            <div class="btn-group">
                 <button class="btn" id="left">Privacy:{{public}}</button>
-                <a href="{{ url_for('main.editworld')}}"><button class="btn">Edit World Information</button></a>
-            </div>
+                <form method="get" action="/editworldinfo">
+                    <input type="hidden" name="WorldName" value="{{ WorldName }}">
+                    <button class="btn">Edit World Information</button>
+                </form>
                 <div id="description">
                     <h2>Description</h2>
                     <p>

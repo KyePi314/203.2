@@ -22,7 +22,7 @@ main #description
     text-align: center;
     width: 50%;
     margin: auto;
-    padding-bottom: 4em;
+    padding: 4em 0;
 }
 .content
 {
@@ -90,13 +90,13 @@ h3
   color: white;
   cursor:pointer;
 }
-.btn-group #left
+#left
 {
     margin-left: 1em;
     padding: 0.6em;
     float: left;
 }
-.btn-group a button
+form .btn
 {
     float: right;
     width: fit-content;
