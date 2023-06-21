@@ -11,6 +11,7 @@ from flask_login import current_user
 from models import World, User, session
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
+from UpdateDetails import exportworldname
 
 create = Blueprint('create', __name__)
 
@@ -41,19 +42,15 @@ def createworld():
             return redirect(url_for('main.createworld'))
 
         
-@create.route('/deleteworld', methods=['GET', 'POST'])
+@create.route('/deleteworld', methods=['POST'])
 def deleteworld():
-    if request.method == 'GET':
-        return render_template('worldinfo.html')
-    else:
-        world = session.query(World).filter(World.UserName == current_user.UserName)
-        # if(currentworld == 0):
-            
-        # elif(currentworld == 1):
+
+    worldname = session.query(World).filter(World.WorldName == exportworldname).first()
+    session.delete(worldname)
+    session.commit()
+    flash("This world has been deleted successfully!")
+    return redirect(url_for('main.editworldinfo'))
         
-        #Add code for whatever the current world is here.
-
-
 
 
 # #Create the Database

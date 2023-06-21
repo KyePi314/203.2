@@ -49,7 +49,10 @@
                             <input type="file" id="image" name="imageFile" accept="image/*" >
                     </div>
                     <div class="btn-group">
-                        <a href="{{ url_for('update.worlds')}}"><button type="button" class="btn">Delete World</button></a>
+                        <form action="/deleteworld" method="POST">
+                            <!--Add a confirmation here somehow-->
+                            <button class="btn" type="submit">Delete World</button>
+                          </form>
                         <button type="submit" class="btn">Save World</button>
                     </div>
                 </form>
