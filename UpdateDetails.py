@@ -42,6 +42,7 @@ def worldinfo():
             flash('please choose a world from the dropdown')
             return redirect(url_for('update.worlds'))
         else:
+            url = url_for('update.culture', WorldName=select)
             ## Getting all the details to fill out the HTML page
             world = session.query(World).filter_by(WorldName=select).first()
             culture = session.query(Culture).filter_by(WorldName=select).first()
@@ -54,13 +55,12 @@ def worldinfo():
 
 @update.route("/culture/", methods=['GET', 'POST'])
 def culture():
-    if request.method == 'POST':
-        worldname = request.form.get('WorldName')
-        print(worldname)
+    worldname = request.args.get("WorldName")
     return render_template("culture.html", WorldName=worldname)
 
 @update.route("/specificDetails/", methods=['GET', 'POST'])
-def specificDetails(WorldName):
+def specificDetails():
+    worldname = request.args.get("WorldName")
     if request.method == 'POST':
         select = request.form.get('choose_detail')
         title =  request.form.get('title')
@@ -72,14 +72,14 @@ def specificDetails(WorldName):
             if select == 'Culture':
                 rows = session.query(Culture).count()
                 rowID = rows + 1
-                update_details = session.query(Culture).filter_by(WorldName = WorldName).first()
+                update_details = session.query(Culture).filter_by(WorldName = worldname).first()
                 if update_details:
                     update_details.CultureTitle=title
                     update_details.CultureDescription=description
                 else:
-                    update_details = Culture(id=rowID, UserName=current_user.UserName, WorldName=WorldName, CultureTitle=title, CultureDescription=description)
+                    update_details = Culture(id=rowID, UserName=current_user.UserName, WorldName=worldname, CultureTitle=title, CultureDescription=description)
                     session.add(update_details)
-                return redirect(url_for('update.culture', details=update_details, WorldName=WorldName))
+                return redirect(url_for('update.culture', details=update_details, WorldName=worldname))
             elif select == 'History':
                 pass
             elif select == 'Religion':
@@ -89,7 +89,7 @@ def specificDetails(WorldName):
             elif select == 'Timeline':
                 pass    
 
-    return render_template("specificDetails.html", WorldName=WorldName)
+    return render_template("specificDetails.html", WorldName=worldname)
 
 #### Code for uploading pictures to Image database and updating the world's details ####
 def render_picture(data):

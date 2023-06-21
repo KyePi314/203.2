@@ -34,7 +34,7 @@
                 <div class="summary" id="description">
                     <h2>Culture Summary</h2>
                     <p>{{ Summary }}</p>
-                    <a href="{{ url_for('update.specificDetails')}}"><button class="btn">Edit Details</button></a>
+                    <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Edit Details</button></a>
                 </div>
                 <div class="content">
                     <h3>{{ details.CultureTitle }}</h3>
@@ -48,10 +48,8 @@
                 </div>
                 {% else %}
                 <h2>No Saved Data for Culture, Add some below!</h2>
-                <form action="/specificDetails/{{ WorldName }}" method="get">
-                    <input type="hidden" name="worldname" value="{{ WorldName }}">
-                    <button class="btn">Add Details</button>
-                </form>
+                <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Add Details</button></a>
+            </div>
             {% endif %}
         </main>
     </body>
