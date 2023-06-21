@@ -234,6 +234,16 @@ class Post(Base):
     content = Column(String, nullable=False)
     posted_date = Column(DateTime, default=datetime.now)
 
+    def __init__(self, id, UserName, title, content, posted_date):
+        self.id = id
+        self.UserName = UserName
+        self.title = title
+        self.content = content
+        self.posted_date = posted_date
+    
+    def __repr__(self):
+        return f"({self.id}) ({self.title}) ({self.UserName}) ({self.content}) ({self.posted_date})"
+
 # engine = create_engine("sqlite:///database.db", echo=True)
 
 
