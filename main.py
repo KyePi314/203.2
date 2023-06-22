@@ -40,11 +40,6 @@ def deleteworld():
 def subscription():
     return render_template("SubscriptionPage.html")
 
-@main.route("/Timeline/")
-def timeline():
-    return render_template("Timeline.html")
-
-
 @main.route("/userprofile/")
 def userprofile():
     return render_template("userprofile.html", user=current_user.UserName, pwd=current_user.Password, email=current_user.Email, mana=current_user.Mana, awards=current_user.Awards, comments=current_user.Comments, posts=current_user.Posts, accountType=current_user.AccountType)
@@ -60,30 +55,9 @@ def images():
         img_list.append(image)
     return render_template("images.html", img_list = img_list )
 
-
-# @main.route("/culture/")
-# def culture():
-#     return render_template("culture.html")
-
-@main.route("/history/")
-def history():
-    return render_template("history.html")
-
-@main.route("/species/")
-def species():
-    return render_template("species.html")
-
-@main.route("/religion/")
-def religion():
-    return render_template("religion.html")
-
 @main.route("/about/")
 def about():
     return render_template("about.html")
-
-# @main.route("/specificDetails/")
-# def specificDetails():
-#     return render_template("specificDetails.html")
 
 @main.route("/createworld/")
 def createworld():

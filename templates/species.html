@@ -29,26 +29,25 @@
             </nav>
         </header>
         <main>
-            <h1>Species</h1>
+            <h1>{{ WorldName }} Species's</h1>
+            {% if details|length %}
                 <div class="summary" id="description">
                     <h2>Species Summary</h2>
                     <p>{{ Summary }}</p>
-                <a href="{{ url_for('main.specificDetails')}}"><button class="btn">Edit Details</button></a>
+                    <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Edit Details</button></a>
                 </div>
                 <div class="content">
-            <h3>First Species</h3>
+                    {% for detail in details %}
+                    <h3>{{ detail.SpeciesTitle }}</h3>
                     <div id="details">
-                <p>Information about your Species</p>
+                        <p>{{ detail.SpeciesDescription }}</p>
                     </div>
-            <h3>Second Species</h3>
-            <div id="details">
-                <p>Information about your Species</p>
+                    {% endfor %}
+                {% else %}
+                <h2>No Saved Data for Species, Add some below!</h2>
+                <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Add Details</button></a>
             </div>
-            <h3>Third Species</h3>
-            <div id="details">
-                <p>Information about your Species</p>
-            </div>
-        </div>
+            {% endif %}
         </main>
     </body>
 </html>

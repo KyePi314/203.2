@@ -28,10 +28,24 @@
                 </ul>
             </nav>
         </header>
-        <div>
-            <p>TIMELINE</p>
-            <p>Start Date</p>
-            <img>Timeline Box 1</img>
+        <main>
+            <h1>{{ WorldName }} Timeline</h1>
+            {% if details|length %}
+                <div class="summary" id="description">
+                    <h2>Timeline Summary</h2>
+                    <p>{{ Summary }}</p>
+                    <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Edit Details</button></a>
+                </div>
+                <div class="content">
+                    {% for detail in details %}
+                    <h3>{{ detail.TimelineTitle }}</h3>
+                    <div id="details">
+                        <p>{{ detail.TimelineEntry }}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <h2>No Saved Data for Timeline, Add some below!</h2>
+                <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Add Details</button></a>
             </div>
             {% endif %}
         </main>

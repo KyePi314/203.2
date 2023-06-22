@@ -39,11 +39,11 @@
                         </div>
                     {% endif %}
                 {% endwith %}
-                <form method="POST" action="/worldinfo/{{ WorldName }}">
+                <form method="POST" action="/worldinfo/">
                     {% if worlds_list|length %}
                         <select id="options" name="option">
                             <!--Dynamically displays the world name options depending on the users saved worlds-->
-                            <option value="choose">Please Choose One</option>
+                            <option value="choose" selected>Please Choose One</option>
                             {% for world in worlds_list %}
                                 <option value="{{ world}}">{{ world }}</option>
                             {% endfor %}
@@ -66,7 +66,7 @@
                   var option = $(this).val();
                   var stringOption = String(option);
                   console.log(stringOption)
-                  // Pass the selected value to Flask using AJAX
+                  // Passes the user's selected choice to Flask using AJAX
                   $.ajax({
                     type: 'POST',
                     url: '/worldinfo',
@@ -76,7 +76,7 @@
                       console.log(response);
                     },
                     error: function(error) {
-                      // Handle any errors that occur during the AJAX request
+                      // Handle any errors that happen during the request
                       console.log(error);
                     }
                   });
