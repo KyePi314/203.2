@@ -16,11 +16,15 @@ def post():
         title = request.form.get("title")
         content = request.form.get("content")
         rows = session.query(Post).count()
+        now = datetime.now()
+        post_time = now.strftime("%d-%m-%y %H:%M")
+        post_datetime = datetime.strptime(post_time, "%d-%m-%y %H:%M")
         postID = rows + 1
-        new_post = Post(UserName=current_user.UserName, id=postID, title=title, content=content)
+        new_post = Post(UserName=current_user.UserName, id=postID, title=title, content=content, posted_date=post_datetime)
         session.add(new_post)
         session.commit()
-        return redirect(url_for("main.home"))
+        find_post = session.query(Post).all()
+        return redirect(url_for("main.home", username=current_user.UserName, posts=find_post))
     return render_template("Post.html")
 
 
