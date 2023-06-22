@@ -28,68 +28,26 @@
                 </ul>
             </nav>
         </header>
-        <div>
-            <br><br><br><br>
-            <h1>Religion One</h1>
-            <div class="summary" id="description">
-                <h2>Religion Summary</h2>
-                <p>{{ Summary }}</p>
-                <a href="{{ url_for('main.specificDetails')}}"><button class="btn">Edit Details</button></a>
+        <main>
+            <h1>{{ WorldName }} Religion's</h1>
+            {% if details|length %}
+                <div class="summary" id="description">
+                    <h2>Religion Summary</h2>
+                    <p>{{ Summary }}</p>
+                    <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Edit Details</button></a>
+                </div>
+                <div class="content">
+                    {% for detail in details %}
+                    <h3>{{ detail.ReligionTitle }}</h3>
+                    <div id="details">
+                        <p>{{ detail.ReligionDescription }}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <h2>No Saved Data for Religion, Add some below!</h2>
+                <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Add Details</button></a>
             </div>
-            <div class="content">
-                <h3>Basic Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-                <h3>Background Information</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-                <h3>Expanded Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-            </div>
-            <h1>Religion Two</h1>
-            <div class="summary" id="description">
-                <h2>Religion Summary</h2>
-                <p>{{ Summary }}</p>
-                <a href="{{ url_for('main.specificDetails')}}"><button class="btn">Edit Details</button></a>
-            </div>
-            <div class="content">
-                <h3>Basic Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-                <h3>Background Information</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-                <h3>Expanded Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-            </div>
-            <h1>Religion Three</h1>
-            <div class="summary" id="description">
-                <h2>Religion Summary</h2>
-                <p>{{ Summary }}</p>
-                <a href="{{ url_for('main.specificDetails')}}"><button class="btn">Edit Details</button></a>
-            </div>
-            <div class="content">
-                <h3>Basic Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-                <h3>Background Information</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-                <h3>Expanded Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-            </div>
-        </div>
+            {% endif %}
+        </main>
     </body>
 </html>

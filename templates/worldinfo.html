@@ -42,63 +42,69 @@
                     </p>
                 </div>
                 <div class="flex-container">
-                    <div class="details">
-                        <h3>Culture</h3>
-                        {% if Culture_details %}
-                            <p>{{ Culture_details }}</p>
-                        {% else %}
-                            <p>No current details saved for this world</p>
-                        {% endif %}
-                        <a href="{{url_for('update.culture', WorldName = WorldName)}}">
-                            <button class="btn">View</button>
-                        </a>
+                    <div class="right-column">
+                        <div class="details">
+                            <h3>Culture</h3>
+                            {% if Culture_details %}
+                            {% for detail in Culture_details  %}
+                                <p>{{ detail.CultureTitle }}</p>
+                            {% endfor %}
+                            {% else %}
+                                <p>No current details saved for this world</p>
+                            {% endif %}
+                            <a href="{{url_for('update.culture', WorldName = WorldName)}}">
+                                <button class="btn">View</button>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <h3>History</h3>
+                            {% if History_details %}
+                                <p>{{ History_details }}</p>
+                            {% else %}
+                                <p>No current details saved for this world</p>
+                            {% endif %}
+                            <a href="{{ url_for('update.history', WorldName = WorldName)}}"><button class="btn">View</button></a>
+                            
+                        </div>
+                        <div class="details">
+                            <h3>Species</h3>
+                            {% if Species_details %}
+                                <p>{{ Species_details }}</p>
+                            {% else %}
+                                <p>No current details saved for this world</p>
+                            {% endif %}
+                            <a href="{{ url_for('update.species', WorldName = WorldName)}}"><button class="btn">View</button></a>
+                        </div>
                     </div>
-                    <div class="details">
-                        <h3>History</h3>
-                        {% if History_details %}
-                            <p>{{ History_details }}</p>
-                        {% else %}
-                            <p>No current details saved for this world</p>
-                        {% endif %}
-                        <a href="{{ url_for('main.history', WorldName = WorldName)}}"><button class="btn">View</button></a>
-                        
-                    </div>
-                    <div class="details">
-                        <h3>Species</h3>
-                        {% if Species_details %}
-                            <p>{{ Species_details }}</p>
-                        {% else %}
-                            <p>No current details saved for this world</p>
-                        {% endif %}
-                        <a href="{{ url_for('main.species', WorldName = WorldName)}}"><button class="btn">View</button></a>
-                    </div>
-                    <div class="details">
-                        <h3>Religions</h3>
-                        {% if Religions_details %}
-                            <p>{{ Religions_details }}</p>
-                        {% else %}
-                            <p>No current details saved for this world</p>
-                        {% endif %}
-                        <a href="{{ url_for('main.religion', WorldName = WorldName)}}"><button class="btn">View</button></a>
-                    </div>
-                    <div class="details">
-                        <h3>Timeline</h3>
-                        {% if Timeline_details %}
-                            <p>{{ Timeline_details }}</p>
-                        {% else %}
-                            <p>No current details saved for this world</p>
-                        {% endif %}
-                        <a href="{{ url_for('main.timeline', WorldName = WorldName)}}"> <button class="btn">View</button></a>
-                    </div>
-                    <div class="details">
-                        <h3>Maps</h3>
-                        <p>Maps details</p>
-                        <a href="{{ url_for('main.maps', WorldName = WorldName)}}"><button class="btn">View</button></a>
-                    </div>
-                    <div class="details">
-                        <h3>Images</h3>
-                        <p>Images can be found here</p>
-                        <a href="{{ url_for('main.images', WorldName = WorldName)}}"><button class="btn">View</button></a>
+                    <div class="left-details">
+                        <div class="details">
+                            <h3>Religions</h3>
+                            {% if Religions_details %}
+                                <p>{{ Religions_details }}</p>
+                            {% else %}
+                                <p>No current details saved for this world</p>
+                            {% endif %}
+                            <a href="{{ url_for('update.religion', WorldName = WorldName)}}"><button class="btn">View</button></a>
+                        </div>
+                        <div class="details">
+                            <h3>Timeline</h3>
+                            {% if Timeline_details %}
+                                <p>{{ Timeline_details }}</p>
+                            {% else %}
+                                <p>No current details saved for this world</p>
+                            {% endif %}
+                            <a href="{{ url_for('update.timeline', WorldName = WorldName)}}"> <button class="btn">View</button></a>
+                        </div>
+                        <div class="details">
+                            <h3>Maps</h3>
+                            <p>Maps details</p>
+                            <a href="{{ url_for('main.maps', WorldName = WorldName)}}"><button class="btn">View</button></a>
+                        </div>
+                        <div class="details">
+                            <h3>Images</h3>
+                            <p>Images can be found here</p>
+                            <a href="{{ url_for('main.images', WorldName = WorldName)}}"><button class="btn">View</button></a>
+                        </div>
                     </div>
                 </div>
         </main>
