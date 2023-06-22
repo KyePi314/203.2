@@ -284,11 +284,13 @@ def render_picture(data):
 @update.route("/editworldinfo/", methods=['POST', 'GET'])
 def editworld():
     world_name = request.args.get('WorldName')
+    
+    
     if request.method == 'POST':
         new_name = request.form.get('name')
         new_description = request.form.get('worldDetails')
         world_name = request.form.get('worldName')
-        print("FORM: ", world_name)
+        print(world_name)
         if 'imageFile' in request.files:
             img = request.files['imageFile']
             data = img.read()
@@ -298,11 +300,43 @@ def editworld():
             imgFile = Img(worldName=new_name if new_name else world_name, id=imgId, UserName=current_user.UserName, data=data, rendered_data=render_file)
             session.add(imgFile)
         updateWorld = session.query(World).filter_by(WorldName = world_name).first()
-        if new_name != "":
-            updateWorld.WorldName = new_name
-        if new_description != "":
-            updateWorld.WorldDescription = new_description 
+        update_culture = session.query(Culture).filter_by(WorldName=world_name).all()
         
+        update_history = session.query(History).filter_by(WorldName=world_name).all()
+        update_religion = session.query(Religion).filter_by(WorldName=world_name).all()
+        update_species = session.query(Species).filter_by(WorldName=world_name).all()
+        update_timeline= session.query(Timeline).filter_by(WorldName=world_name).all()
+        if new_name != "" and new_description != "":
+            updateWorld.WorldName = new_name
+            updateWorld.WorldDescription = new_description
+            for c in update_culture:
+                c.WorldName = new_name
+            for h in update_history:
+                h.WorldName = new_name
+            for r in update_religion:
+                r.WorldName = new_name
+            for s in update_species:
+                s.WorldName = new_name
+            for t in update_timeline:
+                t.WorldName = new_name
+        elif new_description == "" and new_name != "":
+            updateWorld.WorldName = new_name
+            for c in update_culture:
+                c.WorldName = new_name
+            for h in update_history:
+                h.WorldName = new_name
+            for r in update_religion:
+                r.WorldName = new_name
+            for s in update_species:
+                s.WorldName = new_name
+            for t in update_timeline:
+                t.WorldName = new_name
+        elif new_description != "" and new_name == "":
+            updateWorld.WorldDescription = new_description
+        elif new_description == "" and new_name == "" and 'imageFile' in request.files:
+            pass
+        else:
+            flash('Please enter some information to update!')
         session.commit()
         return redirect(url_for('update.worlds'))
     
