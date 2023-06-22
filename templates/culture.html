@@ -30,22 +30,19 @@
         </header>
         <main>
             <h1>{{ WorldName }} Culture's</h1>
-            {% if details %}
+            {% if details|length %}
                 <div class="summary" id="description">
                     <h2>Culture Summary</h2>
                     <p>{{ Summary }}</p>
                     <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Edit Details</button></a>
                 </div>
                 <div class="content">
-                    <h3>{{ details.CultureTitle }}</h3>
+                    {% for detail in details %}
+                    <h3>{{ detail.CultureTitle }}</h3>
                     <div id="details">
-                        <p>Example</p>
+                        <p>{{ detail.CultureDescription }}</p>
                     </div>
-                    <h3>{{ details.CultureDescription }}</h3>
-                    <div id="details">
-                        <p>Example</p>
-                    </div>
-                </div>
+                    {% endfor %}
                 {% else %}
                 <h2>No Saved Data for Culture, Add some below!</h2>
                 <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Add Details</button></a>
