@@ -66,7 +66,9 @@ def specificDetails():
         select = request.form.get('choose_detail')
         title =  request.form.get('title')
         description = request.form.get('detail_description')
+        # Checks that the form isn't empty
         if title != '' and description != '':
+            # If the user hasn't chosen a detail to edit this message will be shown
             if select == "choose":
                 flash('please choose a detail to edit from the dropdown')
                 return redirect(url_for('update.worlds'))

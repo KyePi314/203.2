@@ -44,14 +44,28 @@ def createworld():
 @create.route('/worlddelete', methods=['POST'])
 def worlddelete():
 
-    world_name = request.args.get('WorldName')
-    #Not working. - HTML page isn't loading list.
-    worldname = session.query(World).filter(World.WorldName == world_name).first()
-    session.delete(worldname)
-    session.commit()
-    flash("This world has been deleted successfully!")
-    return redirect(url_for('main.worldspage'))
-        
+    # Gets the world choice dropdown from the html form
+    select = request.form.get('option')
+    print("Selected value: ", select)
+    if select == "choose":
+        flash('please choose a world from the dropdown')
+        return redirect(url_for('create.deleteworlds'))
+    else:
+        #World Name isn't being fetched.
+        world_name = request.args.get('WorldName')
+        #Not working. - HTML page isn't loading list.
+        worldname = session.query(World).filter(World.WorldName == world_name).first()
+        session.delete(worldname)
+        session.commit()
+        flash("This world has been deleted successfully!")
+        return redirect(url_for('main.worldspage'))
+
+@create.route("/worlddelete", methods=['POST', 'GET'])
+def deleteworlds():
+    worlds = session.query(World.WorldName).filter_by(UserName = current_user.UserName).all()
+    world_names = [world[0] for world in worlds]  # Extract only the string values
+    
+    return render_template("worldsPage.html", worlds_list=world_names)
 
 
 # #Create the Database
