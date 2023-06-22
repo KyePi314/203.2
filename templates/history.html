@@ -29,26 +29,25 @@
             </nav>
         </header>
         <main>
-            <h1>History</h1>
-            <div class="summary" id="description">
-                <h2>History Summary</h2>
-                <p>{{ Summary }}</p>
-                <a href="{{ url_for('main.specificDetails')}}"><button class="btn">Edit Details</button></a>
+            <h1>{{ WorldName }} History</h1>
+            {% if details|length %}
+                <div class="summary" id="description">
+                    <h2>History Summary</h2>
+                    <p>{{ Summary }}</p>
+                    <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Edit Details</button></a>
+                </div>
+                <div class="content">
+                    {% for detail in details %}
+                    <h3>{{ detail.HistoryTitle }}</h3>
+                    <div id="details">
+                        <p>{{ detail.HistoryDescrption }}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <h2>No Saved Data for History, Add some below!</h2>
+                <a href="{{ url_for('update.specificDetails', WorldName = WorldName)}}"><button class="btn">Add Details</button></a>
             </div>
-            <div class="content">
-                <h3>Basic Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-                <h3>Background Information</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-                <h3>Expanded Details</h3>
-                <div id="details">
-                    <p>Example</p>
-                </div>
-            </div>
+            {% endif %}
         </main>
     </body>
 </html>
