@@ -27,7 +27,7 @@ def createworld():
         world = session.query(World).filter(World.UserName == current_user.UserName)
         for item in world:
             counter += 1
-        if (counter >= 2):
+        if (counter >= 2 and current_user.AccountType == "Basic"):
             flash('You cannot have more than two worlds. Please susbcribe for access to more worlds!')
             return redirect(url_for('main.createworld'))
         elif(worldName == "" or worldInfo == ""):
@@ -50,7 +50,7 @@ def worlddelete():
     session.delete(worldname)
     session.commit()
     flash("This world has been deleted successfully!")
-    return redirect(url_for('main.editworldinfo'))
+    return redirect(url_for('main.worldspage'))
         
 
 
