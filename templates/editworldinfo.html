@@ -32,7 +32,13 @@
          <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
          <h1>{{ worldName }}</h1>
          <h3 id="centered">Choose which details to edit</h3>
- 
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-msg">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
          <!--All the fields which can be edited are inside this div-->
             <div class="input-fields">
                 <form method="POST" action="/editworldinfo"  enctype="multipart/form-data" >
