@@ -14,6 +14,7 @@ from sqlalchemy.orm import sessionmaker
 
 create = Blueprint('create', __name__)
 
+#Create new world function.
 @create.route('/createworld', methods=['GET', 'POST'])
 def createworld():
     if request.method == 'GET':
@@ -27,6 +28,7 @@ def createworld():
         world = session.query(World).filter(World.UserName == current_user.UserName)
         for item in world:
             counter += 1
+        #If else statement for in case the user has already created 2 worlds.
         if (counter >= 2 and current_user.AccountType == "Basic"):
             flash('You cannot have more than two worlds. Please susbcribe for access to more worlds!')
             return redirect(url_for('main.createworld'))
@@ -34,6 +36,7 @@ def createworld():
             flash('You cannot leave any of the fields blank!')
             return redirect(url_for('main.createworld'))
         else:
+            #Creates a new world and puts it into the database.
             new_world = World(id=worldID, UserName=current_user.UserName, WorldName=worldName, WorldDescription=worldInfo)
             flash('Your world has now been added!')
             session.add(new_world)
