@@ -30,7 +30,7 @@
         </header>
        <main>
          <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
-         <form action="/deleteworld/{{ WorldName }}" method="POST">
+         <form action="/deleteworld" method="POST">
             {% if worlds_list|length %}
                 <select id="options" name="option">
                     <!--Dynamically displaps the world name options depending on the users saved worlds-->

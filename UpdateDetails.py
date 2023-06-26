@@ -41,7 +41,6 @@ def worldinfo():
     if request.method == 'POST':
         # Gets the world choice dropdown from the html form
         select = request.form.get('option')
-        print("Selected value: ", select)
         if select == "choose":
             flash('please choose a world from the dropdown')
             return redirect(url_for('update.worlds'))
@@ -49,10 +48,10 @@ def worldinfo():
             ## Getting all the details to fill out the HTML page
             world = session.query(World).filter_by(WorldName=select).first()
             culture = session.query(Culture).filter_by(WorldName=select).all()
-            history = session.query(History).filter_by(WorldName=select).first()
-            timelines = session.query(Timeline).filter_by(WorldName=select).first()
-            religion = session.query(Religion).filter_by(WorldName=select).first()
-            species = session.query(Species).filter_by(WorldName=select).first()
+            history = session.query(History).filter_by(WorldName=select).all()
+            timelines = session.query(Timeline).filter_by(WorldName=select).all()
+            religion = session.query(Religion).filter_by(WorldName=select).all()
+            species = session.query(Species).filter_by(WorldName=select).all()
             return render_template("worldinfo.html", WorldName=world.WorldName, description=world.WorldDescription, Culture_details=culture if culture else None, History_details=history.HistoryTitle if history else None, Timeline_details=timelines.TimelineTitle if timelines else None, Species_details=species.SpeciesTitle if species else None, Religions_details=religion.ReligionTitle if religion else None)
     else:
         return render_template("")
