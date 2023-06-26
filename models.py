@@ -225,6 +225,7 @@ time = datetime.now()
 
 # engine = create_engine("sqlite:///database.db", echo=True)
 
+#Create the classs for the Posts.
 class Post(Base):
     __tablename__ = "posts"
     user = relationship('User')
