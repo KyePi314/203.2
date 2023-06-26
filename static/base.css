@@ -90,6 +90,32 @@ h3
   color: white;
   cursor:pointer;
 }
+.btn2
+{
+    border-radius: 12px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-size: 20px;
+    width: 5em;
+    border: 1px solid black;
+    transition-duration: 0.4s;
+    margin: 0.3em;
+    text-align:center;
+    margin-left: 28.5%;
+    margin-right: 28%;
+    font-size: 25px;
+    width: 210px;
+    height: 55px;
+    
+}
+.btn2:hover
+{
+  background-color: #a53c3c;
+  color: white;
+  cursor:pointer;
+}
+
 #left
 {
     margin-left: 1em;
