@@ -32,9 +32,7 @@ def issues():
 def maps():
     return render_template("Maps.html")
 
-@main.route("/deleteworld/")
-def deleteworld():
-    return render_template("deleteworld.html")
+
 
 @main.route("/subscription/")
 def subscription():

@@ -1,4 +1,3 @@
-
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
@@ -41,31 +40,32 @@ def createworld():
             return redirect(url_for('main.createworld'))
 
         
-@create.route('/worlddelete', methods=['POST'])
-def worlddelete():
+@create.route('/deleteworld', methods=['POST', 'GET'])
+def deleteworld():
 
-    # Gets the world choice dropdown from the html form
-    select = request.form.get('option')
-    print("Selected value: ", select)
-    if select == "choose":
-        flash('please choose a world from the dropdown')
-        return redirect(url_for('create.deleteworlds'))
-    else:
-        #World Name isn't being fetched.
-        world_name = request.args.get('WorldName')
-        #Not working. - HTML page isn't loading list.
-        worldname = session.query(World).filter(World.WorldName == world_name).first()
-        session.delete(worldname)
-        session.commit()
-        flash("This world has been deleted successfully!")
-        return redirect(url_for('main.worldspage'))
-
-@create.route("/worlddelete", methods=['POST', 'GET'])
-def deleteworlds():
     worlds = session.query(World.WorldName).filter_by(UserName = current_user.UserName).all()
     world_names = [world[0] for world in worlds]  # Extract only the string values
+
+    if request.method == 'POST':
+        print("WORKING: ", world_names)
+        # Gets the world choice dropdown from the html form
+        select = request.form.get('option')
+        print("Selected value: ", select)
+        if select == "choose":
+            print("CHOOSE")
+            flash('please choose a world from the dropdown')
+            return redirect(url_for('create.deleteworld'))
+        else:
+            print("WORLD", select)
+            #Not working. - HTML page isn't loading list.
+            worldname = session.query(World).filter(World.WorldName == select).first()
+            session.delete(worldname)
+            session.commit()
+            flash("This world has been deleted successfully!")
+            return redirect(url_for('update.worlds', worlds_list=world_names))
     
-    return render_template("worldsPage.html", worlds_list=world_names)
+    return render_template("deleteworld.html", worlds_list=world_names)
+
 
 
 # #Create the Database
