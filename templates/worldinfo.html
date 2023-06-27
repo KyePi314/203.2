@@ -59,7 +59,9 @@
                         <div class="details">
                             <h3>History</h3>
                             {% if History_details %}
-                                <p>{{ History_details }}</p>
+                            {% for detail in History_details %}
+                                <p>{{ detail.HistoryTitle }}</p>
+                            {% endfor %}
                             {% else %}
                                 <p>No current details saved for this world</p>
                             {% endif %}
@@ -69,7 +71,9 @@
                         <div class="details">
                             <h3>Species</h3>
                             {% if Species_details %}
-                                <p>{{ Species_details }}</p>
+                            {% for detail in Species_details %}
+                                <p>{{ detail.SpeciesTitle }}</p>
+                            {% endfor %}
                             {% else %}
                                 <p>No current details saved for this world</p>
                             {% endif %}
@@ -80,7 +84,9 @@
                         <div class="details">
                             <h3>Religions</h3>
                             {% if Religions_details %}
-                                <p>{{ Religions_details }}</p>
+                            {% for detail in Religions_details %}
+                                <p>{{ detail.ReligionTitle }}</p>
+                            {% endfor %}
                             {% else %}
                                 <p>No current details saved for this world</p>
                             {% endif %}
@@ -89,7 +95,9 @@
                         <div class="details">
                             <h3>Timeline</h3>
                             {% if Timeline_details %}
-                                <p>{{ Timeline_details }}</p>
+                            {% for detail in Timeline_details %}
+                                <p>{{ detail.TimelineTitle }}</p>
+                            {% endfor %}
                             {% else %}
                                 <p>No current details saved for this world</p>
                             {% endif %}
