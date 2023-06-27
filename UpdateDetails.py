@@ -286,14 +286,11 @@ def render_picture(data):
 @update.route("/editworldinfo/", methods=['POST', 'GET'])
 def editworld():
     world_name = request.args.get('WorldName')
-    
-    
     if request.method == 'POST':
         new_name = request.form.get('name')
         new_description = request.form.get('worldDetails')
         world_name = request.form.get('worldName')
-        print(world_name)
-        if 'imageFile' in request.files:
+        if request.files['imageFile']:
             img = request.files['imageFile']
             data = img.read()
             render_file = render_picture(data)
@@ -308,39 +305,25 @@ def editworld():
         update_religion = session.query(Religion).filter_by(WorldName=world_name).all()
         update_species = session.query(Species).filter_by(WorldName=world_name).all()
         update_timeline= session.query(Timeline).filter_by(WorldName=world_name).all()
-        if new_name != "" and new_description != "":
-            updateWorld.WorldName = new_name
-            updateWorld.WorldDescription = new_description
-            for c in update_culture:
-                c.WorldName = new_name
-            for h in update_history:
-                h.WorldName = new_name
-            for r in update_religion:
-                r.WorldName = new_name
-            for s in update_species:
-                s.WorldName = new_name
-            for t in update_timeline:
-                t.WorldName = new_name
-        elif new_description == "" and new_name != "":
-            updateWorld.WorldName = new_name
-            for c in update_culture:
-                c.WorldName = new_name
-            for h in update_history:
-                h.WorldName = new_name
-            for r in update_religion:
-                r.WorldName = new_name
-            for s in update_species:
-                s.WorldName = new_name
-            for t in update_timeline:
-                t.WorldName = new_name
-        elif new_description != "" and new_name == "":
-            updateWorld.WorldDescription = new_description
-        elif new_description == "" and new_name == "" and 'imageFile' in request.files:
-            pass
-        else:
+        if not new_name and not new_description.strip():
             flash('Please enter some information to update!')
+            return redirect(url_for('update.editworld', worldName=world_name))
+        if new_name:
+            updateWorld.WorldName = new_name
+            for c in update_culture:
+                c.WorldName = new_name
+            for h in update_history:
+                h.WorldName = new_name
+            for r in update_religion:
+                r.WorldName = new_name
+            for s in update_species:
+                s.WorldName = new_name
+            for t in update_timeline:
+                t.WorldName = new_name
+        if new_description.strip():
+            updateWorld.WorldDescription = new_description
         session.commit()
-        return redirect(url_for('update.worlds'))
+        return redirect(url_for('update.worlds', worldName=world_name))
     
     return render_template("editworldinfo.html", worldName=world_name)
     
