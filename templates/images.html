@@ -31,6 +31,7 @@
         <main>
             <h1>Images for {{ worldName }}</h1>
             <div class="content">
+                {% if img_list %}
                 <ul>
                     {% for image in img_list %}
                     <li>
@@ -38,6 +39,9 @@
                     </li>
                     {% endfor %}
                 </ul>
+                {% else %}
+                    <h1>No images saved for {{ worldName }}</h1>
+                {% endif %}
             </div>
         </main>
     </body>

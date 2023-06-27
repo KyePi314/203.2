@@ -41,13 +41,14 @@
         {% endwith %}
          <!--All the fields which can be edited are inside this div-->
             <div class="input-fields">
-                <form method="POST" action="/editworldinfo"  enctype="multipart/form-data" >
+                <form method="POST" action="{{ url_for('update.editworld', worldName=worldName) }}" enctype="multipart/form-data">
+
                     <div class="flex-left">
                         <input type="hidden" name="worldName" value="{{ worldName }}">
                         <label for="name">Change Name:</label>
                         <input type="text" id="name" name="name"><br><br>
                         <label for="worldDetails">World description</label>
-                        <textarea id="worldDetails" name="worldDetails" rows="5" cols="30">
+                        <textarea id="worldDetails" name="worldDetails">
                         </textarea>
                     </div>
                     <div class="flex-right">
