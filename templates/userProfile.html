@@ -5,8 +5,6 @@
         <title>User Profile</title>
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='navbar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='base.css')}}" />
-        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
-        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='forms.css')}}"/>
         <script>
             function toggleForm() {
                 var form = document.getElementById("emailForm");
@@ -44,10 +42,7 @@
         </header>
         
         <main>
-            <br>
-            <br>
-            <br>
-            <br>
+
             <h1>User Details</h1>
 
             {% with messages = get_flashed_messages() %}
@@ -58,8 +53,8 @@
             {% endif %}
             {% endwith %}
 
-            <div class="flexContainer">
-                <div class="userProfile">
+            <div class="flex-form">
+                <div class="left-details">
                     <br>
                     <br>
                     <h3>Username:</h3>
@@ -92,7 +87,7 @@
 
                     <br><br>
                 </div>
-                <div class="userStatistics">
+                <div class="right-details">
                     <p style="font-size: 20px;">Mana Points: {{ mana }}</p>
                     <br>
                     <p style="font-size: 20px;">Posts: {{ posts }}</p>
