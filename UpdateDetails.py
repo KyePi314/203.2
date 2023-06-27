@@ -44,6 +44,9 @@ def worldinfo():
         if select == "choose":
             flash('please choose a world from the dropdown')
             return redirect(url_for('update.worlds'))
+        elif select is None:
+            flash('No worlds avaliable, please create one')
+            return redirect(url_for('update.worlds'))
         else:
             ## Getting all the details to fill out the HTML page
             world = session.query(World).filter_by(WorldName=select).first()
@@ -52,7 +55,7 @@ def worldinfo():
             timelines = session.query(Timeline).filter_by(WorldName=select).all()
             religion = session.query(Religion).filter_by(WorldName=select).all()
             species = session.query(Species).filter_by(WorldName=select).all()
-            return render_template("worldinfo.html", WorldName=world.WorldName, description=world.WorldDescription, Culture_details=culture if culture else None, History_details=history.HistoryTitle if history else None, Timeline_details=timelines.TimelineTitle if timelines else None, Species_details=species.SpeciesTitle if species else None, Religions_details=religion.ReligionTitle if religion else None)
+            return render_template("worldinfo.html", WorldName=world.WorldName if world else None, description=world.WorldDescription if world else None, Culture_details=culture if culture else None, History_details=history if history else None, Timeline_details=timelines if timelines else None, Species_details=species if species else None, Religions_details=religion if religion else None)
     else:
         return render_template("")
     
