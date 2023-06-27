@@ -45,7 +45,7 @@ def worldinfo():
             flash('please choose a world from the dropdown')
             return redirect(url_for('update.worlds'))
         elif select is None:
-            flash('No worlds avaliable, please create one')
+            flash('No worlds avaliable. Please create one.')
             return redirect(url_for('update.worlds'))
         else:
             ## Getting all the details to fill out the HTML page
