@@ -27,10 +27,10 @@ def post():
         # Allows multiple posts from the same user by manually incrememnting the post id
         postID = rows + 1
         # Adding the new post to the database
-        new_post = Post(UserName=current_user.UserName, id=postID, title=title, content=content, posted_date=post_datetime, Likes=0)
+        new_post = Post(UserName=current_user.UserName, id=postID, user_id=current_user.UserName, title=title, content=content, posted_date=post_datetime, Likes=0)
         session.add(new_post)
         session.commit()
-        # Finding all the data needed to display conent on the home page
+        # Finding all the data needed to display content on the home page
         find_comments = session.query(Comment).all()
         find_post = session.query(Post).all()
         return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
@@ -42,13 +42,14 @@ def post_comment():
     find_post = session.query(Post).all()
     find_comments = session.query(Comment).all()
     if request.method == 'POST':
-        rows = session.query(Comment)
         post_id = request.form['post_id']
         author = request.form['author']
         content = request.form['content']
+        # Flash error message displays if the user tries to comment without entering anything into the comment input section
         if not content:
             flash('Nothing to comment!')
             return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
+        # Saves the post to the database linking it to the post its under, and reloads the page with the new comment
         else:
             comment = Comment(post_id=post_id, author=author, content=content)
             session.add(comment)
@@ -59,8 +60,10 @@ def post_comment():
 @update.route('/like_post', methods=['POST', 'GET'])
 @login_required
 def like_post():
+    # Getting all the posts and comments so when the page reloads it loads with the correct data
     find_post = session.query(Post).all()
     find_comments = session.query(Comment).all()
+    # If the liked button is clicked then the post's liked number is incrememnted by one
     if request.method == 'POST':
         post_id = request.form['post_id']
         post = session.query(Post).get(post_id)
@@ -91,7 +94,7 @@ def worldinfo():
             return redirect(url_for('update.worlds'))
         else:
             ## Getting all the details to fill out the HTML page
-            world = session.query(World).filter_by(WorldName=select).first()
+            world = session.query(World).filter_by(WorldName=select, UserName=current_user.UserName).first()
             culture = session.query(Culture).filter_by(WorldName=select).all()
             history = session.query(History).filter_by(WorldName=select).all()
             timelines = session.query(Timeline).filter_by(WorldName=select).all()
@@ -148,8 +151,9 @@ def specificDetails():
         select = request.form.get('choose_detail')
         title =  request.form.get('title')
         description = request.form.get('detail_description')
+        choose_existing_detail = request.form.get('choose_existing_detail')
         # Checks that the form isn't empty
-        if title != '' and description != '':
+        if title != '' and description != '' or choice == 'delete':
             # If the user hasn't chosen a detail to edit this message will be shown
             if select == "choose":
                 flash('please choose a detail to edit from the dropdown')
@@ -162,23 +166,27 @@ def specificDetails():
                     update_details = Culture(id=rowID, UserName=current_user.UserName, WorldName=world_name, CultureTitle=title, CultureDescription=description)
                     session.add(update_details)
                 elif choice == 'edit':
-                    choose_existing_detail = request.form.get('choose_existing_detail')
+                    # This if statement checks to see whether or not the user has choosen a detail to edit
                     if choose_existing_detail == 'choose':
                         flash('Please choose an existing detail to edit')
                         return render_template("specificDetails.html", WorldName=world_name)
-                    # Update existing Culture detail
-                    add_details = session.query(Culture).filter_by(CultureTitle=choose_existing_detail, WorldName=world_name).first()
-                    add_details.CultureTitle = title
-                    add_details.CultureDescription = description
-                    session.commit()
+                    else:
+                        # Update existing Culture detail
+                        add_details = session.query(Culture).filter_by(CultureTitle=choose_existing_detail, WorldName=world_name, UserName=current_user.UserName).first()
+                        add_details.CultureTitle = title
+                        add_details.CultureDescription = description
+                        session.commit()
+                # Deletes the choosen detail
+                elif choice == 'delete':
+                    delete_detail = session.query(Culture).filter_by(CultureTitle=choose_existing_detail, WorldName=world_name, UserName=current_user.UserName).first()
+                    session.delete(delete_detail)
                 # This error is thrown is the user hasn't selected a radio button
                 else:
                     flash('Please choose if you want to add a new detail to your world or edit an existing one!')
                     return render_template("specificDetails.html", WorldName=world_name)
                 # Saving the changes to the database and redirecting to the culture page
                 session.commit()
-                print(world_name)
-                update_details = session.query(Culture).filter_by(WorldName=world_name).all()
+                update_details = session.query(Culture).filter_by(WorldName=world_name, UserName=current_user.UserName).all()
                 return redirect(url_for('update.culture', details=update_details, WorldName=world_name))
             # Code for if the user picks History
             elif select == 'History':
@@ -189,21 +197,25 @@ def specificDetails():
                     update_details = History(id=rowID, UserName=current_user.UserName, WorldName=world_name, HistoryTitle=title, HistoryDescription=description)
                     session.add(update_details)
                 elif choice == 'edit':
-                    choose_existing_detail = request.form.get('choose_existing_detail')
                     if choose_existing_detail == 'choose':
                         flash('Please choose an existing detail to edit')
                         return render_template("specificDetails.html", WorldName=world_name)
-                    # Update existing details in the world's history
-                    add_details = session.query(History).filter_by(HistoryTitle=choose_existing_detail, WorldName=world_name).first()
-                    add_details.HistoryTitle = title
-                    add_details.HistoryDescription = description
-                    session.commit()
+                    else:
+                        # Update existing details in the world's history
+                        add_details = session.query(History).filter_by(HistoryTitle=choose_existing_detail, WorldName=world_name, UserName=current_user.UserName).first()
+                        add_details.HistoryTitle = title
+                        add_details.HistoryDescription = description
+                        session.commit()
+                # Deletes the choosen detail
+                elif choice == 'delete':
+                    delete_detail = session.query(History).filter_by(HistoryTitle=choose_existing_detail, WorldName=world_name, UserName=current_user.UserName).first()
+                    session.delete(delete_detail)
                 # This error is thrown is the user hasn't selected a radio button    
                 else:
-                    flash('Please choose if you want to add a new detail to your world or edit an existing one!')
+                    flash('Please choose what you want to do!')
                     return render_template("specificDetails.html", WorldName=worldname)
                 session.commit()
-                update_details = session.query(History).filter_by(WorldName=world_name).all()
+                update_details = session.query(History).filter_by(WorldName=world_name, UserName=current_user.UserName).all()
                 return redirect(url_for('update.history', details=update_details, WorldName=world_name))
             # Code for if the user picks Religion
             elif select == 'Religion':
@@ -215,20 +227,24 @@ def specificDetails():
                     session.add(update_details)
                 # Editing an exising religion in the world
                 elif choice == 'edit':
-                    choose_existing_detail = request.form.get('choose_existing_detail')
                     if choose_existing_detail == 'choose':
                         flash('Please choose an existing detail to edit')
                         return render_template("specificDetails.html", WorldName=world_name)
-                    add_details = session.query(Religion).filter_by(ReligionTitle=choose_existing_detail, WorldName=world_name).first()
-                    add_details.ReligionTitle = title
-                    add_details.ReligionDescription = description
-                    session.commit()
+                    else:
+                        add_details = session.query(Religion).filter_by(ReligionTitle=choose_existing_detail, WorldName=world_name, UserName=current_user.UserName).first()
+                        add_details.ReligionTitle = title
+                        add_details.ReligionDescription = description
+                        session.commit()
+                # Deletes the choosen detail
+                elif choice == 'delete':
+                    delete_detail = session.query(Religion).filter_by(ReligionTitle=choose_existing_detail, WorldName=world_name, UserName=current_user.UserName).first()
+                    session.delete(delete_detail)
                 # This error is thrown is the user hasn't selected a radio button
                 else:
                     flash('Please choose if you want to add a new detail to your world or edit an existing one!')
                     return render_template("specificDetails.html", WorldName=world_name)
                 session.commit()
-                update_details = session.query(Religion).filter_by(WorldName=world_name).all()
+                update_details = session.query(Religion).filter_by(WorldName=world_name, UserName=current_user.UserName).all()
                 return redirect(url_for('update.religion', details=update_details, WorldName=world_name))
             # Code for if the user picks Species
             elif select == 'Species':
@@ -240,20 +256,24 @@ def specificDetails():
                     session.add(update_details)
                 # Update existing Species' detail
                 elif choice == 'edit':
-                    choose_existing_detail = request.form.get('choose_existing_detail')
                     if choose_existing_detail == 'choose':
                         flash('Please choose an existing detail to edit')
                         return render_template("specificDetails.html", WorldName=world_name)
-                    add_details = session.query(Species).filter_by(SpeciesTitle=choose_existing_detail, WorldName=world_name).first()
-                    add_details.SpeciesTitle = title
-                    add_details.SpeciesDescription = description
-                    session.commit()
+                    else:
+                        add_details = session.query(Species).filter_by(SpeciesTitle=choose_existing_detail, WorldName=world_name, UserName=current_user.UserName).first()
+                        add_details.SpeciesTitle = title
+                        add_details.SpeciesDescription = description
+                        session.commit()
+                # Deletes the choosen detail
+                elif choice == 'delete':
+                    delete_detail = session.query(Species).filter_by(HistoryTitle=choose_existing_detail, WorldName=world_name, UserName=current_user.UserName).first()
+                    session.delete(delete_detail)
                 # This error is thrown is the user hasn't selected a radio button
                 else:
                     flash('Please choose if you want to add a new detail to your world or edit an existing one!')
                     return render_template("specificDetails.html", WorldName=world_name)
                 session.commit()
-                update_details = session.query(Species).filter_by(WorldName=world_name).all()
+                update_details = session.query(Species).filter_by(WorldName=world_name, UserName=current_user.UserName).all()
                 return redirect(url_for('update.species', details=update_details, WorldName=world_name))
             # Code for if the user picks Timeline
             elif select == 'Timeline':
@@ -265,26 +285,29 @@ def specificDetails():
                     session.add(update_details)
                 # Update existing Timeline detail
                 elif choice == 'edit':
-                    choose_existing_detail = request.form.get('choose_existing_detail')
                     if choose_existing_detail == 'choose':
                         flash('Please choose an existing detail to edit')
                         return render_template("specificDetails.html", WorldName=world_name)
-                    add_details = session.query(Timeline).filter_by(TimelineTitle=choose_existing_detail, WorldName=world_name).first()
-                    add_details.TimelineTitle = title
-                    add_details.TimelineEntry = description
-                    session.commit()
+                    else:
+                        add_details = session.query(Timeline).filter_by(TimelineTitle=choose_existing_detail, WorldName=world_name, UserName=current_user.UserName).first()
+                        add_details.TimelineTitle = title
+                        add_details.TimelineEntry = description
+                        session.commit()
+                # Deletes the choosen detail
+                elif choice == 'delete':
+                    delete_detail = session.query(Timeline).filter_by(TimelineTitle=choose_existing_detail, WorldName=world_name, UserName=current_user.UserName).first()
+                    session.delete(delete_detail)
                 # This error is thrown is the user hasn't selected a radio button
                 else:
                     flash('Please choose if you want to add a new detail to your world or edit an existing one!')
                     return render_template("specificDetails.html", WorldName=world_name)
                 session.commit()
-                update_details = session.query(Timeline).filter_by(WorldName=world_name).all()
+                update_details = session.query(Timeline).filter_by(WorldName=world_name, UserName=current_user.UserName).all()
                 return redirect(url_for('update.timeline', details=update_details, WorldName=world_name)) 
             # This Error is thrown if the user hasn't chosen a detail to edit
             else:
                 flash('Please Fill out the form!')
                 return render_template("specificDetails.html", WorldName=world_name, existing_detail=existing_details)
-
         # This Error is thrown if the user hasn't filled out any details
         else:
             flash('Please choose a detail to edit!')
