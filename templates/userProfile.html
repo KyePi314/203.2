@@ -96,14 +96,15 @@
                     <br>
                     <Awards: style="font-size: 20px;">Awards: {{ awards }}</p>
                 </div>
+                <div class="currentSubscription">
+                    <h1>Current Subscription: </h1>
+                    <br>
+                    <p style="font-size: 20px;">{{ accountType }}</p>
+                    <br><br>
+                    <a href="{{ url_for('main.subscription')}}"><button class="btn">Upgrade</button></a>
+                </div>
             </div>
-            <div class="currentSubscription">
-                <h1>Current Subscription: </h1>
-                <br>
-                <p style="font-size: 20px;">{{ accountType }}</p>
-                <br><br>
-                <a href="{{ url_for('main.subscription')}}"><button class="btn">Upgrade</button></a>
-            </div>
+
         </main>
     </body>
 </html>

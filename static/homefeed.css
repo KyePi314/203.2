@@ -28,6 +28,36 @@
     padding: 0.5em;
 }
 
+.about-box
+{
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid black;
+    padding: 0.5em;
+    text-align: center;
+    margin-left: 80px;
+    margin-right: 80px;
+    padding-bottom: 40px;
+}
+
+.contact-box
+{
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid black;
+    padding: 0.5em;
+    text-align: center;
+    margin-left: 280px;
+    margin-right: 280px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.about-size
+{
+    font-size: 20px;
+}
+
 .post-box h3
 {
     margin-top: 0;
