@@ -4,6 +4,12 @@
     margin: 0;
 }
 /*NAVBAR STYLING*/
+
+@font-face {
+  font-family: 'Mason';
+  src: url("fonts/mason.ttf");
+}
+
 header
 {
     position: fixed;

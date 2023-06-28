@@ -5,7 +5,10 @@
 
 body 
 {
-  background-image: linear-gradient(to right, #B0DAE0, #4F939C);
+  background-image: url('images/background.svg');
+  background-repeat: no-repeat;
+  object-fit: cover;
+  margin: 0;
 }
 
 /*Styling the checkbox to look like a toggle button instead*/
@@ -128,6 +131,7 @@ input:checked + .slider-round:before {
   width: 100%;
   max-width: 25em;
   margin: auto;
+  opacity: 95%;
 }
 
 .form-container form
@@ -161,6 +165,17 @@ p
   font-family: "Mason";
   width: 80%;
 }
+
+#userN
+{
+  text-align: center;
+}
+
+#passW
+{
+  text-align: center;
+}
+
 label
 {
   float: left;
@@ -199,6 +214,13 @@ h1
 }
 
 main
+{
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.loginbg
 {
   width: 50%;
   margin: 0 auto;
