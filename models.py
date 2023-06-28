@@ -234,20 +234,37 @@ class Post(Base):
     title = Column(String, nullable=False)
     content = Column(String, nullable=False)
     posted_date = Column(DateTime, default=datetime.now)
+    Likes = Column(Integer, default=0)
+    comments = relationship("Comment", backref="post", cascade="all, delete-orphan")
 
-    def __init__(self, id, UserName, title, content, posted_date):
+
+    def __init__(self, id, UserName, title, content, posted_date, Likes):
         self.id = id
         self.UserName = UserName
         self.title = title
         self.content = content
         self.posted_date = posted_date
+        self.Likes = Likes
     
     def __repr__(self):
         return f"({self.id}) ({self.title}) ({self.UserName}) ({self.content}) ({self.posted_date})"
 
 # engine = create_engine("sqlite:///database.db", echo=True)
 
+class Comment(Base):
+    __tablename__ = "comments"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    post_id = Column(Integer, ForeignKey("posts.id"), nullable=False)
+    author = Column(String, nullable=False)
+    content = Column(String, nullable=False)
 
+    def __init__(self, post_id, author, content):
+        self.post_id = post_id
+        self.author = author
+        self.content = content
+    
+    def __repr__(self):
+        return f"Comment(id={self.id}, post_id={self.post_id}, author='{self.author}', content='{self.content}')"
 
 Base.metadata.create_all(engine)
 
@@ -370,5 +387,5 @@ Base.metadata.create_all(engine)
 # # Religion.__table__.drop(bind=engine)
 # # Timeline.__table__.drop(bind=engine)
 # # # Commit changes.
-# Img.__table__.drop(bind=engine)
+#Post.__table__.drop(bind=engine)
 # session.commit()

@@ -18,6 +18,7 @@
 {
     padding: 1.25em;
     margin-top: 1.25em;
+
 }
 /*Styles the actual individual posts on the newsfeed*/
 .post-box
@@ -33,12 +34,20 @@
     margin-top: 0;
     float: left;
 }
-.post-box  p
+
+.post-box .likes .btn
 {
-    float: left;
-    text-align: left;
-    padding: 1em;
-    margin-top: 0.3em;
+    float: right;
+    padding: 0.5em;
+    font-size: 1em;
+    width: fit-content;
+    float: right;
+}
+.post-box .likes p
+{
+    padding: 0.5em;
+    float: right;
+    font-weight: bold;
 }
 .post-box .post-meta
 {
@@ -49,12 +58,19 @@
     justify-content: space-around;
     float: right;
 }
-.post-box .post-meta h4, h5
+.post-box .post-meta h5
 {
     margin-left: 1em;
     margin-top: 0;
 }
-
+.post-box .post-content p
+{
+    margin-top: 1em;
+    padding: 1em;
+    text-align: left;
+    float: left;
+    width: 100%;
+}
 .column-right
 {
     display: flex;
@@ -80,4 +96,43 @@ main:after
 {
     float: right;
     
+}
+.comments
+{
+    background-color: white;
+    border: 1px solid black;
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+}
+.comment
+{
+    padding: 0.4em;
+    border-bottom: 0.5px solid black;
+}
+.add_comment 
+{
+    display: flex;
+    justify-content: space-between ;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 60em;
+    width: 100%;
+}
+.add_comment .btn 
+{
+    float: right;
+    height: fit-content;
+}
+.add_comment textarea
+{
+    min-height: 3em;
+    min-width: 20em;
+}
+.add_comment label
+{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    width: 100%;
+    max-width: 5em;
 }
