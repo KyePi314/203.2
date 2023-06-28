@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Mason';
+  src: url("fonts/mason.ttf");
+}
+
 body 
 {
   background-image: linear-gradient(to right, #B0DAE0, #4F939C);
@@ -109,7 +114,7 @@ input:checked + .slider-round:before {
 }
 .signup-form label 
 {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: "Mason";
   text-align: center;
   width: 100%;
   max-width: 12em;
@@ -152,8 +157,8 @@ p
 
 .control
 {
-  font-size: 1em;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.5em;
+  font-family: "Mason";
   width: 80%;
 }
 label
@@ -200,6 +205,11 @@ main
   text-align: center;
 }
 
+.forgetitle{
+  font-family: Mason;
+  color: white;
+}
+
 .form-btns
 {
   width: 80%;
@@ -211,6 +221,8 @@ main
   margin-left: 1.5em;
   margin-right: 1.5em;
   padding: 0.2em;
+  font-family: "Mason";
+  font-size: 23px;
 }
 
 .signup-btn

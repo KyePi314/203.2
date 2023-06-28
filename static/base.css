@@ -4,6 +4,11 @@
     
 }
 
+@font-face {
+    font-family: 'Mason';
+    src: url("fonts/mason.ttf");
+  }
+
 /*MAIN CONTENT STYLING*/
 body
 {
@@ -57,13 +62,13 @@ h1
 h2
 {
     font-size: 2em;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: "Mason Serif Alternate Bold", serif;
     padding: 0.3em;
 }
 h3
 {
     font-size: 1.5em;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: "Mason Serif Alternate Bold", serif;
 }
 #centered
 {
@@ -209,7 +214,7 @@ form .btn
 /*INPUT STYLING*/
 label
 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: "Mason Serif Alternate Bold", serif;
     font-size: 1em;
     padding: 0.5em;
 }
@@ -247,7 +252,7 @@ textarea
     margin-bottom: 1em;
     text-align: left;
     padding: 0.5em;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: "Mason Serif Alternate Bold", serif;
     min-height: 20em;
     min-width: 30em;
 }

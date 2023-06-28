@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Mason';
+    src: url("fonts/mason");
+  }
+
 h1 {
     font-size: 3.5em;
     text-align: center;
@@ -60,7 +65,7 @@ textarea {
     margin-bottom: 1em;
     text-align: left;
     padding: 0.5em;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: "Mason";
     min-height: 20em;
     min-width: 30em;
 }
