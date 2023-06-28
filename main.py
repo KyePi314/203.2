@@ -16,9 +16,10 @@ def index():
 @main.get('/home/')
 @login_required
 def home():
-    from models import session, Post
+    from models import session, Post, Comment
     find_post = session.query(Post).all()
-    return render_template("home.html", posts=find_post, username=current_user.UserName)
+    find_comment = session.query(Comment).all()
+    return render_template("home.html", posts=find_post, username=current_user.UserName, comments=find_comment)
 
 @main.route("/contact/")
 def contact():
