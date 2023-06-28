@@ -19,7 +19,6 @@ def home():
     from models import session, Post, Comment
     find_post = session.query(Post).all()
     find_comment = session.query(Comment).all()
-    print(find_comment)
     return render_template("home.html", posts=find_post, username=current_user.UserName, comments=find_comment)
 
 @main.route("/contact/")

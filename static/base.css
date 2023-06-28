@@ -70,7 +70,10 @@ h3
     text-align: center;
     padding: 0.4em;
 }
-
+.details-form h2
+{
+    text-align: center;
+}
 /*BUTTON STYLING*/
 .btn
 {
@@ -254,6 +257,26 @@ textarea
 #options
 {
     padding: 0.5em;
+}
+.details-form
+{
+    margin-top: 1.5em;
+}
+.details-form h4
+{
+    font-size: 1.2em;
+    padding: 0.5em;
+}
+.details-form form 
+{
+    width: 100%;
+    max-width: 60em;
+    margin: auto;
+}
+.radio-btns
+{
+    margin-left: 20%;
+    padding: 1em;
 }
 /*STYLING IMAGES*/
 .content ul
