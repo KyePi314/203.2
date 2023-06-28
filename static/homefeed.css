@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Mason';
+    src: url("fonts/mason.ttf");
+  }
+
 #title
 {
     margin-top: 0;
@@ -24,7 +29,7 @@
 .post-box
 {
     overflow: hidden;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.416);
     border: 1px solid black;
     padding: 0.5em;
 }
@@ -52,6 +57,7 @@
     margin-right: 280px;
     padding-top: 20px;
     padding-bottom: 20px;
+    border-radius: 12px;
 }
 
 .about-size
@@ -129,7 +135,7 @@ main:after
 }
 .comments
 {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.735);
     border: 1px solid black;
     display: inline-block;
     width: 100%;

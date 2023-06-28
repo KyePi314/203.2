@@ -7,12 +7,12 @@
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='forms.css')}}"/>
     </head>
     <body>
-        <main>
+        <div class="loginbg">
             <div class="heading">
-                <h2>Welcome to</h2>
-                <h1 class="forgetitle">World Forge</h1>
+                <h2 style="color: white">Welcome to</h2>
+                <h1 class="forgetitle" style="font-size: 70px">World Forge</h1>
                 <br>
-                <h3>Unleash your Imagination, Shape Infinite Realms: Welcome to World Forge!</h3>
+                <h3 style="color: white">Unleash your Imagination, Shape Infinite Realms: Welcome to World Forge!</h3>
             </div>
             <h3>{{info}}</h3>
             {% with messages = get_flashed_messages() %}
@@ -26,13 +26,13 @@
                 <form method="POST" action="/login">
                     <div class="field">
                         <div class="control">
-                            <label for="username">Username</label>
+                            <label for="username" id="userN">Username</label>
                             <input class="input" type="username" name="username" placeholder="Your Username" autofocus="" required="required">
                         </div>
                     </div>
                     <div class="field">
                         <div class="control">
-                            <label for="password">Password</label>
+                            <label for="password" id="passW">Password</label>
                             <input class="input" type="password" name="password" placeholder="Your Password" required="required">
                         </div>
                     </div>
@@ -49,6 +49,8 @@
                     </div>
                 </form>
             </div>
-        </main>
+            <br><br>
+            <br><br>
+        </div>
     </body>
 </html>

@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Mason';
-    src: url("fonts/mason");
+    src: url("fonts/mason.ttf");
   }
 
 h1 {
@@ -92,10 +92,27 @@ textarea {
     font-size: 20px;
 }
 
+.row2
+{
+    float: left;
+    width: 50%;
+    padding-left: 250px;
+    text-align: center;
+    font-size: 25px;
+    font-family: "Mason";
+}
+
 .details {
     float: right;
     width: 50%;
-    padding-right: 350px;
+    padding-right:150px;
     text-align: center;
+    font-size: 35px;
+    
+}
+
+#subscribedetail
+{
+    font-family: Mason;
     font-size: 30px;
 }
