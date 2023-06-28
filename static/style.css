@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Mason';
+    src: url("fonts/mason.ttf");
+  }
+
 h1 {
     font-size: 3.5em;
     text-align: center;
@@ -60,7 +65,7 @@ textarea {
     margin-bottom: 1em;
     text-align: left;
     padding: 0.5em;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: "Mason";
     min-height: 20em;
     min-width: 30em;
 }
@@ -87,10 +92,27 @@ textarea {
     font-size: 20px;
 }
 
+.row2
+{
+    float: left;
+    width: 50%;
+    padding-left: 250px;
+    text-align: center;
+    font-size: 25px;
+    font-family: "Mason";
+}
+
 .details {
     float: right;
     width: 50%;
-    padding-right: 350px;
+    padding-right:150px;
     text-align: center;
+    font-size: 35px;
+    
+}
+
+#subscribedetail
+{
+    font-family: Mason;
     font-size: 30px;
 }
