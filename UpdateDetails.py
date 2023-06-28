@@ -1,35 +1,77 @@
+#  This python file handles all of the updating and editing features, such as editing world details, updating specific details and adding new ones, posting posts on home feed etc 
 from datetime import datetime
 from base64 import b64encode
 import base64
 from io import BytesIO #Converts data from Database into bytes
 from flask import render_template, request, Blueprint, redirect, session, url_for, flash, jsonify
-from models import (engine, User, session, Img, World, Culture, History, Timeline, Religion, Species, Post)
+from models import (engine, User, session, Img, World, Culture, History, Timeline, Religion, Species, Post, Comment)
 from flask_login import current_user, login_required
 from sqlalchemy import MetaData
 
 update = Blueprint('update', __name__)
 
+### Functions that handle the homefeed functions:
+## This function handles the posts themselves
 @update.route('/Post', methods=['GET', 'POST'])
 @login_required
 def post():
     if request.method == 'POST':
+        # Gets the User input from the form
         title = request.form.get("title")
         content = request.form.get("content")
         rows = session.query(Post).count()
+        # sets the posted time column of the database to the time the post is posted
         now = datetime.now()
         post_time = now.strftime("%d-%m-%y %H:%M")
         post_datetime = datetime.strptime(post_time, "%d-%m-%y %H:%M")
+        # Allows multiple posts from the same user by manually incrememnting the post id
         postID = rows + 1
-        new_post = Post(UserName=current_user.UserName, id=postID, title=title, content=content, posted_date=post_datetime)
+        # Adding the new post to the database
+        new_post = Post(UserName=current_user.UserName, id=postID, title=title, content=content, posted_date=post_datetime, Likes=0)
         session.add(new_post)
         session.commit()
+        # Finding all the data needed to display conent on the home page
+        find_comments = session.query(Comment).all()
         find_post = session.query(Post).all()
-        return redirect(url_for("main.home", username=current_user.UserName, posts=find_post))
+        return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
     return render_template("Post.html")
 
+## This function handles taking the comments submitted, saving them to the database and then displaying them
+@update.route('/post_comment', methods=['POST', 'GET'])
+def post_comment():
+    find_post = session.query(Post).all()
+    find_comments = session.query(Comment).all()
+    if request.method == 'POST':
+        rows = session.query(Comment)
+        post_id = request.form['post_id']
+        author = request.form['author']
+        content = request.form['content']
+        if not content:
+            flash('Nothing to comment!')
+            return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
+        else:
+            comment = Comment(post_id=post_id, author=author, content=content)
+            session.add(comment)
+            session.commit()
+    return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
+
+## This function handles taking the likes and saving them to the correct post in the database and then displaying the correct number on the post
+@update.route('/like_post', methods=['POST', 'GET'])
+@login_required
+def like_post():
+    find_post = session.query(Post).all()
+    find_comments = session.query(Comment).all()
+    if request.method == 'POST':
+        post_id = request.form['post_id']
+        post = session.query(Post).get(post_id)
+        if post:
+            post.Likes += 1
+            session.commit()
+    return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
 
 ### Code that handles getting the correct world ###
 @update.route("/worldspage", methods=['POST', 'GET'])
+@login_required
 def worlds():
     worlds = session.query(World.WorldName).filter_by(UserName = current_user.UserName).all()
     world_names = [world[0] for world in worlds]  # Extract only the string values
@@ -327,5 +369,4 @@ def editworld():
     
     return render_template("editworldinfo.html", worldName=world_name)
     
-
 
