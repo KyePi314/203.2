@@ -4,80 +4,17 @@ from base64 import b64encode
 import base64
 from io import BytesIO #Converts data from Database into bytes
 from flask import render_template, request, Blueprint, redirect, session, url_for, flash, jsonify
-from models import (engine, User, session, Img, World, Culture, History, Timeline, Religion, Species, Post, Comment)
+from models import (engine, User, session, Img, World, Culture, History, Timeline, Religion, Species)
 from flask_login import current_user, login_required
-from sqlalchemy import MetaData
 
 update = Blueprint('update', __name__)
-
-### Functions that handle the homefeed functions:
-## This function handles the posts themselves
-@update.route('/Post', methods=['GET', 'POST'])
-@login_required
-def post():
-    if request.method == 'POST':
-        # Gets the User input from the form
-        title = request.form.get("title")
-        content = request.form.get("content")
-        rows = session.query(Post).count()
-        # sets the posted time column of the database to the time the post is posted
-        now = datetime.now()
-        post_time = now.strftime("%d-%m-%y %H:%M")
-        post_datetime = datetime.strptime(post_time, "%d-%m-%y %H:%M")
-        # Allows multiple posts from the same user by manually incrememnting the post id
-        postID = rows + 1
-        # Adding the new post to the database
-        new_post = Post(UserName=current_user.UserName, id=postID, user_id=current_user.UserName, title=title, content=content, posted_date=post_datetime, Likes=0)
-        session.add(new_post)
-        session.commit()
-        # Finding all the data needed to display content on the home page
-        find_comments = session.query(Comment).all()
-        find_post = session.query(Post).all()
-        return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
-    return render_template("Post.html")
-
-## This function handles taking the comments submitted, saving them to the database and then displaying them
-@update.route('/post_comment', methods=['POST', 'GET'])
-def post_comment():
-    find_post = session.query(Post).all()
-    find_comments = session.query(Comment).all()
-    if request.method == 'POST':
-        post_id = request.form['post_id']
-        author = request.form['author']
-        content = request.form['content']
-        # Flash error message displays if the user tries to comment without entering anything into the comment input section
-        if not content:
-            flash('Nothing to comment!')
-            return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
-        # Saves the post to the database linking it to the post its under, and reloads the page with the new comment
-        else:
-            comment = Comment(post_id=post_id, author=author, content=content)
-            session.add(comment)
-            session.commit()
-    return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
-
-## This function handles taking the likes and saving them to the correct post in the database and then displaying the correct number on the post
-@update.route('/like_post', methods=['POST', 'GET'])
-@login_required
-def like_post():
-    # Getting all the posts and comments so when the page reloads it loads with the correct data
-    find_post = session.query(Post).all()
-    find_comments = session.query(Comment).all()
-    # If the liked button is clicked then the post's liked number is incrememnted by one
-    if request.method == 'POST':
-        post_id = request.form['post_id']
-        post = session.query(Post).get(post_id)
-        if post:
-            post.Likes += 1
-            session.commit()
-    return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
 
 ### Code that handles getting the correct world ###
 @update.route("/worldspage", methods=['POST', 'GET'])
 @login_required
 def worlds():
     worlds = session.query(World.WorldName).filter_by(UserName = current_user.UserName).all()
-    world_names = [world[0] for world in worlds]  # Extract only the string values
+    world_names = [world[0] for world in worlds]  # Extract only the string values to add to the worlds dropdown
     
     return render_template("worldsPage.html", worlds_list=world_names)
 
@@ -86,9 +23,11 @@ def worldinfo():
     if request.method == 'POST':
         # Gets the world choice dropdown from the html form
         select = request.form.get('option')
+        # Flash warning that shows if the user tries loading a world without selecting one
         if select == "choose":
             flash('please choose a world from the dropdown')
             return redirect(url_for('update.worlds'))
+        # Flash message that shows if there are no worlds to choose from when the user presses the load world button
         elif select is None:
             flash('No worlds avaliable. Please create one.')
             return redirect(url_for('update.worlds'))
@@ -316,7 +255,7 @@ def specificDetails():
     return render_template("specificDetails.html", WorldName=worldname, existing_detail=existing_details)
 
 
-### Code used to dynamically updated the edit existing details dropdown on the specificDetails page
+### Code used to dynamically updated the edit existing details dropdown on the specificDetails page alongisde the Javascript/AJAX code
 @update.route("/getExistingDetails", methods=['POST'])
 def getExistingDetails():
     select = request.form.get('select')
@@ -328,7 +267,6 @@ def getExistingDetails():
     if select == 'Culture':
         existing_cultures = session.query(Culture).filter_by(WorldName=worldname).all()
         existing_details = [{'choice': 'Culture', 'detailType': culture.CultureTitle} for culture in existing_cultures]
-        print("TEST: ", existing_details)
     elif select == 'History':
         existing_histories = session.query(History).filter_by(WorldName=worldname).all()
         existing_details = [{'choice': 'History', 'detailType': history.HistoryTitle} for history in existing_histories]
@@ -352,9 +290,11 @@ def render_picture(data):
 def editworld():
     world_name = request.args.get('WorldName')
     if request.method == 'POST':
+        # Gets all the user inputted data from the form including any image files that might have been added
         new_name = request.form.get('name')
         new_description = request.form.get('worldDetails')
         world_name = request.form.get('worldName')
+        # If an image file has been added this code block is run to properly process that image file and add it to the database
         if request.files['imageFile']:
             img = request.files['imageFile']
             data = img.read()
@@ -370,7 +310,7 @@ def editworld():
         update_religion = session.query(Religion).filter_by(WorldName=world_name).all()
         update_species = session.query(Species).filter_by(WorldName=world_name).all()
         update_timeline= session.query(Timeline).filter_by(WorldName=world_name).all()
-        if not new_name and not new_description.strip():
+        if not new_name and not new_description:
             flash('Please enter some information to update!')
             return redirect(url_for('update.editworld', worldName=world_name))
         if new_name:
@@ -385,7 +325,7 @@ def editworld():
                 s.WorldName = new_name
             for t in update_timeline:
                 t.WorldName = new_name
-        if new_description.strip():
+        if new_description:
             updateWorld.WorldDescription = new_description
         session.commit()
         return redirect(url_for('update.worlds', worldName=world_name))
