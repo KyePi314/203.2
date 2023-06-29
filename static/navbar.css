@@ -73,11 +73,10 @@ nav
 
 nav ul
 {
-    width: 80%;
+    width: 95%;
     margin: auto;
     list-style-type: none;
     padding: 0;
-    
 
 }
 nav li, .dropdown
@@ -89,7 +88,11 @@ nav li, .dropdown
     padding-right: 0.3em;
 }
 
-nav li a
+.buttonworlds{
+  width: 40%;
+}
+
+nav li .a
 {
     font-size: 1.2em;
     display: block;
@@ -99,10 +102,26 @@ nav li a
     text-decoration: none;
 }
 
-nav li a:hover
+nav li .a:hover
 {
     background-color:#4F64A2;
     color: white;
+}
+
+.worldsB
+{
+  font-size: 1.2em;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 1%;
+  text-decoration: none;
+}
+
+.worldsB:hover
+{
+  background-color:#4F64A2;
+  color: white;
 }
 
 /*Make the navbar responsive*/
