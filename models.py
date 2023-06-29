@@ -51,18 +51,10 @@ class User(Base, UserMixin):
     def get_id(self):
         return str(self.UserName)
     
-
-# Uses the engine to create the tables for data.
-
-    # children: Mapped[List["Child"]] = relationship(back_populates="parent")
-
-
+# Class for creating the world objects stored in the worlds table
 class World(Base):
     __tablename__ = "Worlds"
     
-    # id: Mapped[int] = mapped_column(primary=True)
-    # parent_id: Mapped[int] = mapped_column(ForeignKey("parent_table.id"))
-    # parent: Mapped["Parent"] = relationship(back_populates="children")
     user = relationship('User')
     id = Column(Integer, ForeignKey("users.id"), primary_key=True)    
     UserName = Column(String, nullable=False)
@@ -78,10 +70,7 @@ class World(Base):
     def __repr__(self):
         return f"({self.UserName}) ({self.WorldName}) ({self.WorldDescription})"
     
-    # def get_id(self):
-    #     return str(self.Username)
-
-
+# Class for creating the History objects that are stored in the History table
 class History(Base):
     __tablename__ = "History"
     user = relationship('User')
@@ -100,7 +89,8 @@ class History(Base):
         
     def __repr__(self):
         return f"({self.UserName}) ({self.WorldName}) ({self.HistoryTitle}) ({self.HistoryDescription})"
-
+    
+# Code for creating Culture objects and storing them in the objects table
 class Culture(Base):
     __tablename__ = "Cultures"
     user = relationship('User')
@@ -119,8 +109,8 @@ class Culture(Base):
 
     def __repr__(self):
         return f"({self.UserName}) ({self.WorldName}) ({self.CultureTitle}) ({self.CultureDescription})"
-
-
+    
+# Code for creating religion objects for worlds and storing them in the religions table
 class Religion(Base):
     __tablename__ = "Religions"
     user = relationship('User')
@@ -140,6 +130,7 @@ class Religion(Base):
     def __repr__(self):
         return f"({self.UserName}) ({self.WorldName}) ({self.ReligionTitle}) ({self.ReligionDescription})"
 
+# Code for creating the species objects for worlds and saving them to the species table
 class Species(Base):
     __tablename__ = "Species"
     user = relationship('User')
@@ -159,6 +150,7 @@ class Species(Base):
     def __repr__(self):
         return f"({self.UserName}) ({self.WorldName}) ({self.SpeciesTitle}) ({self.SpeciesDescription})"
 
+# Code for the Timeline objects and table
 class Timeline(Base):
     __tablename__ = "Timelines"
     user = relationship('User')
@@ -178,6 +170,7 @@ class Timeline(Base):
     def __repr__(self):
         return f"({self.UserName}) ({self.WorldName}) ({self.TimelineTitle}) ({self.TimelineEntry})"
 
+# Code for saving images to the database, this is a temporary measure and the application will look at more efficient ways of storing images as it grows
 class Img(Base):
     __tablename__ = "Images"
     user = relationship('User')
@@ -197,8 +190,7 @@ class Img(Base):
     def __repr__(self):
         return f"({self.id}) ({self.worldName}) ({self.UserName}) ({self.data}) ({self.rendered_data})"
 
-currentdate = date.today()
-time = datetime.now()
+
 
 # Fix later:
 
@@ -226,6 +218,8 @@ time = datetime.now()
 # engine = create_engine("sqlite:///database.db", echo=True)
 
 #Create the classs for the Posts.
+
+# Code for saving the user created posts to a database to be displayed on the home feed
 class Post(Base):
     __tablename__ = "posts"
     user = relationship('User')
@@ -237,12 +231,12 @@ class Post(Base):
     posted_date = Column(DateTime, default=datetime.now)
     Likes = Column(Integer, default=0)
     ## Relationship with the likes and comments tables
-    # likes = relationship("Likes", backref="post") 
+    likes = relationship("Like", backref="liked_post") 
     comments = relationship("Comment", backref="post", cascade="all, delete-orphan")
 
     def __init__(self, id, user_id, UserName, title, content, posted_date, Likes):
         self.id = id
-        self.user_id = id
+        self.user_id = user_id
         self.UserName = UserName
         self.title = title
         self.content = content
@@ -252,24 +246,27 @@ class Post(Base):
     def __repr__(self):
         return f"({self.user_id}) ({self.title}) ({self.UserName}) ({self.content}) ({self.posted_date})"
 
-# class Likes(Base):
-#     __tablename__ = 'likes'
-#     user_id = Column(Integer, ForeignKey('users.id'), primary_key=True)
-#     post_id = Column(Integer, ForeignKey('posts.id'), primary_key=True)
-#     user = relationship('User', backref='likes')
-#     post = relationship('Post', backref='likes')
+# Handles the likes, keeping track of who has liked what posts using the user and post id's so that a user may only like a post once. 
+class Like(Base):
+    __tablename__ = 'likes'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    post_id = Column(Integer, ForeignKey("posts.id"), index=True)
+    user = relationship('User', backref='likes')
+    post = relationship('Post', backref='liked_post')
 
-#     def __init__(self, user_id, post_id):
-#         self.user_id = user_id
-#         self.post_id = post_id
+    def __init__(self, user_id, post_id):
+        self.user_id = user_id
+        self.post_id = post_id
 
-
+# Code for storing comments made by users on posts, keeps track of which comments belong to which posts through the post_id column
 class Comment(Base):
     __tablename__ = "comments"
     id = Column(Integer, primary_key=True)
     post_id = Column(Integer, ForeignKey("posts.id"), nullable=False)
     author = Column(String, nullable=False)
     content = Column(String, nullable=False)
+
 
     def __init__(self, post_id, author, content):
         self.post_id = post_id
@@ -292,4 +289,5 @@ Base.metadata.create_all(engine)
 # # # Commit changes.
 # Comment.__table__.drop(bind=engine)
 # Post.__table__.drop(bind=engine)
+# Likes.__table__.drop(bind=engine)
 # session.commit()
