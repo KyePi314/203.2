@@ -4,7 +4,7 @@ from base64 import b64encode
 import base64
 from io import BytesIO #Converts data from Database into bytes
 from flask import render_template, request, Blueprint, redirect, session, url_for, flash, jsonify
-from models import (engine, User, session, Img, World, Culture, History, Timeline, Religion, Species, Post, Comment)
+from models import (engine, User, session, Img, World, Culture, History, Timeline, Religion, Species, Post, Comment, Like)
 from flask_login import current_user, login_required
 from sqlalchemy import MetaData
 
@@ -27,7 +27,7 @@ def post():
         # Allows multiple posts from the same user by manually incrememnting the post id
         postID = rows + 1
         # Adding the new post to the database
-        new_post = Post(UserName=current_user.UserName, id=postID, user_id=current_user.UserName, title=title, content=content, posted_date=post_datetime, Likes=0)
+        new_post = Post(UserName=current_user.UserName, id=postID, user_id=current_user.id, title=title, content=content, posted_date=post_datetime, Likes=0)
         session.add(new_post)
         session.commit()
         # Finding all the data needed to display content on the home page
@@ -66,10 +66,17 @@ def like_post():
     # If the liked button is clicked then the post's liked number is incrememnted by one
     if request.method == 'POST':
         post_id = request.form['post_id']
-        post = session.query(Post).get(post_id)
-        if post:
+        post = session.query(Post).filter_by(id=post_id).first()
+        print("POST: ", post)
+        user_id = current_user.id
+        already_liked = session.query(Like).filter_by(post_id=post_id, user_id=user_id).first()
+        if not already_liked:
             post.Likes += 1
+            new_like = Like(post_id=post_id, user_id=user_id)
+            session.add(new_like)
             session.commit()
+        is_liked = already_liked  # Assign already_liked to is_liked
+        return render_template("home.html", username=current_user.UserName, posts=find_post, comments=find_comments, is_liked=is_liked)
     return redirect(url_for("main.home", username=current_user.UserName, posts=find_post, comments=find_comments))
 
 ### Code that handles getting the correct world ###
