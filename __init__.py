@@ -35,4 +35,6 @@ def create_app():
     app.register_blueprint(main_blueprint)
     from worlds import create as create_blueprint
     app.register_blueprint(create_blueprint)
+    from homefeed import homefeed as homefeed_bluepprint
+    app.register_blueprint(homefeed_bluepprint)
     return app
