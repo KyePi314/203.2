@@ -259,7 +259,6 @@ class Like(Base):
     post_id = Column(Integer, ForeignKey("posts.id"), index=True)
     user = relationship('User', backref='likes')
     post = relationship('Post', backref='liked_post')
-    comment = relationship('Comment', backref='liked_comment')
 
     def __init__(self, user_id, post_id):
         self.user_id = user_id
@@ -273,7 +272,6 @@ class Comment(Base):
     author = Column(String, nullable=False)
     content = Column(String, nullable=False)
 
-    likes = relationship("Like", backref="liked_comment") 
 
     def __init__(self, post_id, author, content):
         self.post_id = post_id
