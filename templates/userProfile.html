@@ -42,7 +42,7 @@
         </header>
         
         <main style="text-align:center">
-
+            <br><br>
             <h1>User Details</h1>
 
             {% with messages = get_flashed_messages() %}
@@ -53,8 +53,7 @@
             {% endif %}
             {% endwith %}
 
-            <div class="flex-form">
-                <div class="left-details">
+                <div class="left-details2">
                     <br>
                     <br>
                     <h3>Username:</h3>
@@ -73,37 +72,40 @@
 
                     <br><br>
                     <h3>Password:</h3>
-                    <p style="font-size: 20px;"> {{ pwd }} </p>
+                    <p style="font-size: 20px;" type="password"> {{ pwd }} </p>
                     <button onclick="togglePasswordForm()" class="btn">Change Password</button>
 
                     <form id="passwordForm" style="display: none;" action="/changepass" method="POST">
                         <label for="password">New Password:</label>
+                        <br>
                         <input type="password" id="password" name="password" required>
+                        <br>
                         <label for="confirmpassword">Confirm Password:</label>
-                        <input type="confirmpassword" id="confirmpassword" name="confirmpassword" required>
+                        <br>
+                        <input type="password" id="confirmpassword" name="confirmpassword" required>
                         <br>
                         <button class="btn" type="submit" value="Submit">Submit</button>
                     </form>
 
                     <br><br>
                 </div>
-                <div class="right-details">
+                <div class="left-details2">
                     <p style="font-size: 20px;">Mana Points: {{ mana }}</p>
                     <br>
                     <p style="font-size: 20px;">Posts: {{ posts }}</p>
                     <br>
                     <p style="font-size: 20px;">Comments: {{ comments }}</p>
                     <br>
-                    <Awards: style="font-size: 20px;">Awards: {{ awards }}</p>
+                    <p style="font-size: 20px;">Awards: {{ awards }}</p>
                 </div>
-                <div class="currentSubscription">
+                <div class="left-details2">
                     <h1>Current Subscription: </h1>
                     <br>
                     <p style="font-size: 20px;">{{ accountType }}</p>
-                    <br><br>
+                    <br>
                     <a href="{{ url_for('main.subscription')}}"><button class="btn">Upgrade Account</button></a>
+                    <br><br>
                 </div>
-            </div>
 
         </main>
     </body>

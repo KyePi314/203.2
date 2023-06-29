@@ -99,6 +99,7 @@ input:checked + .slider-round:before {
   width: 100%;
   max-width: 35em;
   margin: auto;
+  opacity: 90%;
 }
 
 .signup-form form
@@ -111,7 +112,7 @@ input:checked + .slider-round:before {
   min-height: 21.87em;
   max-width: 60em;
   width: 100%;
-  background-color: #e3e3e3;
+  background-color: #CFD7EE;
   border-radius: 8px;
   padding: 0.4em;
 }
@@ -131,7 +132,8 @@ input:checked + .slider-round:before {
   width: 100%;
   max-width: 25em;
   margin: auto;
-  opacity: 95%;
+  opacity: 90%;
+  
 }
 
 .form-container form
@@ -147,7 +149,7 @@ input:checked + .slider-round:before {
   flex-wrap: wrap;
   gap: 2.18em;
   border-radius: 15px;
-  background-color: #e3e3e3;
+  background-color: #CFD7EE;
   border-radius: 8px;
   padding: 0.8em
 }
@@ -220,11 +222,16 @@ main
   text-align: center;
 }
 
+#login-form {
+  background-color: #CFD7EE;
+}
+
 .loginbg
 {
   width: 50%;
   margin: 0 auto;
   text-align: center;
+  
 }
 
 .forgetitle{
@@ -250,13 +257,14 @@ main
 .signup-btn
 {
   margin: 1em;
+  background-color: #4F64A2;
 }
 .btn
 {
   border-radius: 12px;
   text-decoration: none;
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: #4F64A2;
   font-size: 20px;
   width: 5em;
   border: 1px solid black;
