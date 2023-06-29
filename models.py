@@ -237,12 +237,12 @@ class Post(Base):
     posted_date = Column(DateTime, default=datetime.now)
     Likes = Column(Integer, default=0)
     ## Relationship with the likes and comments tables
-    # likes = relationship("Likes", backref="post") 
+    likes = relationship("Like", backref="liked_post") 
     comments = relationship("Comment", backref="post", cascade="all, delete-orphan")
 
     def __init__(self, id, user_id, UserName, title, content, posted_date, Likes):
         self.id = id
-        self.user_id = id
+        self.user_id = user_id
         self.UserName = UserName
         self.title = title
         self.content = content
@@ -252,16 +252,18 @@ class Post(Base):
     def __repr__(self):
         return f"({self.user_id}) ({self.title}) ({self.UserName}) ({self.content}) ({self.posted_date})"
 
-# class Likes(Base):
-#     __tablename__ = 'likes'
-#     user_id = Column(Integer, ForeignKey('users.id'), primary_key=True)
-#     post_id = Column(Integer, ForeignKey('posts.id'), primary_key=True)
-#     user = relationship('User', backref='likes')
-#     post = relationship('Post', backref='likes')
+class Like(Base):
+    __tablename__ = 'likes'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    post_id = Column(Integer, ForeignKey("posts.id"), index=True)
+    user = relationship('User', backref='likes')
+    post = relationship('Post', backref='liked_post')
+    comment = relationship('Comment', backref='liked_comment')
 
-#     def __init__(self, user_id, post_id):
-#         self.user_id = user_id
-#         self.post_id = post_id
+    def __init__(self, user_id, post_id):
+        self.user_id = user_id
+        self.post_id = post_id
 
 
 class Comment(Base):
@@ -270,6 +272,8 @@ class Comment(Base):
     post_id = Column(Integer, ForeignKey("posts.id"), nullable=False)
     author = Column(String, nullable=False)
     content = Column(String, nullable=False)
+
+    likes = relationship("Like", backref="liked_comment") 
 
     def __init__(self, post_id, author, content):
         self.post_id = post_id
@@ -292,4 +296,5 @@ Base.metadata.create_all(engine)
 # # # Commit changes.
 # Comment.__table__.drop(bind=engine)
 # Post.__table__.drop(bind=engine)
+# Likes.__table__.drop(bind=engine)
 # session.commit()
