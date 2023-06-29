@@ -30,7 +30,7 @@
                 </ul>
             </nav>
         </header>
-        <main>
+        <main><br><br>
             <div class="main-content">
                 <h1 id="title">Welcome, {{ username }}</h1>
                 {% with messages = get_flashed_messages() %}
@@ -40,6 +40,7 @@
                         </div>
                     {% endif %}
                 {% endwith %}
+                <div class="column-left">
                 <div class="posts">
                     {% if posts|length %}
                         {% for post in posts %}
@@ -92,6 +93,7 @@
                         <h1>No posts to show</h1>
                     {% endif %}
                 </div>
+            </div>
             </div>
             <div class="column-right">
                 <a href="{{ url_for('update.post')}}"><button class="btn">Create Post</button></a>

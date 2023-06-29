@@ -93,8 +93,8 @@ h3
 {
     border-radius: 12px;
     text-decoration: none;
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: #4F64A2;
     font-size: 20px;
     width: 5em;
     border: 1px solid black;
@@ -111,8 +111,8 @@ h3
 {
     border-radius: 12px;
     text-decoration: none;
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: #4F64A2;
     font-size: 20px;
     width: 5em;
     border: 1px solid black;
@@ -166,6 +166,23 @@ form .btn
 {
     width: 40%;
 }
+
+
+.left-details2
+{
+    background-color: rgba(255, 255, 255, 0.525);
+    padding: 5px;
+    width: 60%;
+    text-align: center;
+    padding-bottom: 40px;
+    margin-left: 20%;
+    margin-right: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 12px;
+}
+
 .right-details
 {
     width: 40%;
