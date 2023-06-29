@@ -114,13 +114,13 @@ nav li .a:hover
   display: block;
   color: black;
   text-align: center;
-  padding: 1%;
+
   text-decoration: none;
 }
 
 .worldsB:hover
 {
-  background-color:#4F64A2;
+  background-color:#CFD7EE;
   color: white;
 }
 

@@ -37,7 +37,7 @@
 .about-box
 {
     overflow: hidden;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.525);
     border: 1px solid black;
     padding: 0.5em;
     text-align: center;
@@ -49,7 +49,7 @@
 .contact-box
 {
     overflow: hidden;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.525);
     border: 1px solid black;
     padding: 0.5em;
     text-align: center;
