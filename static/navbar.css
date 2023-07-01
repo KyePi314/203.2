@@ -4,6 +4,12 @@
     margin: 0;
 }
 /*NAVBAR STYLING*/
+
+@font-face {
+  font-family: 'Mason';
+  src: url("fonts/mason.ttf");
+}
+
 header
 {
     position: fixed;
@@ -31,7 +37,7 @@ header
   {
     display: none;
     position: absolute;
-    background-color: #7DBAC2;
+    background-color: #8A9BCC;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -49,7 +55,7 @@ header
   }
   .dropdown-content a:hover
   {
-    background-color:#317B85;
+    background-color:#4F64A2;
     color: white;
   }
   .dropdown:hover .dropdown-content 
@@ -58,7 +64,7 @@ header
   }
 nav
 {
-    background-color: #7DBAC2;
+    background-color: #8A9BCC;
     overflow: hidden;
     width: 100%;
     border-bottom-left-radius: 10px;
@@ -67,11 +73,10 @@ nav
 
 nav ul
 {
-    width: 60%;
+    width: 95%;
     margin: auto;
     list-style-type: none;
     padding: 0;
-    
 
 }
 nav li, .dropdown
@@ -83,7 +88,11 @@ nav li, .dropdown
     padding-right: 0.3em;
 }
 
-nav li a
+.buttonworlds{
+  width: 40%;
+}
+
+nav li .a
 {
     font-size: 1.2em;
     display: block;
@@ -93,10 +102,26 @@ nav li a
     text-decoration: none;
 }
 
-nav li a:hover
+nav li .a:hover
 {
-    background-color:#317B85;
+    background-color:#4F64A2;
     color: white;
+}
+
+.worldsB
+{
+  font-size: 1.2em;
+  display: block;
+  color: black;
+  text-align: center;
+
+  text-decoration: none;
+}
+
+.worldsB:hover
+{
+  background-color:#CFD7EE;
+  color: white;
 }
 
 /*Make the navbar responsive*/

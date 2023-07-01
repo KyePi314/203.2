@@ -13,10 +13,13 @@ main = Blueprint('main', __name__)
 def index():
     return render_template("auth/login.html")
 
-@main.route("/home/")
+@main.get('/home/')
 @login_required
 def home():
-    return render_template('home.html', username=current_user.UserName)
+    from models import session, Post, Comment
+    find_post = session.query(Post).all()
+    find_comment = session.query(Comment).all()
+    return render_template("home.html", posts=find_post, username=current_user.UserName, comments=find_comment)
 
 @main.route("/contact/")
 def contact():
@@ -30,14 +33,11 @@ def issues():
 def maps():
     return render_template("Maps.html")
 
+
+
 @main.route("/subscription/")
 def subscription():
     return render_template("SubscriptionPage.html")
-
-@main.route("/Timeline/")
-def timeline():
-    return render_template("Timeline.html")
-
 
 @main.route("/userprofile/")
 def userprofile():
@@ -54,33 +54,9 @@ def images():
         img_list.append(image)
     return render_template("images.html", img_list = img_list )
 
-@main.route("/editworldinfo/")
-def editworld():
-    return render_template("editworldinfo.html")
-
-@main.route("/culture/")
-def culture():
-    return render_template("culture.html")
-
-@main.route("/history/")
-def history():
-    return render_template("history.html")
-
-@main.route("/species/")
-def species():
-    return render_template("species.html")
-
-@main.route("/religion/")
-def religion():
-    return render_template("religion.html")
-
 @main.route("/about/")
 def about():
     return render_template("about.html")
-
-@main.route("/specificDetails/")
-def specificDetails():
-    return render_template("specificDetails.html")
 
 @main.route("/createworld/")
 def createworld():

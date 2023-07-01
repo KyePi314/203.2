@@ -32,7 +32,7 @@ def login(): # Log in page function
         if name == "" or pwd == "":
             flash('Please fill out form!')
         login_user(user, remember=remember)
-        return redirect(url_for('main.home', username=user.UserName))
+        return redirect(url_for('main.home'))
 
 @auth.route('/signup', methods = ['GET', 'POST'])
 def signup():
@@ -76,4 +76,3 @@ def load_user(user_id):
     else:
         return None
     
-

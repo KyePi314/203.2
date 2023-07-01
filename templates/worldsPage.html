@@ -11,10 +11,10 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="{{ url_for('main.home')}}">Home</a></li>
-                    <li><a href="{{ url_for('main.subscription')}}">Subscription</a></li>
-                    <li><a href="{{ url_for('update.worlds')}}">Worlds</a></li>
-                    <li><a href="{{ url_for('main.userprofile')}}">User Profile</a></li>
+                    <li><a class="a" href="{{ url_for('main.home')}}">Home</a></li>
+                    <li><a class="a" href="{{ url_for('main.subscription')}}">Subscription</a></li>
+                    <li><a class="worldsB" href="{{ url_for('update.worlds')}}"><img class="buttonworlds" src="../static/images/WorldsButton.svg"></a></li>
+                    <li><a class="a" href="{{ url_for('main.userprofile')}}">User Profile</a></li>
                     <div class="dropdown">
                         <button class="dropdown-btn">More
                             <i class="fa fa-caret-down"></i>
@@ -25,11 +25,11 @@
                             <a href="{{ url_for('main.about')}}">About</a>
                         </div>
                     </div>
-                    <li><a href="{{ url_for('auth.logout')}}">Log Out</a></li>
+                    <li><a class="a" href="{{ url_for('auth.logout')}}">Log Out</a></li>
                 </ul>
             </nav>
         </header>
-        <main>
+        <main><br><br>
             <h1>Your Worlds</h1>
             <div class="flex-form">
                 {% with messages = get_flashed_messages() %}
@@ -39,13 +39,13 @@
                         </div>
                     {% endif %}
                 {% endwith %}
-                <form method="POST" action="/worldinfo">
+                <form method="POST" action="/worldinfo/">
                     {% if worlds_list|length %}
                         <select id="options" name="option">
-                            <!--Dynamically displaps the world name options depending on the users saved worlds-->
-                            <option value="choose">Please Choose One</option>
+                            <!--Dynamically displays the world name options depending on the users saved worlds-->
+                            <option value="choose" selected>Please Choose One</option>
                             {% for world in worlds_list %}
-                                <option value="{{ world}}">{{ world }}</option>
+                                <option value="{{ world }}">{{ world }}</option>
                             {% endfor %}
                         </select>
                     {% else %}
@@ -55,6 +55,7 @@
                     <a href=" {{ url_for('main.createworld')}}"><button class="btn" type="button">Create New World</button></a>
                     <a href="{{ url_for('main.subscription')}}"><button class="btn" type="button">Unlock More Worlds</button></a>
                 </form>
+                <a href="{{ url_for('create.deleteworld')}}"><button class="btn2" type="button">Delete World</button></a>
             </div>
             <!--The Code in the Script tags handles the dynamically changed values from the dropdown and passes the chosen value back to the python function-->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -64,7 +65,8 @@
                 $('#options').change(function() {
                   var option = $(this).val();
                   var stringOption = String(option);
-                  // Pass the selected value to Flask using AJAX
+                  console.log(stringOption)
+                  // Passes the user's selected choice to Flask using AJAX
                   $.ajax({
                     type: 'POST',
                     url: '/worldinfo',
@@ -74,7 +76,7 @@
                       console.log(response);
                     },
                     error: function(error) {
-                      // Handle any errors that occur during the AJAX request
+                      // Handle any errors that happen during the request
                       console.log(error);
                     }
                   });

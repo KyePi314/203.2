@@ -10,10 +10,10 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="{{ url_for('main.home')}}">Home</a></li>
-                    <li><a href="{{ url_for('main.subscription')}}">Subscription</a></li>
-                    <li><a href="{{ url_for('update.worlds')}}">Worlds</a></li>
-                    <li><a href="{{ url_for('main.userprofile')}}">User Profile</a></li>
+                    <li><a class="a" href="{{ url_for('main.home')}}">Home</a></li>
+                    <li><a class="a" href="{{ url_for('main.subscription')}}">Subscription</a></li>
+                    <li><a class="worldsB" href="{{ url_for('update.worlds')}}"><img class="buttonworlds" src="../static/images/WorldsButton.svg"></a></li>
+                    <li><a class="a" href="{{ url_for('main.userprofile')}}">User Profile</a></li>
                     <div class="dropdown">
                         <button class="dropdown-btn">More
                             <i class="fa fa-caret-down"></i>
@@ -24,30 +24,137 @@
                             <a href="{{ url_for('main.about')}}">About</a>
                         </div>
                     </div>
-                    <li><a href="{{ url_for('auth.logout')}}">Log Out</a></li>
+                    <li><a class="a" href="{{ url_for('auth.logout')}}">Log Out</a></li>
                 </ul>
             </nav>
         </header>
-       <main>
-         <!--The world name in the brackets will be replaces by the name of the world the user is editing-->
-            <h1>Edit Details</h1>
-            <div class="flex-left">
-                <label for="name">Add New Details:</label>
-                <textarea  id="new" name="details" rows="4" cols="10">
-                </textarea>
-                <label for="More">Additional Details</label>
-                <textarea  id="more" name="moreDetails" rows="4" cols="10">
-                </textarea>
+        <main><br><br>
+            <h1>{{ WorldName }}</h1>
+            
+            {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="flash-msg">
+                            {{ messages[0] }}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            <div class="details-form">
+                <h2>Edit Details</h2>
+                <form action="/specificDetails" method="POST">
+                    <div class="radio-btns">
+                        <h4>Please choose what you want to do first: </h4>
+                        <label for="edit">Edit Current Details</label>
+                        <input type="radio" name="choice" id="edit" value="edit">
+                        <label for="add">Add New Details</label>
+                        <input type="radio" name="choice" id="add" value="add">
+                        <label for="delete">Delete Detail</label>
+                        <input type="radio" name="choice" value="delete" id="delete">
+                    </div>
+                    <select name="choose_detail" id="choose_detail">
+                        <option value="choose">Please Choose One</option>
+                        <option value="Culture">Culture</option>
+                        <option value="History">History</option>
+                        <option value="Religion">Religion</option>
+                        <option value="Species">Species</option>
+                        <option value="Timeline">Timeline</option>
+                    </select>
+                    
+                    <select name="choose_existing_detail" id="choose_existing_detail">
+                        <option value="choose" selected>Please choose one</option>
+                        {% for detail in existing_details %}
+                            <option value="{{ details.detailType }}">{{ details.detailType }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="hidden" value="{{WorldName}}" name="WorldName"/>
+                    <div class="flex-left">
+                        <label for="title">Add title:</label>
+                        <input id="title" name="title" />
+                    </div>
+                    <div class="flex-right">
+                        <label for="detail_description">Description</label>
+                        <textarea id="detail_description" name="detail_description" rows="4" cols="10">
+                        </textarea>
+                    </div>
+                    <div class="btn-group">
+                        <button  onclick="history.back()" type="button" class="btn">Go Back</button>
+                        <button class="btn" type="submit">Save World</button>
+                     </div>
+                </form>
             </div>
-            <div class="flex-right">
-                <label for="descrip">Description</label>
-                <textarea id="descrip" name="description" rows="4" cols="10">
-                </textarea>
-            </div>
-            <div class="btn-group">
-                <button  onclick="history.back()" class="btn">Go Back</button>
-                 <a href=" {{ url_for('main.worldinfo')}}"><button class="btn">Save World</button></a>
-             </div>
-       </main>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+            // Hides the existing details dropdown initially
+            $('#choose_existing_detail').hide();
+
+            // Event handler for the choose_detail dropdown change
+            $('#choose_detail').change(function() {
+                var select = $(this).val();
+                
+                    // Show the existing details dropdown only if the 'edit' radio button is checked
+                    if ($('#edit').prop('checked') || $('#delete').prop('checked')) {
+                        // Checks which item from the dropdown is selected
+                        if (select === 'Culture' || select === 'History' || select === 'Religion' || select === 'Species' || select === 'Timeline') {
+                        // This makes sure the current world name is passed properly
+                        var worldName = $('[name="WorldName"]').val();
+                        // Makes an AJAX request to fetch the existing details based on the which specifc detail option is selected
+                        $.ajax({
+                            url: '/getExistingDetails',
+                            type: 'POST',
+                            data: {select: select, WorldName: worldName},
+                            success: function(response) {
+                                // Populate the choose_existing_detail dropdown with the details found by the flask code
+                                console.log(response);
+                                var details = response;
+                                var dropdown = $('#choose_existing_detail');
+
+                                // Clear existing options
+                                dropdown.empty();
+
+                                // Add new options to the dropdown from the options that are saved to the current world within the database
+                                if (details.length > 0) {
+                                    dropdown.append('<option value="choose">Please choose one</option>');
+
+                                    for (var i = 0; i < details.length; i++) {
+                                        dropdown.append('<option value="' + details[i].detailType + '">' + details[i].detailType + '</option>');
+                                    }
+                                    // Show the dropdown
+                                    dropdown.show();
+                                } else {
+                                    // Hides the dropdown if the choosen detail type (Culture, Species etc) doesn't currently have any details to edit
+                                    dropdown.hide();
+                                }
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
+                    } else {
+                        // Hide the dropdown if the Edit radio button is not checked
+                        $('#choose_existing_detail').hide();
+                    }
+                } else {
+                    // Hide the dropdown if the selected option is 'Please Choose and Option'
+                    $('#choose_existing_detail').hide();
+                }
+            });
+
+            // Event handler for the radio buttons
+            $('input[type=radio][name=choice]').change(function() {
+                // If the edit radio button is checked the dropdown is shown allowing users to choose which specific detail to edit
+                if ($(this).val() === 'edit' || $(this).val() === 'delete') {
+                    $('#choose_existing_detail').show();
+                }
+                // Otherwise is stays hidden
+                else {
+                    $('#choose_existing_detail').hide();
+                }
+            });
+        });
+
+        </script>
+
     </body>
+    
 </html>
